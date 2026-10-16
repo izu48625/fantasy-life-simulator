@@ -7,6 +7,7 @@ export function recordAnnualSnapshot(state) {
   const snapshot = {
     age: p.age, year: state.world.year, stage: p.stage,
     ovr: combatRating(p), health: p.health, merit: p.merit, fame: p.fame,
+    annualIncome:p.finances?.lastPay??null,lifeIncome:p.finances?.lifetimeEarned??null,
     battles: p.battles, wins: p.wins, rankIndex: p.rankIndex,
     careerId: p.occupation?.careerId ?? null, occupation: p.occupation?.careerName ?? null,
     school: p.education?.institutionName ?? null,

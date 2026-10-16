@@ -4,15 +4,15 @@ const $ = id => document.getElementById(id);
 const KIND = {
   birth:['出生','✦'],training:['訓練・学業','✎'],admission:['入学試験','⌂'],graduation:['卒業','✧'],
   career:['配属','⚑'],battle:['戦闘','⚔'],promotion:['昇進','★'],
-  transfer:['転職・転属','⇄'],review:['昇進・採用審査','◇'],assignment:['新任務','♜'],
+  transfer:['転職・転属','⇄'],recovery:['負傷後の決断','✚'],review:['昇進・採用審査','◇'],assignment:['新任務','♜'],
   retirement:['引退','☼'],death:['終章','✝'],story:['人生の出来事','◆']
 };
 const PHASE = {childhood:'幼少期',academy:'学院生活',awaiting_career:'進路選択',career:'戦闘キャリア',retired:'引退生活',deceased:'生涯の終章'};
-const strongKinds = new Set(['birth','admission','graduation','career','promotion','transfer','assignment','retirement','death']);
+const strongKinds = new Set(['birth','admission','graduation','career','promotion','transfer','assignment','recovery','retirement','death']);
 function includeEntry(entry, filter) {
   if (filter==='all') return true;
   if (filter==='turning') return strongKinds.has(entry.kind) || (entry.kind==='story'&&entry.importance==='major');
-  if (filter==='career') return ['career','promotion','review','assignment','transfer'].includes(entry.kind);
+  if (filter==='career') return ['career','promotion','review','assignment','transfer','recovery','retirement'].includes(entry.kind);
   if (filter==='battle') return ['battle','promotion','review','assignment','transfer'].includes(entry.kind);
   if (filter==='school') return ['admission','graduation','training'].includes(entry.kind);
   if (filter==='people') return entry.kind==='story';

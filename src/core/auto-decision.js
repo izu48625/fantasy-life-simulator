@@ -4,8 +4,12 @@ import { CAREERS } from '../data/careers.js';
 import { chooseAcademy } from '../simulation/academy.js';
 import { preferredCareer } from '../simulation/career.js';
 import { eligibleForTransfer, transferOptions } from '../simulation/career-paths.js';
+import { annualSalary, riskLabel, riskMultiplier } from '../simulation/economy.js';
+import { INJURY_PATHS } from '../simulation/injury-choices.js';
 import { RACES } from '../data/races.js';
 import { STORY_CHOICE_SETS } from '../simulation/story.js';
+
+
 
 
 
@@ -23,7 +27,9 @@ export function determineDecision(state) {
   const targetAge = p.age + 1;
   const academyStart = race.adultAge - 5;
   let type = null, title = null, options = null, important = false;
-  if (targetAge === academyStart && p.stage === 'childhood') {
+  if (p.stage==='career' && p.injuryDecisionPending) {
+    type='injury_path';title=`${p.injuryDecisionPending.kind}のあと、これからどう生きるか`;options=INJURY_PATHS;important=true;
+  } else if (targetAge === academyStart && p.stage === 'childhood') {
     type = 'academy'; title = '進学先を希望する';
     options = INSTITUTIONS.map(a => ({ id: a.id, label: a.name })); important = true;
   } else if (targetAge === 10 && p.stage === 'childhood') {
@@ -39,7 +45,7 @@ export function determineDecision(state) {
     const candidates=transferOptions(p);
     if(candidates.length){
       type='transfer';title='今後の所属と転職を考える';
-      options=[{id:'stay',label:`${p.occupation.careerName}で勤務を続ける`},...candidates];important=true;
+      options=[{id:'stay',label:`${p.occupation.careerName}で勤務を続ける`,note:`年収${annualSalary(p)}銀貨／危険度${riskLabel(riskMultiplier(p))}／現在の階級を維持`},...candidates];important=true;
     }
   } else if (p.stage === 'career' && targetAge % 5 === 0 && state.world.wars[p.nationId]) {
     type = 'battle'; title = '危険な出撃への方針'; options = TACTICS; important = true;
@@ -51,6 +57,12 @@ export function determineDecision(state) {
 
 export function autoChoose(state, decision) {
   const p = state.person;
+  if (decision.type === 'injury_path') {
+    if(p.health<39 || p.caution>78)return 'rear';
+    if(p.age>45 && p.health<60)return 'retire';
+    if(p.ambition>78 && p.health>62)return 'front';
+    return 'rehab';
+  }
   if (decision.type === 'pathway') return p.attributes.MAG > p.attributes.STR + 4 ? 'magic' : p.ambition > 65 ? 'sword' : 'tactics';
   if (decision.type === 'fellowship') return p.ambition > 66 ? 'competition' : p.caution > 65 ? 'discipline' : 'cooperation';
   if (decision.type === 'conviction') return p.ambition > 70 ? 'honor' : p.caution > 60 ? 'safety' : 'comrades';

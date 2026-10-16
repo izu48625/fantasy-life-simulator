@@ -28,10 +28,11 @@ export function renderSummary(state) {
   numbers.textContent = `最終OVR ${metrics.ovr}｜最高OVR ${metrics.peakOvr ?? '—'}｜勝率 ${metrics.winRate === null ? '—' : metrics.winRate+'%'}｜最大${metrics.bestStreak}連勝｜戦時任務${metrics.warBattles}戦｜${metrics.missionVariety}種の任務`;
   const history = document.createElement('p');
   history.textContent = `人生の転機${metrics.majorEvents}件｜昇進${metrics.promotionCount}回｜転職${metrics.transferCount}回｜学院平均${metrics.educationAverage ?? '—'}点｜名声${metrics.fame}｜関わった人物${(p.contacts||[]).length}人`;
+  const economy=document.createElement('p');economy.textContent=`最終年収${metrics.income??'—'}銀貨｜記録された生涯収入${metrics.lifetimeIncome??'—'}銀貨｜負傷後の進路選択${metrics.injuryChoiceCount}回`;
   const past = document.createElement('p');
   past.textContent = '職歴：' + ((metrics.careerHistory?.length||0)
     ? metrics.careerHistory.map(entry=>`${entry.careerName}（${entry.startedAt}〜${entry.endedAt??p.age}歳）`).join(' → ')
     : p.occupation?.careerName || 'なし');
-  panel.append(heading, result, title, stat, numbers, history, past, education, connections, subtitle);
+  panel.append(heading, result, title, stat, numbers, history, economy, past, education, connections, subtitle);
 }
 

@@ -1,5 +1,7 @@
 import { CAREERS } from '../data/careers.js';
 import { nextRandom } from '../core/rng.js';
+import { annualSalary, expectedTransfer, riskLabel, riskMultiplier } from './economy.js';
+
 
 
 const clamp=(x,lo,hi)=>Math.max(lo,Math.min(hi,x));
@@ -15,7 +17,10 @@ export function transferOptions(person) {
     .map(c=>({career:c,score:rating(person,c)+
       (c.id==='army'?5:c.id==='adventurer'?3:0)+(person.education?.honors?2:0)}))
     .sort((a,b)=>b.score-a.score||a.career.id.localeCompare(b.career.id));
-  return pool.slice(0,3).map(({career:c})=>({id:c.id,label:`${c.name}へ転職を志願`}));
+  return pool.slice(0,3).map(({career:c})=>{
+    const v=expectedTransfer(person,c.id),diff=v.difference>=0?`+${v.difference}`:String(v.difference);
+    return {id:c.id,label:`${c.name}へ転職`,note:`年収 ${v.oldPay}→${v.newPay}銀貨（${diff}）／危険度 ${riskLabel(v.oldRisk)}→${riskLabel(v.newRisk)}／階級は${c.ranks[v.rankIndex]}から`};
+  });
 }
 
 export function eligibleForTransfer(person,targetAge) {
@@ -41,16 +46,19 @@ export function attemptTransfer(person,rng,choice) {
     log:`${target.name}への転職試験に落選した（合格見込${Math.round(chance*100)}%）。${o.careerName}での勤務を続ける。`};
   const prev=careerOf(o.careerId);
   const oldName=prev?.ranks[p.rankIndex]??'隊員';
+  const payBefore=annualSalary(p);const riskBefore=riskLabel(riskMultiplier(p));
   o.history??=[{careerId:o.careerId,careerName:o.careerName,startedAt:o.joinedAt,endedAt:null,rankIndex:p.rankIndex}];
   if(o.history.length) {o.history.at(-1).endedAt=p.age;o.history.at(-1).rankIndex=p.rankIndex;}
   o.transfers=(o.transfers??0)+1;
   o.lastTransferAt=p.age;o.careerId=target.id;o.careerName=target.name;o.joinedAt=p.age;
+  o.medicalAssignment=null;o.assignmentName=null;o.assignmentId=null;
   // Experienced veterans may retain some seniority; a new profession is never an instant promotion.
   p.rankIndex=Math.max(0,Math.min(1,p.rankIndex-1));
   o.history.push({careerId:target.id,careerName:target.name,startedAt:p.age,endedAt:null,rankIndex:p.rankIndex});
+  const payAfter=annualSalary(p);const riskAfter=riskLabel(riskMultiplier(p));
   p.achievements??=[];p.achievements.push(`${p.age}歳に${prev.name}から${target.name}へ転職`);
   return{person:p,rng,kind:'transfer',importance:'major',
-    log:`${prev.name}の${oldName}から${target.name}へ転職が決定（合格見込${Math.round(chance*100)}%）。新たに${target.ranks[p.rankIndex]}として任務を始めた。`};
+    log:`${prev.name}の${oldName}から${target.name}へ転職が決定（合格見込${Math.round(chance*100)}%）。${target.ranks[p.rankIndex]}から再出発。年収${payBefore}→${payAfter}銀貨（${payAfter-payBefore>=0?'+':''}${payAfter-payBefore}）、危険度${riskBefore}→${riskAfter}。`,detail:{payBefore,payAfter,riskBefore,riskAfter}};
 }
 
 const ASSIGNMENTS=[
@@ -65,7 +73,7 @@ const ASSIGNMENTS=[
 /** Rare and stateful assignment changes (not independent narration). */
 export function maybeReassign(person,rng){
   const o=person.occupation;
-  if(!o||person.convalescentYears||person.health<38||person.age-o.joinedAt<3||person.age%5!==0)return{person,rng,log:null};
+  if(!o||o.medicalAssignment==='rear'||person.convalescentYears||person.health<38||person.age-o.joinedAt<3||person.age%5!==0)return{person,rng,log:null};
   let roll=nextRandom(rng);rng=roll.rng;
   if(roll.value>.62)return{person,rng,log:null};
   const eligible=ASSIGNMENTS.filter(x=>x.can(person)&&x.id!==o.assignmentId);

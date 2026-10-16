@@ -7,7 +7,8 @@ export function progressWorld(world, rng) {
   next.year += 1;
   for (const nation of NATIONS) {
     const res = nextRandom(rng); rng = res.rng;
-    const current = !!next.wars[nation.id];    next.wars[nation.id] = current ? res.value > .17 : res.value < nation.threat * .085;
+    const current = !!next.wars[nation.id];
+    next.wars[nation.id] = current ? res.value > .17 : res.value < nation.threat * .085;
     if (next.wars[nation.id] !== current) {
       next.history.push({ year: next.year, nationId: nation.id, event: next.wars[nation.id] ? '開戦' : '休戦' });
     }
