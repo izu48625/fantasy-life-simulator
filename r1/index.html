@@ -1,0 +1,1498 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f2eadc">
+  <meta name="description" content="ファンタジー世界に生まれた戦士の一生を観察する、ブラウザ完結の戦闘人生シミュレーション。R0試作版。">
+  <title>Fantasy Life Simulator — R1 Gameplay Preview</title>
+  
+<style>:root{font-family:ui-sans-serif,system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:#292b29;background:#f2eadc;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh}button,select,input{font:inherit}button{min-height:44px;padding:10px 15px;border:1px solid #b5aa94;border-radius:9px;background:#fffdf8;color:#292b29;font-weight:650;cursor:pointer}button:hover:not(:disabled){background:#f2f0e8}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,.file-label:focus-visible{outline:3px solid #b17031;outline-offset:3px}button.primary{background:#415848;color:white;border-color:#415848}button.primary:hover:not(:disabled){background:#324438}button.subtle{background:transparent}.site-header{max-width:1450px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:24px 20px 17px}.brand-mark{font-size:27px;color:#8c673f}.brand-title{font-size:17px;font-weight:850;letter-spacing:.12em}.brand-sub{font-size:12px;color:#636057}.prototype-tag{margin-left:auto;padding:6px 10px;background:#e9dfcd;border:1px solid #d0c1a9;border-radius:30px;font-size:12px;white-space:nowrap}.card{background:#fffdf7;border:1px solid #d7cbb6;border-radius:16px;box-shadow:0 3px 15px #493c2810;padding:20px}main{max-width:1450px;margin:0 auto;padding:0 20px 20px}.muted{color:#5f665d}.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#806d52;font-weight:800}.welcome{max-width:640px;margin:clamp(12px,4vh,70px) auto 40px;padding:clamp(22px,5vw,46px)}.welcome h1{font-size:clamp(23px,3vw,35px);line-height:1.4;margin:7px 0 15px}.welcome>p{line-height:1.75}.start-form{display:grid;gap:11px;margin-top:26px}.start-form label{font-size:13px;font-weight:750}.start-form input,.start-form select{min-height:48px;background:#fff;border:1px solid #acaa9c;border-radius:9px;padding:10px 12px;width:100%;color:inherit}.start-form button{width:100%}.footnote{font-size:12px;color:#625e53;margin-top:22px}.game-layout{display:grid;grid-template-columns:minmax(235px,280px) minmax(0,1fr) minmax(220px,280px);align-items:start;gap:16px;padding-bottom:110px}.game-layout h1{font-size:22px;margin:5px 0}.game-layout h2{font-size:18px;margin:18px 0 11px}.profile-panel,.world-panel{position:sticky;top:12px}.profile-panel p{line-height:1.7}.status-pill{display:inline-flex;padding:7px 10px;border-radius:8px;background:#e4ecdf;font-weight:700;font-size:12px;color:#314e39}.meter-label{display:flex;justify-content:space-between;gap:15px;margin-top:24px;font-size:13px;font-weight:700}progress{width:100%;height:13px;accent-color:#628165}.stats{border-top:1px solid #e8dfd0}.stat-line{display:flex;justify-content:space-between;padding:8px 3px;border-bottom:1px solid #e8dfd0}.stat-line span{font-family:ui-monospace,monospace;font-weight:700;letter-spacing:.08em}.timeline-panel{min-height:64vh}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #e7dbca;padding-bottom:13px;margin-bottom:12px}.section-heading h2,.section-heading p{margin:0}.timeline{min-height:270px;max-height:min(72vh,780px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}.event{border-left:2px solid #bfc0aa;padding:4px 14px 10px;margin:0 0 16px 6px}.event-major{border-left:3px solid #9d7045;background:#fcf8ee;border-radius:0 10px 10px 0}.event-age{font-size:12px;color:#796448;font-weight:750}.event p{line-height:1.75;margin:7px 0 0;font-size:14px;overflow-wrap:anywhere}.decision-panel{background:#eff4eb;border:1px solid #afc4aa;border-radius:12px;padding:17px;margin:12px 0 22px}.decision-panel h3{margin:0 0 8px;font-size:18px}.decision-panel p{font-size:13px}.decision-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}.choice-button{background:#fff}.summary-panel{padding:18px;background:#f7efdc;border:1px solid #e4c897;border-radius:12px;margin-top:14px;line-height:1.75}.world-panel>button,.file-label{display:block;width:100%;margin:8px 0;text-align:center}.file-label{min-height:44px;padding:12px;border:1px solid #b5aa94;border-radius:9px;cursor:pointer;background:#fffdf8;font-weight:650}.world-panel input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}.world-panel hr{border:0;border-top:1px solid #e7dbca;margin:18px 0}.bottom-controls{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fffdf7ed;border-top:1px solid #d4cbb8;backdrop-filter:blur(10px);padding:10px max(12px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));box-shadow:0 -6px 20px #30281a10}.controls-inner{max-width:1430px;margin:auto;display:flex;align-items:center;gap:8px}.control-label{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;white-space:nowrap}.control-label select{min-height:44px;padding:0 8px;border-radius:8px;border:1px solid #b5aa94;color:#292b29;background:white}.archive{max-width:650px;margin:10px auto 25px}.archive-entry{display:flex;gap:12px;justify-content:space-between;align-items:center;border-bottom:1px solid #e5dbcc;padding:12px 0}.archive-entry p{margin:3px 0;font-size:13px}.toast{position:fixed;z-index:60;top:15px;left:50%;transform:translateX(-50%);background:#273b2c;color:#fff;padding:11px 17px;border-radius:10px;box-shadow:0 4px 14px #0002;max-width:min(92vw,600px);font-size:14px}[hidden]{display:none!important}
+
+.compact-identity{font-size:12px;margin-top:5px!important;line-height:1.5}
+
+.script-warning{border:1px solid #bb6c53;border-radius:10px;padding:12px;background:#fff0eb;color:#70341e;font-size:14px}.preview-help{font-size:12px;color:#6a5b44;line-height:1.7;margin-top:12px}
+
+@media(min-width:1081px){.timeline-panel{min-height:70vh}.profile-panel,.world-panel{max-height:calc(100dvh - 150px);overflow-y:auto}.bottom-controls .controls-inner{justify-content:center}}
+
+@media(max-width:1080px){.game-layout{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}.world-panel{position:static;grid-column:1/-1}.controls-inner{overflow-x:auto;scrollbar-width:thin;justify-content:flex-start}.controls-inner>button,.controls-inner>.control-label{flex-shrink:0}}
+@media(max-width:660px){.site-header{padding:15px 14px;gap:8px}.brand-title{font-size:12px;letter-spacing:.08em}.brand-sub{font-size:10px}.brand-mark{font-size:21px}.prototype-tag{font-size:10px;padding:5px 8px}.card{padding:16px;border-radius:12px}main{padding:0 12px 14px}.welcome{margin:8px auto 25px;padding:22px}.welcome h1{font-size:24px}.game-layout{display:flex;flex-direction:column;gap:12px;padding-bottom:160px}.game-layout>.card{width:100%}.profile-panel,.world-panel{position:static}.profile-panel .stats{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}.profile-panel{order:2}.timeline-panel{order:1;min-height:440px}.world-panel{order:3}.timeline{max-height:none;min-height:180px;overflow:visible}.timeline-panel .section-heading{position:static}.bottom-controls{padding:8px max(8px,env(safe-area-inset-right)) calc(9px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}.controls-inner{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(44px,auto);gap:6px;overflow:visible}.controls-inner>button{min-width:0;width:100%;padding:7px 3px;font-size:12px}.controls-inner>.control-label{grid-column:span 2;display:flex;align-items:center;justify-content:space-between;min-width:0}.controls-inner>.control-label select{min-width:0;max-width:74%;font-size:12px}.event p{font-size:14px}.decision-options{grid-template-columns:1fr}.section-heading h2{font-size:18px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-mark" aria-hidden="true">✦</div>
+    <div><div class="brand-title">FANTASY LIFE SIMULATOR</div><div class="brand-sub">戦士の一生、その運命を見届ける。</div></div>
+    <span class="prototype-tag">R1 開発プレビュー</span>
+  </header>
+  <main>
+    <section id="welcome" class="welcome card" aria-labelledby="welcome-title">
+      <p class="eyebrow">CHRONICLE OF A WARRIOR</p>
+      <h1 id="welcome-title">あなたは、どんな戦士として生きるのか。</h1>
+      <p>種族、家柄、才能は選べない。訓練と選択が、その先の道をつくる。</p>
+      <div class="start-form">
+        <label for="seed-input">世界のシード <span class="muted">（空欄なら自動生成）</span></label>
+        <input id="seed-input" maxlength="100" type="text" placeholder="例：hero-12345" autocomplete="off">
+        <label for="initial-mode">人生の進め方</label>
+        <select id="initial-mode"><option value="SEMI_AUTO">SEMI AUTO｜重要な場面だけ選択</option><option value="FULL_AUTO">FULL AUTO｜人生を観察</option><option value="MANUAL">MANUAL｜毎年の方針も選択</option></select>
+        <button id="start-button" class="primary" type="button">新しい人生を始める</button>
+        <button id="resume-button" type="button">前回の人生を続ける</button>
+        <button id="archive-button" class="subtle" type="button">過去の人生を見る</button>
+      </div>
+      <p class="footnote">ログイン不要・無料・端末内保存。R1は育成・進学・戦友・戦闘がつながる開発プレビューです。正式版ではありません。</p>
+      <noscript><p class="script-warning">JavaScriptが無効なため、ゲームを開始できません。JavaScriptに対応するブラウザで開いてください。</p></noscript>
+      <p class="preview-help">※ ChatGPTなどのファイルプレビュー内では、ボタンが動作しない場合があります。Web上に配置してSafariで開くと操作できます。</p>
+      <p id="storage-warning" class="script-warning" hidden>この閲覧環境では端末への永続保存ができません。JSON書き出しを利用してください。</p>
+    </section>
+    <section id="archive-panel" class="card archive" hidden aria-label="人生アーカイブ">
+      <div class="section-heading"><h2>過去の人生</h2><button id="close-archive" type="button">閉じる</button></div>
+      <div id="archive-list"></div>
+    </section>
+    <section id="game" class="game-layout" hidden aria-label="人生シミュレーション">
+      <aside class="card profile-panel" aria-label="人物プロフィール">
+        <p class="eyebrow">LIFE RECORD</p><h1 id="hero-name"></h1>
+        <p id="hero-summary" class="muted"></p><p id="hero-origin"></p>
+        <div class="status-pill" id="hero-career"></div>
+        <label class="meter-label" for="health-bar">健康 <span id="health-value"></span></label>
+        <progress id="health-bar" max="100" value="100"></progress>
+        <h2>能力</h2><div id="hero-stats" class="stats"></div>
+      </aside>
+      <section class="card timeline-panel" aria-label="人生年表">
+        <div class="section-heading"><div><p class="eyebrow">PERSONAL CHRONICLE</p><h2>人生年表</h2><p id="brief-character" class="muted compact-identity"></p></div><span id="running-status" class="status-pill" aria-live="polite">一時停止</span></div>
+        <section id="decision-panel" class="decision-panel" hidden aria-label="重要な選択"></section>
+        <div id="timeline" class="timeline" aria-live="off"></div>
+        <section id="summary-panel" class="summary-panel" hidden aria-label="一生の記録"></section>
+      </section>
+      <aside class="card world-panel" aria-label="世界・戦績">
+        <p class="eyebrow">CURRENT WORLD</p><h2>世界と戦績</h2>
+        <p id="world-status"></p><p id="combat-status"></p>
+        <p class="muted">世界の情勢は毎年変化します。現在は6国家の簡易モデルを使用しています。</p>
+        <hr>
+        <button id="save-button" type="button">この人生を保存</button>
+        <button id="export-button" type="button">JSONを書き出す</button>
+        <label class="file-label" for="import-file">JSONを読み込む</label>
+        <input type="file" id="import-file" accept="application/json,.json">
+        <button id="home-button" class="subtle" type="button">開始画面へ戻る</button>
+      </aside>
+    </section>
+  </main>
+  <nav id="controls" class="bottom-controls" aria-label="人生の進行操作" hidden>
+    <div class="controls-inner">
+      <button id="toggle-play" class="primary" type="button">再生</button>
+      <button id="one-year" type="button">+1年</button>
+      <button id="next-event" type="button">次の出来事</button>
+      <button id="next-choice" type="button">次の選択</button>
+      <label class="control-label" for="speed-select">速度<select id="speed-select"><option value="1">×1</option><option value="2">×2</option><option value="4">×4</option><option value="8">×8</option></select></label>
+      <label class="control-label" for="mode-select">操作<select id="mode-select"><option value="FULL_AUTO">FULL AUTO</option><option value="SEMI_AUTO">SEMI AUTO</option><option value="MANUAL">MANUAL</option></select></label>
+    </div>
+  </nav>
+  <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+<script>/* Standalone R0 — generated; edit src/ not this file */
+const __modules = Object.create(null);
+__modules["src/core/rng.js"] = (()=>{
+/** Pure seeded PRNG. Render and wall-clock code MUST NEVER consume this stream. */
+function seedToUint32(seed) {
+  const text = String(seed);
+  let h = 2166136261;
+  for (let i = 0; i < text.length; i++) {
+    h ^= text.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function initRng(seed) {
+  return { seed: String(seed), state: seedToUint32(seed), draws: 0 };
+}
+
+function nextRandom(rng) {
+  // mulberry32 with explicit, serializable state
+  const state = (rng.state + 0x6D2B79F5) >>> 0;
+  let t = state;
+  t = Math.imul(t ^ (t >>> 15), t | 1);
+  t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+  const value = ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  return { value, rng: { ...rng, state, draws: rng.draws + 1 } };
+}
+
+function randomInt(rng, min, max) {
+  if (!Number.isInteger(min) || !Number.isInteger(max) || max < min) throw new Error('Invalid random range');
+  const result = nextRandom(rng);
+  return { value: min + Math.floor(result.value * (max - min + 1)), rng: result.rng };
+}
+
+function weightedPick(rng, choices) {
+  const total = choices.reduce((sum, c) => sum + c.weight, 0);
+  if (!(total > 0) || choices.some(c => c.weight < 0 || !Number.isFinite(c.weight))) {
+    throw new Error('Invalid weighted choices');
+  }
+  const result = nextRandom(rng);
+  let target = result.value * total;
+  for (const choice of choices) {
+    target -= choice.weight;
+    if (target < 0) return { value: choice.value, rng: result.rng };
+  }
+  return { value: choices[choices.length - 1].value, rng: result.rng };
+}
+
+return {seedToUint32,initRng,nextRandom,randomInt,weightedPick};
+})();
+__modules["src/core/state.js"] = (()=>{
+const {initRng} = __modules["src/core/rng.js"];
+
+const SAVE_VERSION = 1;
+const ENGINE_VERSION = '0.3.0-r1-depth';
+const MODES = Object.freeze(['FULL_AUTO', 'SEMI_AUTO', 'MANUAL']);
+const SPEEDS = Object.freeze([1, 2, 4, 8]);
+const PHASES = Object.freeze(['ready', 'running', 'awaiting_choice', 'completed']);
+
+function blankState(seed) {
+  return {
+    schemaVersion: SAVE_VERSION,
+    engineVersion: ENGINE_VERSION,
+    seed: String(seed),
+    rng: initRng(seed),
+    phase: 'ready',
+    mode: 'SEMI_AUTO',
+    speed: 1,
+    world: { year: 1200, wars: {}, history: [] },
+    person: null,
+    pendingDecision: null,
+    timeline: [],
+    choiceHistory: [],
+    eventHistory: [],
+    nextLogId: 1,
+    resolvedDecisions: [],
+    endReason: null
+  };
+}
+
+function assertState(state) {
+  if (!state || typeof state !== 'object' || state.schemaVersion !== SAVE_VERSION ||
+      !PHASES.includes(state.phase) || !MODES.includes(state.mode) ||
+      !SPEEDS.includes(state.speed) || !Number.isInteger(state.world?.year) ||
+      !state.rng || !Number.isInteger(state.rng.state) || !Number.isInteger(state.rng.draws) ||
+      typeof state.seed !== 'string' || state.seed.length > 256 ||
+      !Array.isArray(state.timeline) || !Array.isArray(state.choiceHistory) ||
+      !Array.isArray(state.resolvedDecisions) || !Array.isArray(state.eventHistory)) {
+    throw new Error('セーブデータが不正、または未対応の形式です');
+  }
+  if (state.person) {
+    if (!Number.isInteger(state.person.age) || state.person.age < 0 || state.person.age > 1000 ||
+        !state.person.attributes || typeof state.person.name !== 'string' || state.person.name.length > 100 ||
+        !Array.isArray(state.person.injuries) || !Array.isArray(state.person.traits) ||
+        !Number.isInteger(state.person.wins) || !Number.isInteger(state.person.battles)) {
+      throw new Error('人物データが不正です');
+    }
+  } else if (state.phase !== 'ready') throw new Error('人物情報がありません');
+  if (state.phase === 'awaiting_choice') {
+    const p = state.pendingDecision;
+    if (!p || typeof p.id !== 'string' || p.id.length > 128 || !Array.isArray(p.options) || !p.options.length ||
+        !p.options.every(o => typeof o.id === 'string' && typeof o.label === 'string')) {
+      throw new Error('選択待ちデータが不正です');
+    }
+  } else if (state.pendingDecision !== null) throw new Error('進行状態が不整合です');
+  return true;
+}
+
+function cloneState(state) { return structuredClone(state); }
+
+return {SAVE_VERSION,ENGINE_VERSION,MODES,SPEEDS,PHASES,blankState,assertState,cloneState};
+})();
+__modules["src/data/races.js"] = (()=>{
+const RACES = Object.freeze([
+  { id: 'human', name: '人間', weight: 55, adultAge: 18, retireAge: 67, maxAge: 100,
+    modifiers: { STR: 0, VIT: 0, AGI: 0, INT: 0, MAG: 0, DEX: 0, CMD: 0 } },
+  { id: 'beastkin', name: '獣人', weight: 22, adultAge: 18, retireAge: 61, maxAge: 92,
+    modifiers: { STR: 5, VIT: 3, AGI: 5, INT: -2, MAG: -2, DEX: 1, CMD: 0 } },
+  { id: 'elf', name: 'エルフ', weight: 13, adultAge: 22, retireAge: 115, maxAge: 165,
+    modifiers: { STR: -3, VIT: -2, AGI: 3, INT: 5, MAG: 7, DEX: 4, CMD: 1 } },
+  { id: 'dwarf', name: 'ドワーフ', weight: 10, adultAge: 20, retireAge: 91, maxAge: 145,
+    modifiers: { STR: 5, VIT: 8, AGI: -5, INT: 1, MAG: 0, DEX: 3, CMD: 1 } }
+]);
+const STATS = Object.freeze(['STR', 'VIT', 'AGI', 'INT', 'MAG', 'DEX', 'CMD']);
+const GROWTH_TYPES = Object.freeze(['早熟', '普通', '晩成', '超晩成']);
+
+return {RACES,STATS,GROWTH_TYPES};
+})();
+__modules["src/data/nations.js"] = (()=>{
+const NATIONS = Object.freeze([
+  { id: 'valdia', name: 'ヴァルディア王国', weight: 27, threat: 0.25, military: 61 },
+  { id: 'serene', name: 'セレーネ魔法国', weight: 17, threat: 0.20, military: 58 },
+  { id: 'ord', name: 'オルド公国', weight: 19, threat: 0.36, military: 64 },
+  { id: 'grayve', name: 'グレイヴ山岳連盟', weight: 13, threat: 0.30, military: 55 },
+  { id: 'lumin', name: 'ルミナス森林盟約', weight: 12, threat: 0.18, military: 50 },
+  { id: 'redam', name: 'レダム辺境伯領', weight: 12, threat: 0.43, military: 53 }
+]);
+
+return {NATIONS};
+})();
+__modules["src/simulation/birth.js"] = (()=>{
+const {randomInt, weightedPick} = __modules["src/core/rng.js"];
+const {GROWTH_TYPES, RACES, STATS} = __modules["src/data/races.js"];
+const {NATIONS} = __modules["src/data/nations.js"];
+
+
+
+const FAMILIES = Object.freeze([
+  { id: 'royalty', name: '王族・大貴族', weight: 1, access: 1.7 },
+  { id: 'noble', name: '上級貴族', weight: 4, access: 1.5 },
+  { id: 'military', name: '騎士・軍人家庭', weight: 12, access: 1.3 },
+  { id: 'wealthy', name: '裕福な商工家庭', weight: 13, access: 1.25 },
+  { id: 'common', name: '一般家庭', weight: 50, access: 1 },
+  { id: 'poor', name: '貧困家庭', weight: 20, access: 0.72 }
+]);
+const FIRST_NAMES = ['アルン', 'リゼル', 'フェル', 'ミラ', 'ガルド', 'ティナ', 'セオ', 'ヴェラ', 'ノイン', 'アシュ', 'ロア', 'エル'];
+const LAST_NAMES = ['ヴァイス', 'フェルン', 'ダール', 'レイン', 'トルク', 'グレイ', 'アルス', 'ブルグ', 'ミスト', 'ベルク'];
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+function rollBirth(rng) {
+  let v;
+  ({ value: v, rng } = weightedPick(rng, RACES.map(r => ({ value: r, weight: r.weight }))));
+  const race = v;
+  ({ value: v, rng } = weightedPick(rng, NATIONS.map(n => ({ value: n, weight: n.weight }))));
+  const nation = v;
+  ({ value: v, rng } = weightedPick(rng, FAMILIES.map(f => ({ value: f, weight: f.weight }))));
+  const family = v;
+  let a, b;
+  ({ value: a, rng } = randomInt(rng, 0, FIRST_NAMES.length - 1));
+  ({ value: b, rng } = randomInt(rng, 0, LAST_NAMES.length - 1));
+  const name = `${FIRST_NAMES[a]}・${LAST_NAMES[b]}`;
+  ({ value: v, rng } = randomInt(rng, 0, 1));
+  const sex = v ? '女性' : '男性';
+  ({ value: v, rng } = randomInt(rng, 0, 99));
+  const potential = v < 2 ? 'S' : v < 12 ? 'A' : v < 38 ? 'B' : v < 78 ? 'C' : 'D';
+  ({ value: v, rng } = randomInt(rng, 0, 99));
+  const growthType = GROWTH_TYPES[v < 20 ? 0 : v < 74 ? 1 : v < 94 ? 2 : 3];
+  ({ value: v, rng } = randomInt(rng, 20, 90));
+  const ambition = v;
+  ({ value: v, rng } = randomInt(rng, 20, 90));
+  const caution = v;
+  const attributes = {};
+  // Potential affects learning, not starting attributes: class is not genetic destiny.
+  for (const stat of STATS) {
+    ({ value: v, rng } = randomInt(rng, 7, 22));
+    attributes[stat] = clamp(v + race.modifiers[stat], 1, 100);
+  }
+  const person = {
+    id: `hero-${rng.seed.slice(0, 50)}`, name, sex, age: 0,
+    raceId: race.id, raceName: race.name, nationId: nation.id, nationName: nation.name,
+    familyId: family.id, familyName: family.name, familyAccess: family.access,
+    potential, growthType, traits: [], ambition, caution, attributes,
+    education: null, occupation: null, rankIndex: 0,
+    stage: 'childhood', trainingFocus: 'balanced',
+    battles: 0, wins: 0, merit: 0, fame: 0, injuries: [], health: 100,
+    deathAge: null, achievements: [], retired: false
+  };
+  return { person, rng };
+}
+
+return {rollBirth};
+})();
+__modules["src/simulation/training.js"] = (()=>{
+const {randomInt} = __modules["src/core/rng.js"];
+const {STATS} = __modules["src/data/races.js"];
+
+
+const TARGETS = {
+  physical: ['STR', 'VIT', 'AGI'],
+  sword: ['STR', 'DEX', 'AGI'],
+  magic: ['MAG', 'INT', 'DEX'],
+  tactics: ['CMD', 'INT', 'DEX'],
+  balanced: STATS
+};
+const CAP = { S: 100, A: 94, B: 84, C: 72, D: 62 };
+const MULT = { S: 1.65, A: 1.35, B: 1.1, C: 0.91, D: 0.78 };
+const TRAINING_OPTIONS = Object.freeze([
+  { id: 'physical', label: '基礎体力' }, { id: 'sword', label: '剣術' },
+  { id: 'magic', label: '魔法学習' }, { id: 'tactics', label: '戦術研究' },
+  { id: 'balanced', label: '総合訓練' }
+]);
+function trainYear(person, rng, focus = 'balanced') {
+  let current = rng;
+  const p = structuredClone(person);
+  const age = p.age;
+  const growthFactor = age <= 11 ? .8 : age <= 25 ? 1.3 : age <= 45 ? .85 : .4;
+  const growthType = p.growthType === '早熟' ? (age < 19 ? 1.14 : .85) :
+                     p.growthType === '晩成' ? (age < 20 ? .85 : 1.1) :
+                     p.growthType === '超晩成' ? (age < 24 ? .72 : 1.18) : 1;
+  const quality = p.stage === 'academy' ? 1.28 : p.stage === 'career' ? 1.02 : p.familyAccess;
+  const focusStats = TARGETS[focus] || TARGETS.balanced;
+  for (const stat of STATS) {
+    let luck;
+    ({ value: luck, rng: current } = randomInt(current, 0, 100));
+    const selected = focusStats.includes(stat);
+    const delta = (selected ? 1.15 : .34) * MULT[p.potential] * growthFactor * growthType * quality *
+      (.8 + luck / 250) * Math.max(.4, p.health / 100);
+    const cap = CAP[p.potential] + (stat === 'MAG' && p.raceId === 'elf' ? 3 : 0);
+    const next = Math.min(cap, p.attributes[stat] + delta);
+    p.attributes[stat] = Math.round(next * 100) / 100;
+  }
+  p.trainingFocus = focus;
+  return { person: p, rng: current };
+}
+
+return {TRAINING_OPTIONS,trainYear};
+})();
+__modules["src/data/institutions.js"] = (()=>{
+const INSTITUTIONS = Object.freeze([
+  { id: 'royal', name: '王立戦術アカデミー', years: 5, specialty: 'tactics' },
+  { id: 'magic', name: '魔導学院', years: 5, specialty: 'magic' },
+  { id: 'cadet', name: '軍少年隊', years: 5, specialty: 'physical' },
+  { id: 'apprentice', name: '騎士見習い訓練所', years: 5, specialty: 'sword' }
+]);
+
+return {INSTITUTIONS};
+})();
+__modules["src/simulation/academy.js"] = (()=>{
+const {nextRandom} = __modules["src/core/rng.js"];
+const {INSTITUTIONS} = __modules["src/data/institutions.js"];
+
+
+const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+const mix = (p, keys) => keys.reduce((s, [k, w]) => s + (p.attributes[k] || 0) * w, 0);
+function chooseAcademy(person) {
+  if (person.attributes.MAG > person.attributes.STR + 6) return 'magic';
+  if (person.attributes.INT + person.attributes.CMD > 65) return 'royal';
+  return person.familyAccess >= 1.2 ? 'apprentice' : 'cadet';
+}
+function attemptAdmission(person, rng, preferredId) {
+  const requested = INSTITUTIONS.find(a => a.id === preferredId) ?? INSTITUTIONS[2];
+  const p = structuredClone(person);
+  const academic = requested.id === 'magic' ? mix(p,[['MAG',.48],['INT',.35],['DEX',.17]]) :
+    requested.id === 'royal' ? mix(p,[['INT',.35],['CMD',.36],['DEX',.29]]) :
+    requested.id === 'apprentice' ? mix(p,[['STR',.37],['DEX',.37],['VIT',.26]]) :
+    mix(p,[['VIT',.4],['STR',.34],['CMD',.26]]);
+  const gifted = ['S','A'].includes(p.potential);
+  const eligibleAid = ['poor','common'].includes(p.familyId) && (gifted || p.scholarshipLead);
+  const aid = eligibleAid && (academic >= 19 || p.storyFlags?.mentor);
+  const rate = requested.id === 'royal' ? .14 : requested.id === 'magic' ? .23 :
+    requested.id === 'apprentice' ? .60 : .91;
+  const accessPenalty = p.familyAccess < 1 ? (aid ? -.02 : (p.familyAccess-1)*.4) : (p.familyAccess-1)*.20;
+  const probability = clamp(rate + (academic-26)*.017 + accessPenalty +
+    (p.storyFlags?.mentor ? .055 : 0) + (p.storyFlags?.aptitude ? .045 : 0) +
+    (p.recommendation ? .035 : 0) + (aid ? .10 : 0), .045, .97);
+  const roll = nextRandom(rng); rng = roll.rng;
+  const admitted = roll.value < probability;
+  const chosen = admitted ? requested : INSTITUTIONS[2];
+  p.stage = 'academy';
+  p.education = { institutionId:chosen.id, institutionName:chosen.name, requestedId:requested.id,
+    admitted, admissionProbability:Number(probability.toFixed(3)), examScore:Math.round(academic),
+    scholarship:!!(admitted && aid), graduationAge:p.age + chosen.years,
+    startedAt:p.age, grades:[], performance:0, graduated:false, honors:false };
+  const why = p.education.scholarship ? '奨学生として学費の支援を受けた。' :
+    !admitted ? '一般枠の軍少年隊で再出発する。' : '';
+  return { person:p, rng, log: admitted ? `${chosen.name}の選抜に合格した（試験評価${Math.round(academic)}、合格見込${Math.round(probability*100)}%）。${why}` :
+    `${requested.name}の選抜に届かなかった（試験評価${Math.round(academic)}）。${why}` };
+}
+/** Academies build a continuous assessment record, even when no story event fires. */
+function evaluateAcademyYear(person, rng) {
+  const p = structuredClone(person);
+  if (!p.education || p.stage !== 'academy' || p.education.graduated) return {person:p,rng,log:null};
+  p.education.grades ??= [];
+  const inst = p.education.institutionId;
+  const aptitude = inst === 'magic' ? p.attributes.MAG*.55+p.attributes.INT*.45 :
+    inst === 'royal' ? p.attributes.CMD*.55+p.attributes.INT*.45 :
+    inst === 'apprentice' ? p.attributes.DEX*.55+p.attributes.STR*.45 :
+    p.attributes.VIT*.55+p.attributes.STR*.45;
+  const luck = nextRandom(rng); rng=luck.rng;
+  const yearMark = Math.round(clamp(38 + aptitude*.67 + (p.teamwork || 0)*.8 + (luck.value-.5)*25, 20, 99));
+  p.education.grades.push({age:p.age,mark:yearMark});
+  p.education.performance = Math.max(0,(p.education.performance||0)+
+    (yearMark>=70?3:yearMark>=55?2:yearMark>=42?1:0));
+  let log = null;
+  if (yearMark >= 72) log = `${p.education.institutionName}の${p.education.grades.length}年次評価は${yearMark}点。優秀な成績を収めた。`;
+  if (yearMark < 40) log = `${p.education.institutionName}の${p.education.grades.length}年次評価は${yearMark}点。苦手分野の補習を受けることになった。`;
+  return {person:p,rng,log};
+}
+function graduate(person) {
+  if (!person.education || person.education.graduated) return person;
+  const p = structuredClone(person);
+  const marks = p.education.grades ?? [];
+  const average = marks.length ? marks.reduce((a,b)=>a+b.mark,0)/marks.length : 50;
+  const score = average + (p.education.performance || 0)*.85;
+  const ranking = score>=90 ? '首席級' : score>=78 ? '上位卒業' : score>=65 ? '中位卒業' : '一般卒業';
+  p.education = {...p.education, graduated:true, honors:score>=78, graduationScore:Math.round(score), ranking};
+  p.stage='awaiting_career';
+  if (score>=90) p.achievements.push(`${p.education.institutionName}を首席級の成績で卒業`);
+  return p;
+}
+
+return {chooseAcademy,attemptAdmission,evaluateAcademyYear,graduate};
+})();
+__modules["src/data/careers.js"] = (()=>{
+const CAREERS = Object.freeze([
+  { id: 'knight', name: '騎士団', ranks: ['従騎士', '正騎士', '騎士隊長', '騎士団長'], attr: ['STR', 'DEX', 'VIT'] },
+  { id: 'army', name: '正規軍', ranks: ['一般兵', '下士官', '将校', '将軍'], attr: ['VIT', 'STR', 'CMD'] },
+  { id: 'mage', name: '魔法部隊', ranks: ['魔導兵', '上級魔導兵', '魔法隊長', '上級指揮官'], attr: ['MAG', 'INT', 'DEX'] },
+  { id: 'adventurer', name: '冒険者組合', ranks: ['新人冒険者', '中級冒険者', '上級冒険者', '最高位冒険者'], attr: ['AGI', 'DEX', 'STR'] },
+  { id: 'mercenary', name: '傭兵団', ranks: ['一般傭兵', '古参傭兵', '傭兵隊長', '傭兵団長'], attr: ['STR', 'VIT', 'AGI'] },
+  { id: 'special', name: '特殊部隊', ranks: ['選抜隊員', '精鋭隊員', '部隊長', '最高幹部'], attr: ['AGI', 'DEX', 'INT'] }
+]);
+
+return {CAREERS};
+})();
+__modules["src/simulation/career.js"] = (()=>{
+const {CAREERS} = __modules["src/data/careers.js"];
+const {nextRandom, weightedPick} = __modules["src/core/rng.js"];
+
+
+const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
+function preferredCareer(p) {
+  const a = p.attributes, inst = p.education?.institutionId;
+  if (inst==='magic' || (a.MAG>a.STR+8 && a.MAG>26)) return 'mage';
+  if (inst==='royal' && a.CMD>25) return p.ambition>85 && a.AGI>30?'special':'knight';
+  if (inst==='apprentice') return 'knight';
+  if (p.ambition>83 && a.AGI+a.DEX>65) return 'special';
+  if (p.caution<38 && a.AGI+a.DEX>50) return 'adventurer';
+  if (p.familyId==='poor' && p.ambition>=56) return 'mercenary';
+  if (p.ambition>63 && a.AGI>=a.VIT-5) return 'adventurer';
+  if (p.caution<48 || p.ambition>74) return 'mercenary';
+  return 'army';
+}
+function attemptCareer(person,rng,careerId) {
+  const requested=CAREERS.find(c=>c.id===careerId)??CAREERS[1];
+  const ability=requested.attr.reduce((sum,key)=>sum+person.attributes[key],0)/requested.attr.length;
+  const school=person.education?.institutionId;
+  const fit=requested.id==='mage'?(school==='magic' ? .13 : 0):
+    requested.id==='knight'?((school==='royal'||school==='apprentice') ? .13 : 0):
+    requested.id==='special'?(school==='royal' ? .06 : 0):0;
+  const rate={knight:.49,army:.91,mage:.49,adventurer:.84,mercenary:.90,special:.095};
+  const probability=clamp(rate[requested.id]+(ability-37)*.012+fit+
+    (person.education?.honors ? .075 : 0)+(person.education?.scholarship ? .025 : 0)+
+    (person.education?.ranking==='首席級' ? .045 : 0),.06,.97);
+  const res=nextRandom(rng); rng=res.rng;
+  const accepted=res.value<probability;
+  let career=requested;
+  if (!accepted) {
+    const fallback=weightedPick(rng,[{value:CAREERS[1],weight:63},{value:CAREERS[4],weight:22},{value:CAREERS[3],weight:15}]);
+    career=fallback.value;rng=fallback.rng;
+  }
+  const p=structuredClone(person);
+  p.occupation={careerId:career.id,careerName:career.name,joinedAt:p.age,application:requested.id,accepted,
+    admissionChance:Number(probability.toFixed(3)),transfers:0};
+  p.stage='career';p.rankIndex=0;
+  return {person:p,rng,log: accepted ? `${career.name}に採用された（選考見込${Math.round(probability*100)}%）。${career.ranks[0]}として任務を始めた。` :
+    `${requested.name}への志願は不採用となった（選考見込${Math.round(probability*100)}%）。新たに${career.name}で道を歩み始めた。`};
+}
+function maybePromote(person,rng){
+ if(!person.occupation||person.rankIndex>=3)return{person,rng,log:null};
+ const career=CAREERS.find(c=>c.id===person.occupation.careerId);
+ const tenure=person.age-person.occupation.joinedAt;
+ const thresholds=[0,5,21,75];
+ const needed=thresholds[person.rankIndex+1];
+ if(tenure<(person.rankIndex+1)*4||person.merit<needed||person.health<38||person.convalescentYears>0)return{person,rng,log:null};
+ const rate=[0,.21,.018,.009][person.rankIndex+1]*(person.conviction==='honor'?1.08:1)*
+   (person.education?.honors?1.13:1);
+ const res=nextRandom(rng);rng=res.rng;
+ if(res.value>=rate)return{person,rng,log:null};
+ const p=structuredClone(person);p.rankIndex++;
+ p.achievements.push(`${p.age}歳で${career.ranks[p.rankIndex]}に昇進`);
+ return{person:p,rng,log:`戦功${p.merit}と勤務実績が認められ、空席を得て${career.ranks[p.rankIndex]}へ昇進した。`};
+}
+
+return {preferredCareer,attemptCareer,maybePromote};
+})();
+__modules["src/simulation/battle.js"] = (()=>{
+const {randomInt, nextRandom} = __modules["src/core/rng.js"];
+const {CAREERS} = __modules["src/data/careers.js"];
+
+const clamp = (x, min, max) => Math.max(min, Math.min(max, x));
+const MISSIONS = {
+ knight: ['王都の街道警護','騎士団の救援行軍'],army:['国境の歩哨任務','野戦部隊の巡回'],
+ mage:['魔導障壁の防衛','危険な魔物の封印'],adventurer:['遺跡の魔物討伐','洞窟の危険生物調査'],
+ mercenary:['商隊の武装護衛','山道での傭兵任務'],special:['敵地偵察','隠密潜入作戦']
+};
+function combatRating(person) {
+  const career = CAREERS.find(c => c.id === person.occupation?.careerId) ?? CAREERS[1];
+  const mean = career.attr.reduce((sum, x) => sum + person.attributes[x], 0) / career.attr.length;
+  return clamp(Math.round(mean + person.rankIndex * 3 + Math.min(10, person.battles * .15) -
+    (100 - person.health) * .12 + Math.min(2, person.teamwork || 0)), 0, 100);
+}
+function resolveBattle(person, rng, { war = false, tactic = 'balanced' } = {}) {
+  let p = structuredClone(person), opponent;
+  ({ value: opponent, rng } = randomInt(rng, war ? 25 : 12, war ? 84 : 66));
+  const modifiers = tactic === 'bold' ? 3 : tactic === 'cautious' ? -3 : 0;
+  const strength = combatRating(p) + modifiers + (war ? -4 : 0);
+  const winChance = clamp(1 / (1 + Math.exp(-(strength - opponent) / 15)), .05, .95);
+  const job=p.occupation?.careerId||'army';
+  const mission=(war?'国家間戦争の前線':MISSIONS[job]?.[p.battles%2] || '巡回警備');
+  let dieRoll, injuryRoll;
+  ({ value: dieRoll, rng } = nextRandom(rng));
+  const win = dieRoll < winChance;
+  ({ value: injuryRoll, rng } = nextRandom(rng));
+  p.battles += 1;
+  if (win) { p.wins += 1; p.merit += war ? 3 : 1; p.fame += war ? 2 : 1; }
+  const injuryRisk = clamp((war ? .19 : .10) - (p.conviction === 'safety' ? .035 : 0) + (tactic === 'bold' ? .11 : tactic === 'cautious' ? -.055 : 0) +
+      (win ? -.025 : .055), .01, .5);
+  let injury = null;
+  if (injuryRoll < injuryRisk) {
+    let severity;
+    ({ value: severity, rng } = nextRandom(rng));
+    const serious=severity < (war ? .24 : .13);
+    const lasting=serious && severity < (war ? .055 : .025);
+    injury=lasting?'後遺症':serious?'重傷':'軽傷';
+    p.health=Math.max(0,p.health-(lasting?40:serious?33:12));
+    if(serious)p.convalescentYears=Math.max(p.convalescentYears||0,lasting?3:2);
+    if(lasting){p.attributes.VIT=Math.max(0,p.attributes.VIT-3);p.attributes.AGI=Math.max(0,p.attributes.AGI-4);}
+    p.injuries.push({age:p.age,kind:injury,mission});
+  }
+  // Independent fatality roll, even the strongest is not invulnerable.
+  let fatalRoll;
+  ({ value: fatalRoll, rng } = nextRandom(rng));
+  const fatalityRisk = clamp((war ? .012 : .0025) * (win ? .45 : 2.4) *
+     (tactic === 'bold' ? 1.6 : tactic === 'cautious' ? .48 : 1) *
+     (injury === '重傷' ? 1.8 : 1), .0001, .1);
+  const dead = fatalRoll < fatalityRisk;
+  const result = {
+    age: p.age, win, opponent, winChance: Math.round(winChance * 1000) / 1000,
+    tactic, war, mission, injury, dead, fatalityRisk: Math.round(fatalityRisk * 1e6) / 1e6
+  };
+  return { person: p, rng, result,
+    log: `${mission}：${win ? '目標を達成' : '目標達成ならず'}（勝算${Math.round(winChance*100)}%）。` +
+      (injury ? `${injury}を負った。` : '') + (dead ? '戦死した。' : win ? '実戦経験を積んだ。' : '撤退と反省を余儀なくされた。') };
+}
+
+return {combatRating,resolveBattle};
+})();
+__modules["src/simulation/world.js"] = (()=>{
+const {NATIONS} = __modules["src/data/nations.js"];
+const {nextRandom} = __modules["src/core/rng.js"];
+
+
+function progressWorld(world, rng) {
+  const next = structuredClone(world);
+  next.year += 1;
+  for (const nation of NATIONS) {
+    const res = nextRandom(rng); rng = res.rng;
+    const current = !!next.wars[nation.id];
+    next.wars[nation.id] = current ? res.value > .17 : res.value < nation.threat * .085;
+    if (next.wars[nation.id] !== current) {
+      next.history.push({ year: next.year, nationId: nation.id, event: next.wars[nation.id] ? '開戦' : '休戦' });
+    }
+  }
+  return { world: next, rng };
+}
+
+return {progressWorld};
+})();
+__modules["src/simulation/injury.js"] = (()=>{
+function recover(person) {
+  const p = structuredClone(person);
+  if (p.convalescentYears > 0) {
+    p.convalescentYears--;
+    p.health = Math.min(100, p.health + 13);
+  } else if (p.health < 100) {
+    p.health = Math.min(100, p.health + (p.stage === 'retired' ? 9 : 17));
+  }
+  return p;
+}
+
+return {recover};
+})();
+__modules["src/simulation/relationships.js"] = (()=>{
+const {nextRandom} = __modules["src/core/rng.js"];
+
+/** Advance actual known characters only. All losses remain in the saved biography. */
+function progressRelationships(person, rng) {
+  const p = structuredClone(person);
+  if (!p.contacts?.length) return { person: p, rng, news: [] };
+  const news = [];
+  for (const c of p.contacts) {
+    if (!c.alive) continue;
+    c.age = (c.age ?? Math.max(1, p.age - (c.ageOffset ?? 0))) + 1;
+    const roll = nextRandom(rng); rng = roll.rng;
+    const risk = c.age >= 70 ? Math.min(.35, .004 + Math.pow(c.age - 69, 2) * .0014) : .0004;
+    if (roll.value < risk) {
+      c.alive = false;
+      c.deathAge = c.age;
+      news.push(`${c.role}${c.name}が${c.age}歳で亡くなった。共に過ごした日々が記憶に残った。`);
+    }
+  }
+  return { person:p, rng, news };
+}
+
+return {progressRelationships};
+})();
+__modules["src/data/events.js"] = (()=>{
+/** R0: minimal deterministic event catalog; expanded to 30-50 in R1-R3. */
+const EVENT_CATALOG = Object.freeze([
+  { id: 'birth', stage: 'childhood', importance: 'major' },
+  { id: 'training', stage: 'childhood', importance: 'minor' },
+  { id: 'admission', stage: 'academy', importance: 'major' },
+  { id: 'graduation', stage: 'academy', importance: 'major' },
+  { id: 'career', stage: 'career', importance: 'major' },
+  { id: 'battle', stage: 'career', importance: 'major' },
+  { id: 'promotion', stage: 'career', importance: 'major' },
+  { id: 'retirement', stage: 'retired', importance: 'major' },
+  { id: 'death', stage: 'deceased', importance: 'major' },
+  { id: 'story', stage: 'any', importance: 'major' }
+]);
+
+return {EVENT_CATALOG};
+})();
+__modules["src/core/event-engine.js"] = (()=>{
+const {EVENT_CATALOG} = __modules["src/data/events.js"];
+
+const VALID = new Set(EVENT_CATALOG.map(e => e.id));
+function appendEvent(state, kind, text, importance = 'minor', detail = null) {
+  if (!VALID.has(kind)) throw new Error(`Unknown event: ${kind}`);
+  const entry = { id: state.nextLogId++, kind, age: state.person.age, year: state.world.year,
+    importance, text, ...(detail ? { detail } : {}) };
+  state.timeline.push(entry);
+  state.eventHistory.push(kind);
+  return entry;
+}
+
+return {appendEvent};
+})();
+__modules["src/data/story-arcs.js"] = (()=>{
+/** R1: consequence-bearing one-time episodes. Conditions and effects are data, not UI code. */
+const STORY_ARCS = Object.freeze([
+  // Childhood: 12 moments in addition to bespoke mentor/aptitude events.
+  { id:'village_guard', period:'childhood', minAge:6, weight:3, text:'夜警を手伝い、見張りの重要さを学んだ。警戒心と戦術理解が育った。', effect:{CMD:2,caution:2}},
+  { id:'family_arms', period:'childhood', minAge:7, familyIds:['royalty','noble','military'], weight:2, text:'家伝の武具を使わせてもらい、熟練者の構えを学んだ。', effect:{DEX:2,STR:1}},
+  { id:'lost_spellbook', period:'childhood', minAge:8, weight:2, text:'古い魔導書を読み解いた。魔力だけでなく理論の重要性を知った。', effect:{MAG:2,INT:2}},
+  { id:'rainy_harvest', period:'childhood', minAge:6, familyIds:['poor','common'], weight:3, text:'荒天で収穫が減り、訓練と家業を両立した。忍耐を覚えた反面、学習環境は少し悪化した。', effect:{VIT:2,familyAccess:-0.03}},
+  { id:'festival_melee', period:'childhood', minAge:9, weight:3, text:'村の競技会で初めて同年代と腕を競った。敗れても足運びを学んだ。', effect:{AGI:2,DEX:1}},
+  { id:'forest_trail', period:'childhood', minAge:8, weight:2, text:'森で道に迷い、目印と地形を読む技術を身につけた。', effect:{AGI:1,INT:2}},
+  { id:'mentor_letter', period:'childhood', minAge:11, requires:['mentor'], weight:2, text:'師匠の推薦状を受け取った。入学選抜で努力を示す材料が増えた。', effect:{recommendation:1}},
+  { id:'river_rescue', period:'childhood', minAge:10, weight:1, text:'川で流された子を救い、勇気と仲間との連携の大切さを知った。', effect:{CMD:2,teamwork:1}},
+  { id:'siblings_competition', period:'childhood', minAge:6, weight:2, text:'兄弟姉妹と技を競い、負けず嫌いな一面が鍛えられた。', effect:{ambition:3,STR:1}},
+  { id:'traveling_merchant', period:'childhood', minAge:9, weight:2, text:'旅商人から隣国の戦乱を聞き、学問と世情に興味を持った。', effect:{INT:2,CMD:1}},
+  { id:'scholarship_notice', period:'childhood', minAge:12, familyIds:['poor','common'], weight:2, text:'王立の奨学試験の募集を知った。家柄に頼らず進学する道が見えてきた。', effect:{scholarshipLead:1,INT:1}},
+  { id:'self_doubt', period:'childhood', minAge:8, weight:2, text:'訓練で伸び悩んだが、焦らず基礎を繰り返すことを選んだ。', effect:{VIT:1,caution:1}},
+  // School: rivalry, marks, recommendations, financial pressures.
+  { id:'dorm_friend', period:'academy', weight:3, text:'寮で夜遅くまで同期と課題を解いた。連携の基礎が身についた。', effect:{INT:1,teamwork:2,education:2}},
+  { id:'exam_misstep', period:'academy', weight:2, text:'中間試験で判断を誤った。失点を記録し、苦手を補う訓練を始めた。', effect:{education:-2,INT:1}},
+  { id:'field_excursion', period:'academy', weight:3, text:'野外演習で部隊を誘導した。迷いながらも指揮の難しさを学んだ。', effect:{CMD:2,education:2}},
+  { id:'healing_lecture', period:'academy', weight:2, text:'救護講義で応急魔法と負傷者搬送を学んだ。', effect:{MAG:1,VIT:1,teamwork:1}},
+  { id:'mentor_visit', period:'academy', requires:['mentor'], needsContactRole:'師匠', weight:2, text:'師匠{name}が学院を訪れ、以前の訓練が今の基礎になっていると励ました。', effect:{education:2,ambition:2}},
+  { id:'training_tournament', period:'academy', minEduYears:2, weight:2, text:'学院対抗競技で強い先輩に挑んだ。実戦に近い技術を吸収した。', effect:{DEX:2,education:2}},
+  { id:'school_oath', period:'academy', minEduYears:2, weight:2, text:'班員全員で任務の誓いを立てた。実戦で助け合う約束は心に残った。', effect:{teamwork:2,CMD:1}},
+  { id:'teacher_review', period:'academy', minEduYears:3, weight:3, text:'教官から訓練日誌を評価された。改善点が明確になった。', effect:{education:3,INT:1}},
+  { id:'scholarship_renewal', period:'academy', requires:['scholarship_notice'], weight:2, text:'奨学支援を継続できた。学費への不安が少し和らぎ、実技に専念できる。', effect:{education:1,ambition:2}},
+  { id:'rival_reconciliation', period:'academy', requires:['rival'], needsContactRole:'好敵手', weight:2, text:'模擬戦後、好敵手{name}と戦術について率直に話し合った。競争が互いの敬意へ変わった。', effect:{teamwork:1,education:1,bond:1}},
+  // Career: real paths requiring existing history, ranks and occupations.
+  { id:'border_scout', period:'career', weight:3, text:'国境偵察を任され、地図と足跡から敵の動きを推測した。', effect:{INT:1,CMD:1,merit:1}},
+  { id:'academy_recommendation', period:'career', requires:['teacher_review'], weight:2, text:'学院時代の教官による評価が配属先に届き、難しい任務を任された。', effect:{merit:2,fame:1}},
+  { id:'vacant_position', period:'career', minBattles:4, weight:2, text:'部隊で欠員が生じ、小隊の取りまとめ役を一時的に引き受けた。', effect:{CMD:2,merit:2}},
+  { id:'supply_shortage', period:'career', weight:3, text:'補給が遅れ、装備を修理しながら任務を続けた。物資の大切さを知った。', effect:{health:-5,DEX:1}},
+  { id:'village_defense', period:'career', minBattles:2, weight:2, text:'集落を守る任務で住民の避難を成功させた。名声よりも命を守った記憶が残った。', effect:{fame:2,teamwork:1,merit:1}},
+  { id:'loss_of_confidence', period:'career', minBattles:3, weight:2, text:'連敗のあと作戦日誌を読み直した。勝つことより負けから学ぶことを選んだ。', effect:{INT:2,caution:2}},
+  { id:'guild_contract', period:'career', careerIds:['adventurer','mercenary'], weight:3, text:'ギルドから難度の高い依頼を受け、報酬より準備を重視した。', effect:{merit:2,DEX:1}},
+  { id:'monster_tracking', period:'career', careerIds:['adventurer','special'], weight:2, text:'魔物の足跡を追い、獲物の行動を予測する技術を磨いた。', effect:{AGI:2,INT:1}},
+  { id:'spell_unit_drill', period:'career', careerIds:['mage'], weight:3, text:'魔導隊の連携詠唱を成功させ、魔法戦闘での役割を確立した。', effect:{MAG:2,teamwork:2}},
+  { id:'knight_watch', period:'career', careerIds:['knight'], weight:3, text:'騎士として市民の警護を務め、技だけでなく責任の重さを学んだ。', effect:{CMD:1,merit:2}},
+  { id:'unit_encouragement', period:'career', needsContactRole:'戦友', weight:3, text:'疲弊した戦友{name}を励まし、共に装備の手入れをした。', effect:{teamwork:2,bond:2}},
+  { id:'comrade_wounded', period:'career', minBattles:5, needsContactRole:'戦友', weight:2, text:'戦友{name}が任務で負傷した。回復まで仕事を分担し、仲間のありがたさを実感した。', effect:{teamwork:2,health:-4,bond:1}},
+  { id:'staff_strategy', period:'career', minRank:1, weight:2, text:'幕僚に戦場の見解を求められ、自分の判断を言葉にして伝えた。', effect:{CMD:2,INT:1,merit:2}},
+  { id:'failed_command', period:'career', minRank:1, weight:2, text:'訓練中の指揮に失敗し、部下に謝って策を練り直した。', effect:{merit:-1,CMD:1,teamwork:1}},
+  { id:'promotion_denied', period:'career', minBattles:9, minRank:0, weight:2, text:'昇進候補に挙がったものの空席がなく、現階級に留まった。次の任務へ備える。', effect:{ambition:3,INT:1}},
+  { id:'veteran_correspondence', period:'career', requires:['mentor_reunion'], weight:1, text:'旧師から手紙が届き、戦場に立つ自分の姿を改めて省みた。', effect:{CMD:1,caution:1}}
+]);
+
+return {STORY_ARCS};
+})();
+__modules["src/simulation/story.js"] = (()=>{
+const {nextRandom, randomInt} = __modules["src/core/rng.js"];
+const {appendEvent} = __modules["src/core/event-engine.js"];
+const {STORY_ARCS} = __modules["src/data/story-arcs.js"];
+
+
+
+const FIRST = ['リュカ', 'イリス', 'ダグ', 'セレナ', 'ハイン', 'ルゥ', 'フィン', 'ノーラ', 'クロウ', 'エイル'];
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const boost = (p, key, amount) => { p.attributes[key] = clamp(Math.round((p.attributes[key] + amount) * 100) / 100, 0, 100); };
+const remembers = (p, key) => !!p.storyFlags?.[key];
+function remember(p, key) { p.storyFlags ??= {}; p.storyFlags[key] = true; }
+function contact(p, name, role, bond) {
+  p.contacts ??= [];
+  if (!p.contacts.some(c => c.name === name && c.role === role)) p.contacts.push({ name, role, bond, alive: true, age: p.age + (role === '師匠' ? 28 : 0), ageOffset: role === '師匠' ? -28 : 0 });
+}
+function newName(s) {
+  const draw = randomInt(s.rng, 0, FIRST.length - 1); s.rng = draw.rng;
+  return FIRST[draw.value];
+}
+
+/** All narrative events are persistent, seeded and derived from the current state; never fabricate a past NPC. */
+const STORIES = [
+  { id: 'mentor', period: 'childhood', weight: 2, can: p => p.age >= 7 && !remembers(p, 'mentor'), apply(s) {
+    const p = s.person, name = newName(s); contact(p, name, '師匠', 2); remember(p, 'mentor');
+    boost(p, p.attributes.MAG > p.attributes.STR ? 'MAG' : 'DEX', 3);
+    return `旅の師範${name}があなたの可能性を見抜き、無償で技を教えてくれた。指導は後の進学にも役立つだろう。`;
+  } },
+  { id: 'household', period: 'childhood', weight: 1, can: p => p.age >= 7 && !remembers(p, 'household'), apply(s) {
+    const p = s.person; remember(p, 'household');
+    if (p.familyId === 'poor' || p.familyId === 'common') {
+      p.familyAccess = Math.max(.55, p.familyAccess - .06); boost(p, 'VIT', 2);
+      return '家計が苦しくなり、家業を手伝いながら体を鍛えた。学ぶ時間は減ったが、忍耐を身につけた。';
+    }
+    p.familyAccess = Math.min(1.85, p.familyAccess + .04); boost(p, 'INT', 2);
+    return '家業が発展し、以前より良い指導書と教材を手に入れた。';
+  } },
+  { id: 'aptitude', period: 'childhood', weight: 2, can: p => p.age >= 9 && !remembers(p, 'aptitude'), apply(s) {
+    const p = s.person; remember(p, 'aptitude');
+    const key = p.attributes.MAG >= p.attributes.STR ? 'MAG' : 'STR'; boost(p, key, p.potential === 'S' || p.potential === 'A' ? 4 : 2);
+    p.achievements.push('訓練で才能を評価された');
+    return `訓練で${key === 'MAG' ? '魔力制御' : '武術'}の才能が認められた。これは選抜試験での自信につながった。`;
+  } },
+  { id: 'schoolmate', period: 'academy', weight: 3, can: p => !remembers(p, 'schoolmate'), apply(s) {
+    const p = s.person, name = newName(s); remember(p, 'schoolmate'); contact(p, name, '同期', 2);
+    boost(p, 'DEX', 1.5); p.education.performance = (p.education.performance || 0) + 1;
+    return `同じ教室の${name}と切磋琢磨する日々が始まった。二人の協力は成績にも表れた。`;
+  } },
+  { id: 'academic_trial', period: 'academy', weight: 2, can: p => !remembers(p, 'academic_trial') && p.education && p.age >= p.education.graduationAge - 3, apply(s) {
+    const p = s.person; remember(p, 'academic_trial');
+    const proficient = Math.max(p.attributes.INT, p.attributes.DEX, p.attributes.MAG) >= 30;
+    p.education.performance = (p.education.performance || 0) + (proficient ? 3 : 1);
+    boost(p, proficient ? 'CMD' : 'VIT', proficient ? 2 : 1);
+    return proficient ? '学院の公開演習で好成績を収め、教官から次の推薦候補として注目された。' : '厳しい公開演習で苦戦したが、課題を整理して次の訓練に生かした。';
+  } },
+  { id: 'rival', period: 'academy', weight: 2, can: p => !remembers(p, 'rival'), apply(s) {
+    const p = s.person, name = newName(s); remember(p, 'rival'); contact(p, name, '好敵手', -1);
+    boost(p, 'AGI', 1.7); p.education.performance = (p.education.performance || 0) + 1;
+    return `${name}との模擬戦は接戦に終わった。以来、互いを意識するライバルとなった。`;
+  } },
+  { id: 'first_comrade', period: 'career', weight: 3, can: p => p.battles > 0 && !remembers(p, 'first_comrade'), apply(s) {
+    const p = s.person, name = newName(s); contact(p, name, '戦友', 3); remember(p, 'first_comrade');
+    boost(p, 'CMD', 1.5);
+    return `任務中に${name}と背中を預け合った。互いを信頼する戦友ができた。`;
+  } },
+  { id: 'commendation', period: 'career', weight: 2, can: p => p.wins >= 4 && !remembers(p, 'commendation'), apply(s) {
+    const p = s.person; remember(p, 'commendation'); p.merit += 3; p.fame += 2;
+    return `積み上げてきた${p.wins}勝の実績が評価され、部隊から正式な表彰を受けた。`; 
+  } },
+  { id: 'mentor_reunion', period: 'career', weight: 1, can: p => remembers(p, 'mentor') && p.age >= (p.occupation?.joinedAt ?? 0) + 4 && !remembers(p, 'mentor_reunion'), apply(s) {
+    const p = s.person, name = p.contacts?.find(c => c.role === '師匠' && c.alive)?.name;
+    remember(p, 'mentor_reunion'); if (!name) return null;
+    p.merit += 1; boost(p, 'INT', 1.6);
+    return `かつての師匠${name}に再会した。戦歴を語り合い、若い日の教えを思い出した。`;
+  } },
+  { id: 'comrade_rescue', period: 'career', weight: 2, can: p => p.battles >= 5 && p.contacts?.some(c => c.role === '戦友' && c.alive) && !remembers(p, 'comrade_rescue'), apply(s) {
+    const p = s.person, ally = p.contacts.find(c => c.role === '戦友' && c.alive); remember(p, 'comrade_rescue');
+    if (!ally) return null; ally.bond += 2; p.merit += 2;
+    return `苦しい撤退で戦友${ally.name}を救い出した。部隊からの信頼が高まり、戦功にも記録された。`;
+  } },
+  { id: 'wound_return', period: 'career', weight: 1, can: p => p.injuries.length > 0 && !remembers(p, 'wound_return'), apply(s) {
+    const p = s.person; remember(p, 'wound_return'); p.health = Math.min(100, p.health + 10);
+    return '負傷からの長い回復期を経験した。治療と再訓練を重ね、任務への復帰を果たした。';
+  } },
+  { id: 'veteran', period: 'career', weight: 2, can: p => p.battles >= 15 && !remembers(p, 'veteran'), apply(s) {
+    const p = s.person; remember(p, 'veteran'); boost(p, 'CMD', 2); p.achievements.push('古参兵として新兵の指導を任された');
+    return '長年の戦場経験を認められ、新兵の指導を任されるようになった。';
+  } }
+];
+
+function arcEligible(entry, state) {
+  const p = state.person;
+  const years = p.age - (p.education?.graduationAge ?? p.age) + 5;
+  const c = p.contacts?.find(c => c.role === entry.needsContactRole && c.alive);
+  return !remembers(p, entry.id) &&
+    (!entry.minAge || p.age >= entry.minAge) &&
+    (!entry.minEduYears || years >= entry.minEduYears) &&
+    (!entry.minBattles || p.battles >= entry.minBattles) &&
+    (entry.minRank === undefined || p.rankIndex >= entry.minRank) &&
+    (!entry.familyIds || entry.familyIds.includes(p.familyId)) &&
+    (!entry.careerIds || entry.careerIds.includes(p.occupation?.careerId)) &&
+    (!entry.requires || entry.requires.every(key => remembers(p, key))) &&
+    (!entry.needsContactRole || !!c);
+}
+function applyArc(entry, state) {
+  const p = state.person;
+  const friend = p.contacts?.find(c => c.role === entry.needsContactRole && c.alive);
+  remember(p, entry.id);
+  for (const [key, n] of Object.entries(entry.effect)) {
+    if (key in p.attributes) boost(p, key, n);
+    else if (key === 'education' && p.education) p.education.performance = Math.max(0, (p.education.performance || 0) + n);
+    else if (key === 'bond' && friend) friend.bond = clamp(friend.bond + n, -10, 10);
+    else if (key === 'health') p.health = clamp(p.health + n, 0, 100);
+    else if (key === 'familyAccess') p.familyAccess = clamp(p.familyAccess + n, .5, 2);
+    else p[key] = clamp((p[key] || 0) + n, 0, 1000);
+  }
+  return entry.text.replaceAll('{name}', friend?.name ?? '');
+}
+const ALL_STORIES = [...STORIES, ...STORY_ARCS.map(entry => ({
+  id: entry.id, period: entry.period, weight: entry.weight,
+  can: (p, s) => arcEligible(entry, s), apply: s => applyArc(entry, s)
+}))];
+
+function progressStory(state) {
+  const p = state.person;
+  if (!p || !['childhood', 'academy', 'career'].includes(p.stage) || p.age < 6) return state;
+  const roll = nextRandom(state.rng); state.rng = roll.rng;
+  const candidates = ALL_STORIES.filter(e => e.period === p.stage && e.can(p, state));
+  if (!candidates.length || roll.value > (p.stage === 'academy' ? .73 : p.stage === 'career' ? .62 : .49)) return state;
+  const weighted = candidates.reduce((n, e) => n + e.weight, 0);
+  let cursor = roll.value / (p.stage === 'academy' ? .73 : p.stage === 'career' ? .62 : .49) * weighted;
+  const entry = candidates.find(e => (cursor -= e.weight) < 0) ?? candidates.at(-1);
+  const text = entry.apply(state);
+  if (text) appendEvent(state, 'story', text, 'major', { storyId: entry.id });
+  return state;
+}
+
+const STORY_CHOICE_SETS = Object.freeze({
+  pathway: [{ id: 'sword', label: '剣術を重点的に習う' }, { id: 'magic', label: '魔法と学問を学ぶ' }, { id: 'tactics', label: '戦術と指揮を学ぶ' }],
+  fellowship: [{ id: 'competition', label: '首席を目指して競い合う' }, { id: 'cooperation', label: '同期との協力を優先する' }, { id: 'discipline', label: '基礎練習を徹底する' }],
+  conviction: [{ id: 'honor', label: '戦功と昇進を狙う' }, { id: 'comrades', label: '仲間を守ることを優先' }, { id: 'safety', label: '生存と撤退判断を優先' }]
+});
+
+/** Player choices produce explicit long-lived effects, used by admissions, battles and promotions. */
+function applyStoryChoice(state, type, selected) {
+  const p = state.person;
+  if (type === 'pathway') {
+    const stat = selected === 'magic' ? 'MAG' : selected === 'tactics' ? 'CMD' : 'DEX';
+    boost(p, stat, 4); p.trainingFocus = selected === 'magic' ? 'magic' : selected === 'tactics' ? 'tactics' : 'sword';
+    p.pathway = selected;
+    appendEvent(state, 'story', `将来に備え、${STORY_CHOICE_SETS.pathway.find(o => o.id === selected).label}ことに決めた。${stat}が伸び、以後の訓練方針も変わった。`, 'major');
+  } else if (type === 'fellowship') {
+    p.education.performance = (p.education.performance || 0) + (selected === 'competition' ? 4 : 2);
+    if (selected === 'competition') { p.ambition = clamp(p.ambition + 6, 0, 100); boost(p, 'DEX', 3); }
+    else if (selected === 'cooperation') { p.teamwork = (p.teamwork || 0) + 2; boost(p, 'CMD', 3); }
+    else { p.health = Math.min(100, p.health + 8); boost(p, 'VIT', 3); }
+    appendEvent(state, 'story', `学院生活で「${STORY_CHOICE_SETS.fellowship.find(o => o.id === selected).label}」と決意した。その姿勢は卒業評価にも反映された。`, 'major');
+  } else if (type === 'conviction') {
+    p.conviction = selected;
+    if (selected === 'honor') { p.merit += 3; p.ambition = clamp(p.ambition + 5, 0, 100); }
+    else if (selected === 'comrades') { p.teamwork = (p.teamwork || 0) + 3; boost(p, 'CMD', 2); }
+    else { p.caution = clamp(p.caution + 8, 0, 100); p.health = Math.min(100, p.health + 6); }
+    appendEvent(state, 'story', `戦場の経験を経て「${STORY_CHOICE_SETS.conviction.find(o => o.id === selected).label}」と心に決めた。この信念が以後の戦いに影響する。`, 'major');
+  }
+}
+
+return {progressStory,STORY_CHOICE_SETS,applyStoryChoice};
+})();
+__modules["src/core/auto-decision.js"] = (()=>{
+const {TRAINING_OPTIONS} = __modules["src/simulation/training.js"];
+const {INSTITUTIONS} = __modules["src/data/institutions.js"];
+const {CAREERS} = __modules["src/data/careers.js"];
+const {chooseAcademy} = __modules["src/simulation/academy.js"];
+const {preferredCareer} = __modules["src/simulation/career.js"];
+const {RACES} = __modules["src/data/races.js"];
+const {STORY_CHOICE_SETS} = __modules["src/simulation/story.js"];
+
+
+
+
+
+
+
+const TACTICS = [{ id: 'bold', label: '積極的に戦う' }, { id: 'balanced', label: '堅実に戦う' }, { id: 'cautious', label: '損害を抑える' }];
+
+function determineDecision(state) {
+  if (!state.person || state.phase === 'completed') return null;
+  const p = state.person;
+  const race = RACES.find(r => r.id === p.raceId);
+  const targetAge = p.age + 1;
+  const academyStart = race.adultAge - 5;
+  let type = null, title = null, options = null, important = false;
+  if (targetAge === academyStart && p.stage === 'childhood') {
+    type = 'academy'; title = '進学先を希望する';
+    options = INSTITUTIONS.map(a => ({ id: a.id, label: a.name })); important = true;
+  } else if (targetAge === 10 && p.stage === 'childhood') {
+    type = 'pathway'; title = '将来の得意分野を選ぶ'; options = STORY_CHOICE_SETS.pathway; important = true;
+  } else if (p.stage === 'academy' && targetAge === p.education.graduationAge - 2) {
+    type = 'fellowship'; title = '学院生活の方針を決める'; options = STORY_CHOICE_SETS.fellowship; important = true;
+  } else if (p.stage === 'career' && targetAge === p.occupation.joinedAt + 4) {
+    type = 'conviction'; title = '戦士としての信念を選ぶ'; options = STORY_CHOICE_SETS.conviction; important = true;
+  } else if (p.stage === 'awaiting_career') {
+    type = 'career'; title = '卒業後の進路を希望する';
+    options = CAREERS.map(c => ({ id: c.id, label: c.name })); important = true;
+  } else if (p.stage === 'career' && targetAge % 5 === 0 && state.world.wars[p.nationId]) {
+    type = 'battle'; title = '危険な出撃への方針'; options = TACTICS; important = true;
+  } else if (state.mode === 'MANUAL' && targetAge >= 5 && p.stage !== 'retired' && p.stage !== 'deceased') {
+    type = 'training'; title = '次の一年の訓練方針'; options = TRAINING_OPTIONS;
+  }
+  return type ? { id: `choice-${targetAge}-${type}`, type, age: targetAge, title, options, important } : null;
+}
+
+function autoChoose(state, decision) {
+  const p = state.person;
+  if (decision.type === 'pathway') return p.attributes.MAG > p.attributes.STR + 4 ? 'magic' : p.ambition > 65 ? 'sword' : 'tactics';
+  if (decision.type === 'fellowship') return p.ambition > 66 ? 'competition' : p.caution > 65 ? 'discipline' : 'cooperation';
+  if (decision.type === 'conviction') return p.ambition > 70 ? 'honor' : p.caution > 60 ? 'safety' : 'comrades';
+  if (decision.type === 'academy') return chooseAcademy(p);
+  if (decision.type === 'career') return preferredCareer(p);
+  if (decision.type === 'battle') return p.caution > 68 ? 'cautious' : p.ambition > 72 ? 'bold' : 'balanced';
+  if (decision.type === 'training') {
+    const a = p.attributes;
+    return a.MAG > a.STR + 12 ? 'magic' : a.CMD + a.INT > a.STR + a.AGI + 18 ? 'tactics' : 'balanced';
+  }
+  return decision.options[0].id;
+}
+
+return {determineDecision,autoChoose};
+})();
+__modules["src/core/lifecycle.js"] = (()=>{
+const {blankState, cloneState, MODES} = __modules["src/core/state.js"];
+const {rollBirth} = __modules["src/simulation/birth.js"];
+const {trainYear} = __modules["src/simulation/training.js"];
+const {attemptAdmission, chooseAcademy, graduate, evaluateAcademyYear} = __modules["src/simulation/academy.js"];
+const {attemptCareer, preferredCareer, maybePromote} = __modules["src/simulation/career.js"];
+const {resolveBattle} = __modules["src/simulation/battle.js"];
+const {progressWorld} = __modules["src/simulation/world.js"];
+const {recover} = __modules["src/simulation/injury.js"];
+const {progressRelationships} = __modules["src/simulation/relationships.js"];
+const {progressStory, applyStoryChoice} = __modules["src/simulation/story.js"];
+const {RACES} = __modules["src/data/races.js"];
+const {nextRandom} = __modules["src/core/rng.js"];
+const {appendEvent} = __modules["src/core/event-engine.js"];
+const {determineDecision, autoChoose} = __modules["src/core/auto-decision.js"];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function startLife(seed, { mode = 'SEMI_AUTO', speed = 1 } = {}) {
+  if (!MODES.includes(mode)) throw new Error('Invalid mode');
+  let s = blankState(seed);
+  s.mode = mode;
+  s.speed = [1, 2, 4, 8].includes(speed) ? speed : 1;
+  const born = rollBirth(s.rng);
+  s.rng = born.rng;
+  s.person = born.person;
+  s.phase = 'running';
+  appendEvent(s, 'birth', `${s.person.nationName}の${s.person.familyName}に、${s.person.name}が生まれた。`, 'major');
+  return s;
+}
+
+function configureLife(state, { mode, speed } = {}) {
+  const s = cloneState(state);
+  if (mode !== undefined) { if (!MODES.includes(mode)) throw new Error('Invalid mode'); s.mode = mode; }
+  if (speed !== undefined) { if (![1, 2, 4, 8].includes(speed)) throw new Error('Invalid speed'); s.speed = speed; }
+  return s;
+}
+
+function advanceCommittedYear(state, decision = null, selectedId = null) {
+  const s = cloneState(state);
+  if (s.phase === 'completed') return s;
+  if (s.phase === 'awaiting_choice') throw new Error('Choice must be resolved first');
+  const p = s.person;
+  if (!p || p.stage === 'deceased') throw new Error('No active life');
+  const race = RACES.find(r => r.id === p.raceId);
+  p.age += 1;
+  let next = progressWorld(s.world, s.rng);
+  s.world = next.world; s.rng = next.rng;
+  const recentWar = s.world.history.at(-1);
+  if (recentWar?.year === s.world.year && recentWar.nationId === p.nationId && p.age >= race.adultAge-5)
+    appendEvent(s,'story',`故国で${recentWar.event}が発表された。配属先と任務の危険度に影響する。`,'major');
+  let focus = decision?.type === 'training' ? selectedId : p.trainingFocus;
+  if (p.stage === 'childhood' || p.stage === 'academy' || p.stage === 'career') {
+    next = trainYear(p, s.rng, focus);
+    s.person = next.person; s.rng = next.rng;
+  }
+  let person = recover(s.person);
+  next = progressRelationships(person,s.rng);
+  person=next.person;s.rng=next.rng;
+  s.person = person;
+  for (const news of next.news) appendEvent(s, 'story', news, 'major');  if (decision && ['pathway','fellowship','conviction'].includes(decision.type)) applyStoryChoice(s, decision.type, selectedId);
+
+  const academyStart = race.adultAge - 5;
+  if (person.age === academyStart && person.stage === 'childhood') {
+    next = attemptAdmission(person, s.rng, decision?.type === 'academy' ? selectedId : chooseAcademy(person));
+    s.person = next.person; s.rng = next.rng;
+    appendEvent(s, 'admission', next.log, 'major');
+  }
+  if (s.person.stage === 'academy' && s.person.age > (s.person.education.startedAt ?? s.person.education.graduationAge - 5)) {
+    next = evaluateAcademyYear(s.person, s.rng);
+    s.person=next.person;s.rng=next.rng;
+    if(next.log) appendEvent(s,'training',next.log);
+  }
+  if (s.person.stage === 'academy' && s.person.age >= s.person.education.graduationAge) {
+    s.person = graduate(s.person);
+    appendEvent(s, 'graduation', `${s.person.education.institutionName}を${s.person.education.ranking}（卒業評価${s.person.education.graduationScore}）で卒業した。`, 'major');
+  }
+  if (s.person.stage === 'awaiting_career') {
+    // Career applications occur in the year AFTER graduation, not in the graduation year.
+    if (s.person.age > s.person.education.graduationAge) {
+      next = attemptCareer(s.person, s.rng, decision?.type === 'career' ? selectedId : preferredCareer(s.person));
+      s.person = next.person; s.rng = next.rng;
+      appendEvent(s, 'career', next.log, 'major');
+    }
+  }
+  if (s.person.stage === 'career') {
+    const atWar = !!s.world.wars[s.person.nationId];
+    const missionRoll = nextRandom(s.rng); s.rng = missionRoll.rng;
+    const doBattle = (atWar || missionRoll.value < .65) && s.person.health >= 35 && !s.person.convalescentYears;
+    if (!doBattle && s.person.convalescentYears > 0 && s.person.age % 2 === 0)
+      appendEvent(s,'training','負傷による療養と再訓練のため、前線任務を離れた。');
+    if (doBattle) {
+      const tactic = decision?.type === 'battle' ? selectedId : 'balanced';
+      next = resolveBattle(s.person, s.rng, { war: atWar, tactic });
+      s.person = next.person; s.rng = next.rng;
+      appendEvent(s, 'battle', next.log, 'major', next.result);
+      if (next.result.dead) return complete(s, '戦死');
+    }
+    next = maybePromote(s.person, s.rng);
+    s.person = next.person; s.rng = next.rng;
+    if (next.log) appendEvent(s, 'promotion', next.log, 'major');
+  }
+  if (s.person.stage === 'career' && s.person.age >= race.retireAge) {
+    s.person.stage = 'retired'; s.person.retired = true;
+    appendEvent(s, 'retirement', `長い軍歴を終え、${s.person.age}歳で引退した。`, 'major');
+  }
+  // Model baseline lifespan for demo only; R6 will calibrate race/occupation death curves.
+  if (s.person.age >= race.retireAge - 12) {
+    const death = nextRandom(s.rng); s.rng = death.rng;
+    const onset = Math.max(0, s.person.age - (race.retireAge - 12));
+    const risk = Math.min(.58, .001 + onset * onset * .00045);
+    if (death.value < risk || s.person.age >= race.maxAge) return complete(s, '老衰・病死');
+  }
+  progressStory(s);
+  if (s.person.age % 5 === 0 && s.person.stage !== 'deceased') {
+    appendEvent(s, 'training', `${s.person.age}歳。${s.person.stage === 'retired' ? '穏やかな日々を過ごす。' : '訓練と経験を積み重ねた。'}`);
+  }
+  return s;
+}
+
+function complete(state, reason) {
+  state.endReason = reason;
+  state.person.deathAge = state.person.age;
+  state.person.stage = 'deceased';
+  state.phase = 'completed';
+  state.pendingDecision = null;
+  appendEvent(state, 'death', `${state.person.age}歳で生涯を閉じた（${reason}）。`, 'major');
+  return state;
+}
+
+/** Idempotent while a decision is pending; no year is applied until choice. */
+function stepLife(state) {
+  if (state.phase === 'completed' || state.phase === 'ready') return cloneState(state);
+  if (state.phase === 'awaiting_choice') {
+    if (state.mode !== 'FULL_AUTO') return cloneState(state);
+    return resolveChoice(state, state.pendingDecision.id, autoChoose(state, state.pendingDecision));
+  }
+  const decision = determineDecision(state);
+  if (!decision) return advanceCommittedYear(state);
+  if (state.mode === 'FULL_AUTO' || (state.mode === 'SEMI_AUTO' && !decision.important)) {
+    const selected = autoChoose(state, decision);
+    const s = advanceCommittedYear(state, decision, selected);
+    s.choiceHistory.push({ id: decision.id, type: decision.type, age: decision.age, selection: selected, mode: state.mode });
+    return s;
+  }
+  const s = cloneState(state);
+  s.phase = 'awaiting_choice';
+  s.pendingDecision = decision;
+  return s;
+}
+
+/** One atomic transaction: validated choice -> exactly one simulated year. */
+function resolveChoice(state, decisionId, selectedId) {
+  if (state.phase !== 'awaiting_choice' || !state.pendingDecision || state.pendingDecision.id !== decisionId) {
+    throw new Error('選択は既に処理されたか、期限切れです');
+  }
+  const choice = state.pendingDecision;
+  if (!choice.options.some(o => o.id === selectedId)) throw new Error('選択肢が不正です');
+  const next = cloneState(state);
+  next.phase = 'running';
+  next.pendingDecision = null;
+  const finalState = advanceCommittedYear(next, choice, selectedId);
+  finalState.choiceHistory.push({ id: choice.id, type: choice.type, age: choice.age,
+    selection: selectedId, mode: state.mode });
+  finalState.resolvedDecisions.push(choice.id);
+  return finalState;
+}
+
+function runToCompletion(initial, maxSteps = 1000) {
+  let state = configureLife(initial, { mode: 'FULL_AUTO' });
+  for (let i = 0; i < maxSteps && state.phase !== 'completed'; i++) state = stepLife(state);
+  if (state.phase !== 'completed') throw new Error('Simulation failed to finish');
+  return state;
+}
+
+return {startLife,configureLife,stepLife,resolveChoice,runToCompletion};
+})();
+__modules["src/core/save-manager.js"] = (()=>{
+const {assertState, SAVE_VERSION} = __modules["src/core/state.js"];
+
+const KEY = 'fls.current.v1';
+const BACKUP = 'fls.backup.v1';
+const ARCHIVE = 'fls.archive.v1';
+const MAX_BYTES = 4_000_000;
+
+function checksum(raw) {
+  let h = 2166136261;
+  for (let i = 0; i < raw.length; i++) {
+    h ^= raw.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return (h >>> 0).toString(16).padStart(8, '0');
+}
+function serializeLife(state) {
+  assertState(state);
+  const raw = JSON.stringify(state);
+  return JSON.stringify({ schemaVersion: SAVE_VERSION, checksum: checksum(raw), state });
+}
+function deserializeLife(text) {
+  if (typeof text !== 'string' || text.length > MAX_BYTES) throw new Error('ファイルが大きすぎます');
+  const envelope = JSON.parse(text);
+  if (!envelope || envelope.schemaVersion !== SAVE_VERSION || !envelope.state) {
+    throw new Error('未対応の保存形式です');
+  }
+  assertState(envelope.state);
+  if (checksum(JSON.stringify(envelope.state)) !== envelope.checksum) {
+    throw new Error('保存データの検証に失敗しました');
+  }
+  return envelope.state;
+}
+function saveCurrent(state, storage = localStorage) {
+  const packed = serializeLife(state);
+  const old = storage.getItem(KEY);
+  if (old) {
+    try { deserializeLife(old); storage.setItem(BACKUP, old); } catch { /* preserve last known backup */ }
+  }
+  storage.setItem(KEY, packed);
+  return true;
+}
+function loadCurrent(storage = localStorage) {
+  const raw = storage.getItem(KEY);
+  if (raw) { try { return deserializeLife(raw); } catch { /* fallback */ } }
+  const old = storage.getItem(BACKUP);
+  if (old) return deserializeLife(old);
+  return null;
+}
+function archiveLife(state, storage = localStorage) {
+  if (state.phase !== 'completed') return;
+  const entries = listArchive(storage);
+  const identifier = `${state.seed}/${state.person.deathAge}/${state.rng.draws}`;
+  if (entries.some(e => e.identifier === identifier)) return;
+  const record = { identifier, name: state.person.name, race: state.person.raceName,
+    age: state.person.deathAge, career: state.person.occupation?.careerName || '無所属',
+    battles: state.person.battles, wins: state.person.wins,
+    endReason: state.endReason, snapshot: serializeLife(state) };
+  entries.unshift(record);
+  // Never silently discard history; warn before reaching storage limit.
+  if (entries.length > 50) throw new Error('アーカイブの上限50件です。JSONに書き出して整理してください。');
+  storage.setItem(ARCHIVE, JSON.stringify(entries));
+}
+function listArchive(storage = localStorage) {
+  try {
+    const value = JSON.parse(storage.getItem(ARCHIVE) || '[]');
+    return Array.isArray(value) ? value.filter(e => e && typeof e.identifier === 'string' && typeof e.snapshot === 'string') : [];
+  } catch { return []; }
+}
+function exportJson(state) { return serializeLife(state); }
+function importJson(text) { return deserializeLife(text); }
+
+return {checksum,serializeLife,deserializeLife,saveCurrent,loadCurrent,archiveLife,listArchive,exportJson,importJson};
+})();
+__modules["src/ui/profile.js"] = (()=>{
+const {CAREERS} = __modules["src/data/careers.js"];
+const {STATS} = __modules["src/data/races.js"];
+
+
+const $ = id => document.getElementById(id);
+function renderProfile(state) {
+  const p = state.person;
+  if (!p) return;
+  $('hero-name').textContent = p.name;
+  $('brief-character').textContent = `${p.name} · ${p.age}歳 · ${p.occupation?.careerName || p.education?.institutionName || '幼少期'}`;
+  $('hero-summary').textContent = `${p.age}歳 · ${p.raceName} · ${p.nationName}`;
+  $('hero-origin').textContent = `${p.familyName} / 潜在 ${p.potential} / ${p.growthType}`;
+  const career = CAREERS.find(c => c.id === p.occupation?.careerId);
+  $('hero-career').textContent = career ? `${career.name} · ${career.ranks[p.rankIndex]}` :
+    p.education ? `${p.education.institutionName}${p.education.graduated ? '（卒業）' : '（在学）'}` : '幼少期';
+  $('health-value').textContent = `${p.health}/100`;
+  $('health-bar').value = p.health;
+  $('hero-stats').replaceChildren(...STATS.map(key => {
+    const line = document.createElement('div'); line.className = 'stat-line';
+    const a = document.createElement('span'); a.textContent = key;
+    const b = document.createElement('strong'); b.textContent = Math.round(p.attributes[key]);
+    line.append(a, b); return line;
+  }));
+  $('world-status').textContent = state.world.wars[p.nationId] ? '国境は戦時下' : '国家は概ね平時';
+  const friends = (p.contacts || []).filter(c => c.alive).map(c => `${c.role}：${c.name}`).slice(0, 3).join('、');
+  const edu=p.education;
+  $('combat-status').textContent = `${p.battles}戦 / ${p.wins}勝 / 戦功${p.merit}` +
+    (edu ? `｜学歴：${edu.institutionName}${edu.ranking ? '・'+edu.ranking : edu.grades?.length?'・'+edu.grades.length+'年次':''}${edu.scholarship?'（奨学）':''}` : '') +
+    (p.convalescentYears ? `｜療養中（残${p.convalescentYears}年）` : '') +
+    (friends ? `｜縁：${friends}` : '');
+}
+
+return {renderProfile};
+})();
+__modules["src/ui/timeline.js"] = (()=>{
+const $ = id => document.getElementById(id);
+function renderTimeline(state) {
+  const view = $('timeline');
+  // Do not destroy/recreate DOM when no new event has appeared.
+  if (view.dataset.lifeSeed !== state.seed || Number(view.dataset.lastId || '0') > (state.timeline.at(-1)?.id || 0)) {
+    view.replaceChildren(); view.dataset.lastId = '0'; view.dataset.lifeSeed = state.seed;
+  }
+  const oldLastId = Number(view.dataset.lastId || '0');
+  const stick = view.scrollHeight - view.scrollTop - view.clientHeight < 90;
+  const fragment = document.createDocumentFragment();
+  for (const entry of state.timeline) {
+    if (entry.id <= oldLastId) continue;
+    const article = document.createElement('article');
+    article.className = `event ${entry.importance === 'major' ? 'event-major' : ''}`;
+    const at = document.createElement('div'); at.className = 'event-age';
+    at.textContent = `${entry.age}歳 · 王暦${entry.year}年`;
+    const content = document.createElement('p'); content.textContent = entry.text;
+    article.append(at, content);
+    fragment.append(article);
+  }
+  view.append(fragment);
+  view.dataset.lastId = String(state.timeline.at(-1)?.id || 0);
+  if (stick) view.scrollTop = view.scrollHeight;
+}
+
+return {renderTimeline};
+})();
+__modules["src/ui/decisions.js"] = (()=>{
+function renderDecision(state, choose) {
+  const panel = document.getElementById('decision-panel');
+  panel.replaceChildren();
+  if (state.phase !== 'awaiting_choice') { panel.hidden = true; return; }
+  const decision = state.pendingDecision;
+  panel.hidden = false;
+  const title = document.createElement('h3'); title.textContent = decision.title;
+  const note = document.createElement('p'); note.className = 'muted';
+  note.textContent = `${decision.age}歳の選択。決定するまで時は進みません。`;
+  const options = document.createElement('div'); options.className = 'decision-options';
+  for (const option of decision.options) {
+    const button = document.createElement('button'); button.type = 'button';
+    button.className = 'choice-button'; button.textContent = option.label;
+    button.addEventListener('click', () => choose(decision.id, option.id), { once: true });
+    options.append(button);
+  }
+  panel.append(title, note, options);
+}
+
+return {renderDecision};
+})();
+__modules["src/ui/controls.js"] = (()=>{
+const $ = id => document.getElementById(id);
+function renderControls(state, playing) {
+  $('toggle-play').textContent = playing ? '一時停止' : '再生';
+  $('toggle-play').disabled = state.phase === 'completed' || (state.phase === 'awaiting_choice' && state.mode !== 'FULL_AUTO');
+  $('one-year').disabled = state.phase !== 'running';
+  $('next-event').disabled = state.phase !== 'running';
+  $('next-choice').disabled = state.phase !== 'running' || state.mode === 'FULL_AUTO';
+  $('mode-select').value = state.mode;
+  $('speed-select').value = String(state.speed);
+  $('running-status').textContent = state.phase === 'awaiting_choice' ? '選択待ち' :
+    state.phase === 'completed' ? '人生終了' : playing ? '自動進行中' : '一時停止';
+}
+
+return {$,renderControls};
+})();
+__modules["src/ui/summary.js"] = (()=>{
+const {CAREERS} = __modules["src/data/careers.js"];
+
+function renderSummary(state) {
+  const panel = document.getElementById('summary-panel');
+  panel.replaceChildren(); panel.hidden = state.phase !== 'completed';
+  if (panel.hidden) return;
+  const p = state.person;
+  const career = CAREERS.find(c => c.id === p.occupation?.careerId);
+  const heading = document.createElement('h2'); heading.textContent = '一生の記録';
+  const result = document.createElement('p'); result.textContent = `${p.name}｜享年${p.deathAge}｜${state.endReason}`;
+  const stat = document.createElement('p');
+  stat.textContent = `${p.raceName}・${p.familyName}｜${career ? `${career.name} / ${career.ranks[p.rankIndex]}` : '職歴なし'}｜${p.battles}戦${p.wins}勝｜戦功${p.merit}`;
+  const connections = document.createElement('p'); connections.textContent = `印象に残る人物：${(p.contacts || []).map(c => c.name + '（' + c.role + (c.alive ? '' : '・故人') + '）').join('、') || '記録なし'}`;
+  const title = document.createElement('p'); title.className='status-pill';
+  const endedYoung = p.deathAge < 35;
+  const careerTitle = !career ? '戦わなかった人生' : p.rankIndex===3 ? `歴戦の${career.ranks[3]}` :
+    p.battles>=50 && p.wins>=35 ? '百戦の古参兵' : state.endReason==='戦死'&&endedYoung ? '戦場に散った若き戦士' :
+    p.rankIndex>=2 ? `信頼された${career.ranks[p.rankIndex]}` : p.battles>=20 ? '実直な歴戦兵' : '無名の戦士';
+  title.textContent = `生涯の称号：${careerTitle}`;
+  const education = document.createElement('p');
+  education.textContent = `学歴：${p.education?.institutionName || 'なし'}${p.education?.ranking ? ' / '+p.education.ranking : ''}｜人生イベント：${state.timeline.filter(e=>e.kind==='story').length}件｜重大負傷：${p.injuries.filter(i=>i.kind!=='軽傷').length}件`;
+  const subtitle = document.createElement('p'); subtitle.className = 'muted';
+  subtitle.textContent = '称号は実際の経歴から判定。出生・育成・戦場の出来事は保存済み年表から振り返れます。';
+  panel.append(heading, result, title, stat, education, connections, subtitle);
+}
+
+return {renderSummary};
+})();
+__modules["src/ui/home.js"] = (()=>{
+function showScreen(hasLife) {
+  document.getElementById('welcome').hidden = hasLife;
+  document.getElementById('game').hidden = !hasLife;
+  document.getElementById('controls').hidden = !hasLife;
+}
+
+return {showScreen};
+})();
+__modules["src/app.js"] = (()=>{
+const {startLife, stepLife, resolveChoice, configureLife} = __modules["src/core/lifecycle.js"];
+const {saveCurrent, loadCurrent, archiveLife, listArchive, exportJson, importJson} = __modules["src/core/save-manager.js"];
+const {renderProfile} = __modules["src/ui/profile.js"];
+const {renderTimeline} = __modules["src/ui/timeline.js"];
+const {renderDecision} = __modules["src/ui/decisions.js"];
+const {renderControls, $} = __modules["src/ui/controls.js"];
+const {renderSummary} = __modules["src/ui/summary.js"];
+const {showScreen} = __modules["src/ui/home.js"];
+
+
+
+
+
+
+
+
+let state = null;
+let playing = false;
+let timer = null;
+let archived = false;
+// Some embedded document viewers disable localStorage. Keep the game playable,
+// but clearly disclose that such saves will not survive closing the viewer.
+const transientEntries = new Map();
+const transientStorage = {
+  getItem: key => transientEntries.has(key) ? transientEntries.get(key) : null,
+  setItem: (key, value) => { transientEntries.set(key, String(value)); },
+  removeItem: key => { transientEntries.delete(key); }
+};
+let storage = transientStorage;
+let persistentStorage = false;
+try {
+  const probe = 'fls.storage.probe';
+  localStorage.setItem(probe, '1');
+  localStorage.removeItem(probe);
+  storage = localStorage;
+  persistentStorage = true;
+} catch { /* Session-only fallback. */ }
+$('storage-warning').hidden = persistentStorage;
+const flash = message => {
+  const div = $('toast'); div.textContent = message; div.hidden = false;
+  clearTimeout(flash.timer);
+  flash.timer = setTimeout(() => { div.hidden = true; }, 3000);
+};
+const pause = () => { playing = false; clearTimeout(timer); timer = null; if (state) renderControls(state, playing); };
+const render = () => {
+  showScreen(!!state);
+  if (!state) return;
+  renderProfile(state);
+  renderTimeline(state);
+  renderDecision(state, pickChoice);
+  renderSummary(state);
+  renderControls(state, playing);
+};
+const persist = () => {
+  try {
+    saveCurrent(state, storage);
+    if (state.phase === 'completed' && !archived) { archiveLife(state, storage); archived = true; }
+    return true;
+  } catch (e) { flash(`保存できませんでした：${e.message}`); return false; }
+};
+function processStep() {
+  if (!state) return;
+  state = stepLife(state);
+  if (state.phase !== 'running') pause();
+  persist(); render();
+}
+function pickChoice(id, option) {
+  if (!state || state.phase !== 'awaiting_choice') return;
+  try {
+    state = resolveChoice(state, id, option);
+    persist(); render();
+  } catch (e) { flash(e.message); }
+}
+function tick() {
+  if (!playing || !state) return;
+  processStep();
+  if (playing) timer = setTimeout(tick, Math.max(50, 850 / state.speed));
+}
+function play() {
+  if (!state) return;
+  if (playing) { pause(); return; }
+  if (state.phase === 'completed') return;
+  if (state.phase === 'awaiting_choice' && state.mode !== 'FULL_AUTO') return;
+  playing = true; renderControls(state, playing); timer = setTimeout(tick, 0);
+}
+function jumpTo(target) {
+  if (!state || state.phase !== 'running') return;
+  pause();
+  const oldCount = state.timeline.length;
+  // bounded loop prevents UI hangs even if a corrupted state never triggers a choice
+  for (let i = 0; i < 240 && state.phase === 'running'; i++) {
+    state = stepLife(state);
+    if (target === 'event' && state.timeline.length > oldCount) break;
+    if (target === 'choice' && state.phase === 'awaiting_choice') break;
+  }
+  persist(); render();
+}
+function newLife() {
+  pause();
+  const specified = $('seed-input').value.trim();
+  const seed = specified || `life-${Date.now().toString(36)}`;
+  try {
+    state = startLife(seed, { mode: $('initial-mode').value });
+    archived = false; const saved = persist(); $('resume-button').disabled = !saved; $('archive-panel').hidden = true; render(); flash(persistentStorage ? '新しい人生が始まりました' : '試用モード：保存はこの画面内のみ。JSON書き出しをおすすめします');
+  } catch (e) { flash(e.message); }
+}
+function resumeLife() {
+  try {
+    state = loadCurrent(storage);
+    if (!state) return flash('保存された人生がありません');
+    archived = state.phase === 'completed';
+    pause(); render();
+  } catch (e) { flash(`読み込み失敗：${e.message}`); }
+}
+function downloadJson() {
+  if (!state) return;
+  const blob = new Blob([exportJson(state)], { type: 'application/json;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = `fantasy-life-${state.seed.replace(/[^a-zA-Z0-9_-]/g,'_').slice(0,36)}.json`;
+  document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+function showArchive() {
+  const panel = $('archive-panel'); panel.hidden = false;
+  const list = $('archive-list'); list.replaceChildren();
+  const entries = listArchive(storage);
+  if (!entries.length) { list.textContent = 'まだ保存された人生はありません。'; return; }
+  for (const entry of entries) {
+    const row = document.createElement('div'); row.className = 'archive-entry';
+    const info = document.createElement('div');
+    const name = document.createElement('strong'); name.textContent = entry.name;
+    const meta = document.createElement('p'); meta.textContent = `${entry.race}｜享年${entry.age}｜${entry.career}｜${entry.battles}戦`;
+    info.append(name, meta);
+    const button = document.createElement('button'); button.textContent = '閲覧する'; button.type = 'button';
+    button.addEventListener('click', () => {
+      try { state = importJson(entry.snapshot); archived = true; pause(); render(); panel.hidden = true; }
+      catch (e) { flash(`アーカイブ読み込み失敗：${e.message}`); }
+    });
+    row.append(info, button); list.append(row);
+  }
+}
+$('start-button').addEventListener('click', newLife);
+$('resume-button').addEventListener('click', resumeLife);
+$('archive-button').addEventListener('click', showArchive);
+$('close-archive').addEventListener('click', () => { $('archive-panel').hidden = true; });
+$('toggle-play').addEventListener('click', play);
+$('one-year').addEventListener('click', () => { pause(); processStep(); });
+$('next-event').addEventListener('click', () => jumpTo('event'));
+$('next-choice').addEventListener('click', () => jumpTo('choice'));
+$('mode-select').addEventListener('change', event => { if (!state) return; pause(); state = configureLife(state, { mode: event.target.value }); persist(); render(); });
+$('speed-select').addEventListener('change', event => { if (!state) return; const wasPlaying = playing; pause(); state = configureLife(state, { speed: Number(event.target.value) }); persist(); render(); if (wasPlaying) play(); });
+$('save-button').addEventListener('click', () => { if (state && persist()) flash(persistentStorage ? 'ブラウザに保存しました' : '一時的に保存しました。JSON書き出しをおすすめします'); });
+$('export-button').addEventListener('click', downloadJson);
+$('home-button').addEventListener('click', () => { pause(); state = null; showScreen(false); });
+$('import-file').addEventListener('change', async event => {
+  const file = event.target.files?.[0]; if (!file) return;
+  if (file.size > 4_000_000) { flash('4 MBより大きなファイルは読み込めません'); return; }
+  try { const imported = importJson(await file.text()); pause(); state = imported; archived = state.phase === 'completed'; persist(); $('resume-button').disabled = false; render(); flash('読み込みました'); }
+  catch (e) { flash(`読み込み失敗：${e.message}`); }
+  finally { event.target.value = ''; }
+});
+document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
+window.addEventListener('pagehide', () => { pause(); if (state) persist(); });
+try { $('resume-button').disabled = !loadCurrent(storage); } catch { $('resume-button').disabled = true; }
+
+return {};
+})();
+</script>
+</body>
+</html>
