@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f2eadc">
   <meta name="description" content="ファンタジー世界に生まれた戦士の一生を観察する、ブラウザ完結の戦闘人生シミュレーション。R0試作版。">
-  <title>Fantasy Life Simulator — R1 Chronicle Preview</title>
+  <title>Fantasy Life Simulator — R1.3 Careers & Recovery Preview</title>
   
 <style>:root{font-family:ui-sans-serif,system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:#292b29;background:#f2eadc;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%;color-scheme:light}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh}button,select,input{font:inherit}button{min-height:44px;padding:10px 15px;border:1px solid #b5aa94;border-radius:9px;background:#fffdf8;color:#292b29;font-weight:650;cursor:pointer}button:hover:not(:disabled){background:#f2f0e8}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,.file-label:focus-visible{outline:3px solid #b17031;outline-offset:3px}button.primary{background:#415848;color:white;border-color:#415848}button.primary:hover:not(:disabled){background:#324438}button.subtle{background:transparent}.site-header{max-width:1450px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:24px 20px 17px}.brand-mark{font-size:27px;color:#8c673f}.brand-title{font-size:17px;font-weight:850;letter-spacing:.12em}.brand-sub{font-size:12px;color:#636057}.prototype-tag{margin-left:auto;padding:6px 10px;background:#e9dfcd;border:1px solid #d0c1a9;border-radius:30px;font-size:12px;white-space:nowrap}.card{background:#fffdf7;border:1px solid #d7cbb6;border-radius:16px;box-shadow:0 3px 15px #493c2810;padding:20px}main{max-width:1450px;margin:0 auto;padding:0 20px 20px}.muted{color:#5f665d}.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#806d52;font-weight:800}.welcome{max-width:640px;margin:clamp(12px,4vh,70px) auto 40px;padding:clamp(22px,5vw,46px)}.welcome h1{font-size:clamp(23px,3vw,35px);line-height:1.4;margin:7px 0 15px}.welcome>p{line-height:1.75}.start-form{display:grid;gap:11px;margin-top:26px}.start-form label{font-size:13px;font-weight:750}.start-form input,.start-form select{min-height:48px;background:#fff;border:1px solid #acaa9c;border-radius:9px;padding:10px 12px;width:100%;color:inherit}.start-form button{width:100%}.footnote{font-size:12px;color:#625e53;margin-top:22px}.game-layout{display:grid;grid-template-columns:minmax(235px,280px) minmax(0,1fr) minmax(220px,280px);align-items:start;gap:16px;padding-bottom:110px}.game-layout h1{font-size:22px;margin:5px 0}.game-layout h2{font-size:18px;margin:18px 0 11px}.profile-panel,.world-panel{position:sticky;top:12px}.profile-panel p{line-height:1.7}.status-pill{display:inline-flex;padding:7px 10px;border-radius:8px;background:#e4ecdf;font-weight:700;font-size:12px;color:#314e39}.meter-label{display:flex;justify-content:space-between;gap:15px;margin-top:24px;font-size:13px;font-weight:700}progress{width:100%;height:13px;accent-color:#628165}.stats{border-top:1px solid #e8dfd0}.stat-line{display:flex;justify-content:space-between;padding:8px 3px;border-bottom:1px solid #e8dfd0}.stat-line span{font-family:ui-monospace,monospace;font-weight:700;letter-spacing:.08em}.timeline-panel{min-height:64vh}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #e7dbca;padding-bottom:13px;margin-bottom:12px}.section-heading h2,.section-heading p{margin:0}.timeline{min-height:270px;max-height:min(72vh,780px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}.event{border-left:2px solid #bfc0aa;padding:4px 14px 10px;margin:0 0 16px 6px}.event-major{border-left:3px solid #9d7045;background:#fcf8ee;border-radius:0 10px 10px 0}.event-age{font-size:12px;color:#796448;font-weight:750}.event p{line-height:1.75;margin:7px 0 0;font-size:14px;overflow-wrap:anywhere}.decision-panel{background:#eff4eb;border:1px solid #afc4aa;border-radius:12px;padding:17px;margin:12px 0 22px}.decision-panel h3{margin:0 0 8px;font-size:18px}.decision-panel p{font-size:13px}.decision-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}.choice-button{background:#fff}.summary-panel{padding:18px;background:#f7efdc;border:1px solid #e4c897;border-radius:12px;margin-top:14px;line-height:1.75}.world-panel>button,.file-label{display:block;width:100%;margin:8px 0;text-align:center}.file-label{min-height:44px;padding:12px;border:1px solid #b5aa94;border-radius:9px;cursor:pointer;background:#fffdf8;font-weight:650}.world-panel input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}.world-panel hr{border:0;border-top:1px solid #e7dbca;margin:18px 0}.bottom-controls{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fffdf7ed;border-top:1px solid #d4cbb8;backdrop-filter:blur(10px);padding:10px max(12px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));box-shadow:0 -6px 20px #30281a10}.controls-inner{max-width:1430px;margin:auto;display:flex;align-items:center;gap:8px}.control-label{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;white-space:nowrap}.control-label select{min-height:44px;padding:0 8px;border-radius:8px;border:1px solid #b5aa94;color:#292b29;background:white}.archive{max-width:650px;margin:10px auto 25px}.archive-entry{display:flex;gap:12px;justify-content:space-between;align-items:center;border-bottom:1px solid #e5dbcc;padding:12px 0}.archive-entry p{margin:3px 0;font-size:13px}.toast{position:fixed;z-index:60;top:15px;left:50%;transform:translateX(-50%);background:#273b2c;color:#fff;padding:11px 17px;border-radius:10px;box-shadow:0 4px 14px #0002;max-width:min(92vw,600px);font-size:14px}[hidden]{display:none!important}
@@ -28,6 +28,9 @@
 /* R1.2: career changes stand out without overpowering combat records. */
 .chronicle-event.kind-transfer{background:#f1f1fb;border-left-color:#7770a3}.chronicle-event.kind-assignment{background:#f3f5ee;border-left-color:#7c8a52}.chronicle-event.kind-review{background:#f8f5ef;border-left-color:#ac9372}.timeline{overflow-anchor:none}
 
+/* R1.3: deliberate choices with explicit trade-offs */
+.choice-button{display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;line-height:1.45}.choice-button strong{font-size:13px}.choice-button .decision-note{font-size:12px;color:#5d6359;line-height:1.5;font-weight:500}.chronicle-event.kind-recovery{border-left-color:#567b86;background:#edf5f6}
+
 @media(min-width:1081px){.timeline-panel{min-height:70vh}.profile-panel,.world-panel{max-height:calc(100dvh - 150px);overflow-y:auto}.bottom-controls .controls-inner{justify-content:center}}
 
 @media(max-width:1080px){.game-layout{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}.world-panel{position:static;grid-column:1/-1}.controls-inner{overflow-x:auto;scrollbar-width:thin;justify-content:flex-start}.controls-inner>button,.controls-inner>.control-label{flex-shrink:0}}
@@ -40,7 +43,7 @@
   <header class="site-header">
     <div class="brand-mark" aria-hidden="true">✦</div>
     <div><div class="brand-title">FANTASY LIFE SIMULATOR</div><div class="brand-sub">戦士の一生、その運命を見届ける。</div></div>
-    <span class="prototype-tag">R1 年表・戦績プレビュー</span>
+    <span class="prototype-tag">R1.3 転職・負傷の選択</span>
   </header>
   <main>
     <section id="welcome" class="welcome card" aria-labelledby="welcome-title">
@@ -180,7 +183,7 @@ __modules["src/core/state.js"] = (()=>{
 const {initRng} = __modules["src/core/rng.js"];
 
 const SAVE_VERSION = 1;
-const ENGINE_VERSION = '0.5.0-r1-careers';
+const ENGINE_VERSION = '0.6.0-r1-risk-economy';
 const MODES = Object.freeze(['FULL_AUTO', 'SEMI_AUTO', 'MANUAL']);
 const SPEEDS = Object.freeze([1, 2, 4, 8]);
 const PHASES = Object.freeze(['ready', 'running', 'awaiting_choice', 'completed']);
@@ -472,9 +475,63 @@ const CAREERS = Object.freeze([
 
 return {CAREERS};
 })();
+__modules["src/simulation/economy.js"] = (()=>{
+const {CAREERS} = __modules["src/data/careers.js"];
+
+const BASE_PAY=Object.freeze({army:92,knight:125,mage:148,adventurer:138,mercenary:154,special:206});
+const BASE_RISK=Object.freeze({army:1,knight:1.05,mage:.95,adventurer:1.16,mercenary:1.25,special:1.4});
+const RANK_MULT=[1,1.36,1.95,3.2];
+const clamp=(x,lo,hi)=>Math.max(lo,Math.min(hi,x));
+/** All money is fictional silver pieces per game-year, not modern currency. */
+function riskMultiplier(person,careerId=person.occupation?.careerId) {
+  let scale=BASE_RISK[careerId]??1;
+  if(person.occupation?.careerId===careerId){
+    if(person.occupation.medicalAssignment==='rear')scale*=.37;
+    if(person.occupation.medicalAssignment==='front')scale*=1.24;
+  }
+  return scale;
+}
+function riskLabel(multiplier) {
+  return multiplier<.65?'低':multiplier<1?'やや低':multiplier<1.2?'中':multiplier<1.4?'高':'非常に高';
+}
+function annualSalary(person,{careerId=person.occupation?.careerId,rankIndex=person.rankIndex,tenure=null,war=false}={}){
+  if(!careerId||!CAREERS.some(c=>c.id===careerId))return 0;
+  const careerTenure=tenure??Math.max(0,person.age-(person.occupation?.joinedAt??person.age));
+  const seniority=1+Math.min(20,careerTenure)*.012;
+  let multiplier=1;
+  if(person.occupation?.careerId===careerId){
+    if(person.occupation.medicalAssignment==='rear')multiplier=.78;
+    if(person.occupation.medicalAssignment==='front')multiplier=1.12;
+  }
+  return Math.round(BASE_PAY[careerId]*(RANK_MULT[clamp(rankIndex??0,0,3)]||1)*seniority*multiplier*(war?1.14:1));
+}
+function expectedTransfer(person,newCareer){
+  const oldPay=annualSalary(person);
+  const rankIndex=Math.max(0,Math.min(1,person.rankIndex-1));
+  const newPay=annualSalary(person,{careerId:newCareer,rankIndex,tenure:0});
+  return {oldPay,newPay,difference:newPay-oldPay,rankIndex,
+    oldRisk:riskMultiplier(person),newRisk:riskMultiplier(person,newCareer)};
+}
+function payYear(person,war=false){
+  if(!person.occupation)return person;
+  const p=structuredClone(person);
+  // Old saves have no past salary ledger; never backfill fictitious earnings.
+  p.finances??={lifetimeEarned:0,cash:0,payYears:0,lastPay:0};
+  const salary=p.stage==='retired' ? Math.round(p.occupation.pensionBase??annualSalary(p)*.34) : annualSalary(p,{war});
+  p.finances.lastPay=salary;
+  p.finances.lifetimeEarned+=salary;
+  p.finances.cash+=salary;
+  p.finances.payYears+=1;
+  return p;
+}
+
+return {riskMultiplier,riskLabel,annualSalary,expectedTransfer,payYear};
+})();
 __modules["src/simulation/career.js"] = (()=>{
 const {CAREERS} = __modules["src/data/careers.js"];
 const {nextRandom, weightedPick} = __modules["src/core/rng.js"];
+const {annualSalary, riskLabel, riskMultiplier} = __modules["src/simulation/economy.js"];
+
 
 
 const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
@@ -490,8 +547,7 @@ function preferredCareer(p) {
   if (p.caution<48 || p.ambition>74) return 'mercenary';
   return 'army';
 }
-function attemptCareer(person,rng,careerId) {
-  const requested=CAREERS.find(c=>c.id===careerId)??CAREERS[1];
+function attemptCareer(person,rng,careerId) {  const requested=CAREERS.find(c=>c.id===careerId)??CAREERS[1];
   const ability=requested.attr.reduce((sum,key)=>sum+person.attributes[key],0)/requested.attr.length;
   const school=person.education?.institutionId;
   const fit=requested.id==='mage'?(school==='magic' ? .13 : 0):
@@ -513,8 +569,9 @@ function attemptCareer(person,rng,careerId) {
     admissionChance:Number(probability.toFixed(3)),transfers:0,
     history:[{careerId:career.id,careerName:career.name,startedAt:p.age,endedAt:null,rankIndex:0}]};
   p.stage='career';p.rankIndex=0;
-  return {person:p,rng,log: accepted ? `${career.name}に採用された（選考見込${Math.round(probability*100)}%）。${career.ranks[0]}として任務を始めた。` :
-    `${requested.name}への志願は不採用となった（選考見込${Math.round(probability*100)}%）。新たに${career.name}で道を歩み始めた。`};
+  const pay=annualSalary(p);const risk=riskLabel(riskMultiplier(p));
+  return {person:p,rng,log: accepted ? `${career.name}に採用された（選考見込${Math.round(probability*100)}%）。${career.ranks[0]}として任務を始めた。年収${pay}銀貨、危険度${risk}。` :
+    `${requested.name}への志願は不採用となった（選考見込${Math.round(probability*100)}%）。新たに${career.name}で道を歩み始めた。年収${pay}銀貨、危険度${risk}。`};
 }
 function maybePromote(person,rng){
  if(!person.occupation||person.rankIndex>=3)return{person,rng,log:null};
@@ -528,10 +585,11 @@ function maybePromote(person,rng){
    (person.education?.honors?1.13:1);
  const res=nextRandom(rng);rng=res.rng;
  if(res.value>=rate)return{person,rng,log:null,reviewLog:`${career.ranks[person.rankIndex+1]}の昇進審査を受けたが、今回は選外となった。戦功${person.merit}を積んで次の機会を待つ。`};
+ const oldPay=annualSalary(person);
  const p=structuredClone(person);p.rankIndex++;
  p.achievements.push(`${p.age}歳で${career.ranks[p.rankIndex]}に昇進`);
  if(p.occupation.history?.length) p.occupation.history.at(-1).rankIndex=p.rankIndex;
- return{person:p,rng,log:`戦功${p.merit}と勤務実績が認められ、空席を得て${career.ranks[p.rankIndex]}へ昇進した。`};
+ return{person:p,rng,log:`戦功${p.merit}と勤務実績が認められ、空席を得て${career.ranks[p.rankIndex]}へ昇進した。年収は${oldPay}→${annualSalary(p)}銀貨に上昇。`};
 }
 
 return {preferredCareer,attemptCareer,maybePromote};
@@ -539,6 +597,8 @@ return {preferredCareer,attemptCareer,maybePromote};
 __modules["src/simulation/career-paths.js"] = (()=>{
 const {CAREERS} = __modules["src/data/careers.js"];
 const {nextRandom} = __modules["src/core/rng.js"];
+const {annualSalary, expectedTransfer, riskLabel, riskMultiplier} = __modules["src/simulation/economy.js"];
+
 
 
 const clamp=(x,lo,hi)=>Math.max(lo,Math.min(hi,x));
@@ -554,7 +614,10 @@ function transferOptions(person) {
     .map(c=>({career:c,score:rating(person,c)+
       (c.id==='army'?5:c.id==='adventurer'?3:0)+(person.education?.honors?2:0)}))
     .sort((a,b)=>b.score-a.score||a.career.id.localeCompare(b.career.id));
-  return pool.slice(0,3).map(({career:c})=>({id:c.id,label:`${c.name}へ転職を志願`}));
+  return pool.slice(0,3).map(({career:c})=>{
+    const v=expectedTransfer(person,c.id),diff=v.difference>=0?`+${v.difference}`:String(v.difference);
+    return {id:c.id,label:`${c.name}へ転職`,note:`年収 ${v.oldPay}→${v.newPay}銀貨（${diff}）／危険度 ${riskLabel(v.oldRisk)}→${riskLabel(v.newRisk)}／階級は${c.ranks[v.rankIndex]}から`};
+  });
 }
 
 function eligibleForTransfer(person,targetAge) {
@@ -580,16 +643,19 @@ function attemptTransfer(person,rng,choice) {
     log:`${target.name}への転職試験に落選した（合格見込${Math.round(chance*100)}%）。${o.careerName}での勤務を続ける。`};
   const prev=careerOf(o.careerId);
   const oldName=prev?.ranks[p.rankIndex]??'隊員';
+  const payBefore=annualSalary(p);const riskBefore=riskLabel(riskMultiplier(p));
   o.history??=[{careerId:o.careerId,careerName:o.careerName,startedAt:o.joinedAt,endedAt:null,rankIndex:p.rankIndex}];
   if(o.history.length) {o.history.at(-1).endedAt=p.age;o.history.at(-1).rankIndex=p.rankIndex;}
   o.transfers=(o.transfers??0)+1;
   o.lastTransferAt=p.age;o.careerId=target.id;o.careerName=target.name;o.joinedAt=p.age;
+  o.medicalAssignment=null;o.assignmentName=null;o.assignmentId=null;
   // Experienced veterans may retain some seniority; a new profession is never an instant promotion.
   p.rankIndex=Math.max(0,Math.min(1,p.rankIndex-1));
   o.history.push({careerId:target.id,careerName:target.name,startedAt:p.age,endedAt:null,rankIndex:p.rankIndex});
+  const payAfter=annualSalary(p);const riskAfter=riskLabel(riskMultiplier(p));
   p.achievements??=[];p.achievements.push(`${p.age}歳に${prev.name}から${target.name}へ転職`);
   return{person:p,rng,kind:'transfer',importance:'major',
-    log:`${prev.name}の${oldName}から${target.name}へ転職が決定（合格見込${Math.round(chance*100)}%）。新たに${target.ranks[p.rankIndex]}として任務を始めた。`};
+    log:`${prev.name}の${oldName}から${target.name}へ転職が決定（合格見込${Math.round(chance*100)}%）。${target.ranks[p.rankIndex]}から再出発。年収${payBefore}→${payAfter}銀貨（${payAfter-payBefore>=0?'+':''}${payAfter-payBefore}）、危険度${riskBefore}→${riskAfter}。`,detail:{payBefore,payAfter,riskBefore,riskAfter}};
 }
 
 const ASSIGNMENTS=[
@@ -604,7 +670,7 @@ const ASSIGNMENTS=[
 /** Rare and stateful assignment changes (not independent narration). */
 function maybeReassign(person,rng){
   const o=person.occupation;
-  if(!o||person.convalescentYears||person.health<38||person.age-o.joinedAt<3||person.age%5!==0)return{person,rng,log:null};
+  if(!o||o.medicalAssignment==='rear'||person.convalescentYears||person.health<38||person.age-o.joinedAt<3||person.age%5!==0)return{person,rng,log:null};
   let roll=nextRandom(rng);rng=roll.rng;
   if(roll.value>.62)return{person,rng,log:null};
   const eligible=ASSIGNMENTS.filter(x=>x.can(person)&&x.id!==o.assignmentId);
@@ -624,9 +690,59 @@ function maybeReassign(person,rng){
 
 return {transferOptions,eligibleForTransfer,attemptTransfer,maybeReassign};
 })();
+__modules["src/simulation/injury-choices.js"] = (()=>{
+const {annualSalary} = __modules["src/simulation/economy.js"];
+
+const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+const INJURY_PATHS=Object.freeze([
+ {id:'rehab',label:'治療と再訓練を優先',note:'治療費18銀貨・前線復帰まで時間がかかる／健康の回復を優先'},
+ {id:'rear',label:'後方支援・教導職へ転属',note:'年収は約22%減少／戦闘危険度が大きく減少・指揮能力を磨く'},
+ {id:'front',label:'早期に前線へ復帰',note:'危険手当で基本年収約12%増／負傷・戦死リスクも約24%増'},
+ {id:'retire',label:'戦闘職を退き引退する',note:'戦闘任務を終了／年金収入は現年収の約34%に減少'}
+]);
+function resolveInjuryPath(person,path){
+ if(!person.injuryDecisionPending||person.stage!=='career')throw new Error('負傷後の進路を選択できません');
+ if(!INJURY_PATHS.some(x=>x.id===path))throw new Error('不正な進路選択です');
+ const p=structuredClone(person);const oldPay=annualSalary(p);
+ const reason=p.injuryDecisionPending.kind;
+ p.injuryDecisionPending=null;p.recoveryPath=path;
+ p.injuryChoices??=[];
+ p.injuryChoices.push({age:p.age,choice:path,kind:reason});
+ let log;
+ if(path==='rehab'){
+  p.health=clamp(p.health+18,0,100);
+  p.convalescentYears=Math.max(1,p.convalescentYears||0);
+  p.finances??={lifetimeEarned:0,cash:0,payYears:0,lastPay:0};
+  p.finances.cash-=18;
+  p.occupation.medicalAssignment=null;
+  log=`${reason}の治療と再訓練を選択。治療費18銀貨を支払い健康が回復。療養を終えてから前線復帰する。`;
+ }else if(path==='rear'){
+  p.occupation.medicalAssignment='rear';p.occupation.assignmentName='後方支援・新人教導';
+  p.occupation.assignmentId='medical_rear';
+  p.convalescentYears=Math.min(1,p.convalescentYears||0);
+  p.attributes.CMD=clamp(p.attributes.CMD+2,0,100);
+  log=`${reason}を機に後方支援・教導に転属。年収${oldPay}→${annualSalary(p)}銀貨。戦闘危険度が大幅に低下する。`;
+ }else if(path==='front'){
+  p.convalescentYears=0;
+  p.health=clamp(p.health+5,0,100);
+  p.occupation.medicalAssignment='front';
+  log=`${reason}を抱えながら早期前線復帰を選択。危険手当により年収${oldPay}→${annualSalary(p)}銀貨。ただし負傷・戦死リスクは上昇する。`;
+ }else{
+  p.occupation.pensionBase=Math.round(oldPay*.34);
+  p.stage='retired';p.retired=true;
+  p.occupation.history?.at(-1)&&(p.occupation.history.at(-1).endedAt=p.age);
+  log=`${reason}を機に戦闘職を退いた。戦闘任務から離れ、年金${p.occupation.pensionBase}銀貨/年で第二の人生を送る。`;
+ }
+ return{person:p,kind:path==='retire'?'retirement':'recovery',log};
+}
+
+return {INJURY_PATHS,resolveInjuryPath};
+})();
 __modules["src/simulation/battle.js"] = (()=>{
 const {randomInt, nextRandom} = __modules["src/core/rng.js"];
 const {CAREERS} = __modules["src/data/careers.js"];
+const {riskMultiplier} = __modules["src/simulation/economy.js"];
+
 
 
 const clamp = (x, min, max) => Math.max(min, Math.min(max, x));
@@ -655,30 +771,31 @@ function resolveBattle(person, rng, { war = false, tactic = 'balanced' } = {}) {
   ({ value: injuryRoll, rng } = nextRandom(rng));
   p.battles += 1;
   if (win) { p.wins += 1; p.merit += war ? 3 : 1; p.fame += war ? 2 : 1; }
-  const injuryRisk = clamp((war ? .19 : .10) - (p.conviction === 'safety' ? .035 : 0) + (tactic === 'bold' ? .11 : tactic === 'cautious' ? -.055 : 0) +
-      (win ? -.025 : .055), .01, .5);
+  const jobRisk=riskMultiplier(p);
+  const injuryRisk = clamp(((war ? .29 : .17) - (p.conviction === 'safety' ? .035 : 0) + (tactic === 'bold' ? .11 : tactic === 'cautious' ? -.055 : 0) +
+      (win ? -.030 : .064))*jobRisk, .018, .65);
   let injury = null;
   if (injuryRoll < injuryRisk) {
     let severity;
     ({ value: severity, rng } = nextRandom(rng));
-    const serious=severity < (war ? .24 : .13);
-    const lasting=serious && severity < (war ? .055 : .025);
-    injury=lasting?'後遺症':serious?'重傷':'軽傷';
-    p.health=Math.max(0,p.health-(lasting?40:serious?33:12));
-    if(serious)p.convalescentYears=Math.max(p.convalescentYears||0,lasting?3:2);
+    const serious=severity < (war ? .33 : .21);
+    const lasting=serious && severity < (war ? .070 : .039);
+    injury=lasting?'後遺症':serious?'重傷':severity < (war ? .50 : .38)?'中等度負傷':'軽傷';
+    p.health=Math.max(0,p.health-(lasting?42:serious?32:injury==='中等度負傷'?21:10));
+    if(injury!=='軽傷'){p.convalescentYears=Math.max(p.convalescentYears||0,lasting?3:serious?2:1);p.injuryDecisionPending={age:p.age,kind:injury};}
     if(lasting){p.attributes.VIT=Math.max(0,p.attributes.VIT-3);p.attributes.AGI=Math.max(0,p.attributes.AGI-4);}
     p.injuries.push({age:p.age,kind:injury,mission});
   }
   // Independent fatality roll, even the strongest is not invulnerable.
   let fatalRoll;
   ({ value: fatalRoll, rng } = nextRandom(rng));
-  const fatalityRisk = clamp((war ? .012 : .0025) * (win ? .45 : 2.4) *
+  const fatalityRisk = clamp((war ? .019 : .0045) * (win ? .45 : 2.4) *
      (tactic === 'bold' ? 1.6 : tactic === 'cautious' ? .48 : 1) *
-     (injury === '重傷' ? 1.8 : 1), .0001, .1);
+     (injury === '重傷'||injury === '後遺症' ? 1.75 : 1)*jobRisk, .0001, .13);
   const dead = fatalRoll < fatalityRisk;
   const result = {
     age: p.age, win, opponent, winChance: Math.round(winChance * 1000) / 1000,
-    tactic, war, mission, injury, dead, fatalityRisk: Math.round(fatalityRisk * 1e6) / 1e6
+    tactic, war, mission, injury, injuryRisk:Math.round(injuryRisk*1e4)/1e4, dead, fatalityRisk: Math.round(fatalityRisk * 1e6) / 1e6
   };
   return { person: p, rng, result,
     log: `${mission}：${win ? '目標を達成' : '目標達成ならず'}（勝算${Math.round(winChance*100)}%）。` +
@@ -697,7 +814,8 @@ function progressWorld(world, rng) {
   next.year += 1;
   for (const nation of NATIONS) {
     const res = nextRandom(rng); rng = res.rng;
-    const current = !!next.wars[nation.id];    next.wars[nation.id] = current ? res.value > .17 : res.value < nation.threat * .085;
+    const current = !!next.wars[nation.id];
+    next.wars[nation.id] = current ? res.value > .17 : res.value < nation.threat * .085;
     if (next.wars[nation.id] !== current) {
       next.history.push({ year: next.year, nationId: nation.id, event: next.wars[nation.id] ? '開戦' : '休戦' });
     }
@@ -757,6 +875,7 @@ const EVENT_CATALOG = Object.freeze([
   { id: 'promotion', stage: 'career', importance: 'major' },
   { id: 'transfer', stage: 'career', importance: 'major' },
   { id: 'review', stage: 'career', importance: 'minor' },
+  { id: 'recovery', stage: 'career', importance: 'major' },
   { id: 'assignment', stage: 'career', importance: 'major' },
   { id: 'retirement', stage: 'retired', importance: 'major' },
   { id: 'death', stage: 'deceased', importance: 'major' },
@@ -977,8 +1096,7 @@ function progressStory(state) {
   const roll = nextRandom(state.rng); state.rng = roll.rng;
   const candidates = ALL_STORIES.filter(e => e.period === p.stage && e.can(p, state));
   if (!candidates.length || roll.value > (p.stage === 'academy' ? .73 : p.stage === 'career' ? .62 : .49)) return state;
-  const weighted = candidates.reduce((n, e) => n + e.weight, 0);
-  let cursor = roll.value / (p.stage === 'academy' ? .73 : p.stage === 'career' ? .62 : .49) * weighted;
+  const weighted = candidates.reduce((n, e) => n + e.weight, 0);  let cursor = roll.value / (p.stage === 'academy' ? .73 : p.stage === 'career' ? .62 : .49) * weighted;
   const entry = candidates.find(e => (cursor -= e.weight) < 0) ?? candidates.at(-1);
   const text = entry.apply(state);
   if (text) appendEvent(state, 'story', text, 'major', { storyId: entry.id });
@@ -1026,6 +1144,7 @@ function recordAnnualSnapshot(state) {
   const snapshot = {
     age: p.age, year: state.world.year, stage: p.stage,
     ovr: combatRating(p), health: p.health, merit: p.merit, fame: p.fame,
+    annualIncome:p.finances?.lastPay??null,lifeIncome:p.finances?.lifetimeEarned??null,
     battles: p.battles, wins: p.wins, rankIndex: p.rankIndex,
     careerId: p.occupation?.careerId ?? null, occupation: p.occupation?.careerName ?? null,
     school: p.education?.institutionName ?? null,
@@ -1046,8 +1165,12 @@ const {CAREERS} = __modules["src/data/careers.js"];
 const {chooseAcademy} = __modules["src/simulation/academy.js"];
 const {preferredCareer} = __modules["src/simulation/career.js"];
 const {eligibleForTransfer, transferOptions} = __modules["src/simulation/career-paths.js"];
+const {annualSalary, riskLabel, riskMultiplier} = __modules["src/simulation/economy.js"];
+const {INJURY_PATHS} = __modules["src/simulation/injury-choices.js"];
 const {RACES} = __modules["src/data/races.js"];
 const {STORY_CHOICE_SETS} = __modules["src/simulation/story.js"];
+
+
 
 
 
@@ -1065,7 +1188,9 @@ function determineDecision(state) {
   const targetAge = p.age + 1;
   const academyStart = race.adultAge - 5;
   let type = null, title = null, options = null, important = false;
-  if (targetAge === academyStart && p.stage === 'childhood') {
+  if (p.stage==='career' && p.injuryDecisionPending) {
+    type='injury_path';title=`${p.injuryDecisionPending.kind}のあと、これからどう生きるか`;options=INJURY_PATHS;important=true;
+  } else if (targetAge === academyStart && p.stage === 'childhood') {
     type = 'academy'; title = '進学先を希望する';
     options = INSTITUTIONS.map(a => ({ id: a.id, label: a.name })); important = true;
   } else if (targetAge === 10 && p.stage === 'childhood') {
@@ -1081,7 +1206,7 @@ function determineDecision(state) {
     const candidates=transferOptions(p);
     if(candidates.length){
       type='transfer';title='今後の所属と転職を考える';
-      options=[{id:'stay',label:`${p.occupation.careerName}で勤務を続ける`},...candidates];important=true;
+      options=[{id:'stay',label:`${p.occupation.careerName}で勤務を続ける`,note:`年収${annualSalary(p)}銀貨／危険度${riskLabel(riskMultiplier(p))}／現在の階級を維持`},...candidates];important=true;
     }
   } else if (p.stage === 'career' && targetAge % 5 === 0 && state.world.wars[p.nationId]) {
     type = 'battle'; title = '危険な出撃への方針'; options = TACTICS; important = true;
@@ -1093,6 +1218,12 @@ function determineDecision(state) {
 
 function autoChoose(state, decision) {
   const p = state.person;
+  if (decision.type === 'injury_path') {
+    if(p.health<39 || p.caution>78)return 'rear';
+    if(p.age>45 && p.health<60)return 'retire';
+    if(p.ambition>78 && p.health>62)return 'front';
+    return 'rehab';
+  }
   if (decision.type === 'pathway') return p.attributes.MAG > p.attributes.STR + 4 ? 'magic' : p.ambition > 65 ? 'sword' : 'tactics';
   if (decision.type === 'fellowship') return p.ambition > 66 ? 'competition' : p.caution > 65 ? 'discipline' : 'cooperation';
   if (decision.type === 'conviction') return p.ambition > 70 ? 'honor' : p.caution > 60 ? 'safety' : 'comrades';
@@ -1121,6 +1252,8 @@ const {trainYear} = __modules["src/simulation/training.js"];
 const {attemptAdmission, chooseAcademy, graduate, evaluateAcademyYear} = __modules["src/simulation/academy.js"];
 const {attemptCareer, preferredCareer, maybePromote} = __modules["src/simulation/career.js"];
 const {attemptTransfer, maybeReassign} = __modules["src/simulation/career-paths.js"];
+const {resolveInjuryPath} = __modules["src/simulation/injury-choices.js"];
+const {payYear} = __modules["src/simulation/economy.js"];
 const {resolveBattle} = __modules["src/simulation/battle.js"];
 const {progressWorld} = __modules["src/simulation/world.js"];
 const {recover} = __modules["src/simulation/injury.js"];
@@ -1131,6 +1264,8 @@ const {nextRandom} = __modules["src/core/rng.js"];
 const {appendEvent} = __modules["src/core/event-engine.js"];
 const {recordAnnualSnapshot} = __modules["src/core/chronicle.js"];
 const {determineDecision, autoChoose} = __modules["src/core/auto-decision.js"];
+
+
 
 
 
@@ -1216,6 +1351,10 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
       appendEvent(s, 'career', next.log, 'major');
     }
   }
+  if (s.person.stage === 'career' && decision?.type === 'injury_path') {
+    next=resolveInjuryPath(s.person,selectedId);s.person=next.person;
+    appendEvent(s,next.kind,next.log,'major');
+  }
   if (s.person.stage === 'career' && decision?.type === 'transfer') {
     next=attemptTransfer(s.person,s.rng,selectedId);
     s.person=next.person;s.rng=next.rng;
@@ -1224,7 +1363,8 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
   if (s.person.stage === 'career') {
     const atWar = !!s.world.wars[s.person.nationId];
     const missionRoll = nextRandom(s.rng); s.rng = missionRoll.rng;
-    const doBattle = (atWar || missionRoll.value < .65) && s.person.health >= 35 && !s.person.convalescentYears;
+    const rear=s.person.occupation?.medicalAssignment==='rear';
+    const doBattle = (atWar ? (!rear || missionRoll.value < .30) : missionRoll.value < (rear?.17:.65)) && s.person.health >= 35 && !s.person.convalescentYears;
     if (!doBattle && s.person.convalescentYears > 0 && s.person.age % 2 === 0)
       appendEvent(s,'training','負傷による療養と再訓練のため、前線任務を離れた。');
     if (doBattle) {
@@ -1232,7 +1372,7 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
       next = resolveBattle(s.person, s.rng, { war: atWar, tactic });
       s.person = next.person; s.rng = next.rng;
       appendEvent(s, 'battle', next.log, 'major', next.result);
-      if (next.result.dead) return complete(s, '戦死');
+      if (next.result.dead) {s.person=payYear(s.person,atWar);return complete(s, '戦死');}
     }
     next = maybePromote(s.person, s.rng);
     s.person = next.person; s.rng = next.rng;
@@ -1253,6 +1393,7 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
     const risk = Math.min(.58, .001 + onset * onset * .00045);
     if (death.value < risk || s.person.age >= race.maxAge) return complete(s, '老衰・病死');
   }
+  if(s.person.occupation)s.person=payYear(s.person,!!s.world.wars[s.person.nationId]);
   progressStory(s);
   if (s.person.age % 5 === 0 && s.person.stage !== 'deceased') {
     appendEvent(s, 'training', `${s.person.age}歳。${s.person.stage === 'retired' ? '穏やかな日々を過ごす。' : '訓練と経験を積み重ねた。'}`);
@@ -1397,6 +1538,7 @@ __modules["src/analysis/life-stats.js"] = (()=>{
 const {combatRating} = __modules["src/simulation/battle.js"];
 const {CAREERS} = __modules["src/data/careers.js"];
 
+
 const round = value => Number.isFinite(value) ? Math.round(value) : 0;
 function readLifeMetrics(state) {
   const p = state.person;
@@ -1427,6 +1569,9 @@ function readLifeMetrics(state) {
     warVictories: combats.filter(e => e.detail.war && e.detail.win).length,
     majorEvents: state.timeline.filter(e => e.importance === 'major').length,
     careerYears: p.occupation ? Math.max(0, p.age - (p.occupation.history?.[0]?.startedAt ?? state.timeline.find(e=>e.kind==='career')?.age ?? p.occupation.joinedAt)) : 0,
+    income:p.finances?.lastPay??null, lifetimeIncome:p.finances?.lifetimeEarned??null,
+    cash:p.finances?.cash??null, dangerousDuty:p.occupation?.medicalAssignment??null,
+    injuryChoiceCount:p.injuryChoices?.length??0,
     merit: p.merit, fame: p.fame, rank: career?.ranks[p.rankIndex] ?? '所属なし',
     rankIndex: p.rankIndex, promotionCount: state.timeline.filter(e => e.kind === 'promotion').length,
     transferCount: state.timeline.filter(e => e.kind === 'transfer').length,
@@ -1500,23 +1645,22 @@ function renderProfile(state) {
 }
 
 return {renderProfile};
-})();
-__modules["src/ui/timeline.js"] = (()=>{
+})();__modules["src/ui/timeline.js"] = (()=>{
 const {yearDelta, formatSigned} = __modules["src/analysis/life-stats.js"];
 
 const $ = id => document.getElementById(id);
 const KIND = {
   birth:['出生','✦'],training:['訓練・学業','✎'],admission:['入学試験','⌂'],graduation:['卒業','✧'],
   career:['配属','⚑'],battle:['戦闘','⚔'],promotion:['昇進','★'],
-  transfer:['転職・転属','⇄'],review:['昇進・採用審査','◇'],assignment:['新任務','♜'],
+  transfer:['転職・転属','⇄'],recovery:['負傷後の決断','✚'],review:['昇進・採用審査','◇'],assignment:['新任務','♜'],
   retirement:['引退','☼'],death:['終章','✝'],story:['人生の出来事','◆']
 };
 const PHASE = {childhood:'幼少期',academy:'学院生活',awaiting_career:'進路選択',career:'戦闘キャリア',retired:'引退生活',deceased:'生涯の終章'};
-const strongKinds = new Set(['birth','admission','graduation','career','promotion','transfer','assignment','retirement','death']);
+const strongKinds = new Set(['birth','admission','graduation','career','promotion','transfer','assignment','recovery','retirement','death']);
 function includeEntry(entry, filter) {
   if (filter==='all') return true;
   if (filter==='turning') return strongKinds.has(entry.kind) || (entry.kind==='story'&&entry.importance==='major');
-  if (filter==='career') return ['career','promotion','review','assignment','transfer'].includes(entry.kind);
+  if (filter==='career') return ['career','promotion','review','assignment','transfer','recovery','retirement'].includes(entry.kind);
   if (filter==='battle') return ['battle','promotion','review','assignment','transfer'].includes(entry.kind);
   if (filter==='school') return ['admission','graduation','training'].includes(entry.kind);
   if (filter==='people') return entry.kind==='story';
@@ -1676,6 +1820,8 @@ function renderAnalytics(state) {
     cell('任務の種類', `${m.missionVariety}種`),
     cell('重傷・後遺症', `${m.seriousInjuries}件`, `全負傷 ${m.injuryCount}件`),
     cell('階級昇進', `${m.promotionCount}回`),
+    cell('年収',m.income===null?'—':`${m.income}銀貨`,m.lifetimeIncome===null?'過去データなし':`累計${m.lifetimeIncome}銀貨`),
+    cell('負傷後の選択',`${m.injuryChoiceCount}回`,m.dangerousDuty==='rear'?'後方配置':m.dangerousDuty==='front'?'前線復帰':'通常勤務'),
     cell('転職回数', `${m.transferCount}回`, `隊内転属 ${m.assignmentCount}回`),
     cell('学院平均評点', m.educationAverage === null ? '—' : `${m.educationAverage}点`, m.educationHigh === null ? '記録なし' : `最高 ${m.educationHigh}点`),
     cell('重要な出来事', `${m.majorEvents}件`),
@@ -1739,7 +1885,9 @@ function renderDecision(state, choose) {
   const options = document.createElement('div'); options.className = 'decision-options';
   for (const option of decision.options) {
     const button = document.createElement('button'); button.type = 'button';
-    button.className = 'choice-button'; button.textContent = option.label;
+    button.className = 'choice-button';
+    const strong=document.createElement('strong');strong.textContent=option.label;button.append(strong);
+    if(option.note){const small=document.createElement('small');small.className='decision-note';small.textContent=option.note;button.append(small);}
     button.addEventListener('click', () => choose(decision.id, option.id), { once: true });
     options.append(button);
   }
@@ -1795,11 +1943,12 @@ function renderSummary(state) {
   numbers.textContent = `最終OVR ${metrics.ovr}｜最高OVR ${metrics.peakOvr ?? '—'}｜勝率 ${metrics.winRate === null ? '—' : metrics.winRate+'%'}｜最大${metrics.bestStreak}連勝｜戦時任務${metrics.warBattles}戦｜${metrics.missionVariety}種の任務`;
   const history = document.createElement('p');
   history.textContent = `人生の転機${metrics.majorEvents}件｜昇進${metrics.promotionCount}回｜転職${metrics.transferCount}回｜学院平均${metrics.educationAverage ?? '—'}点｜名声${metrics.fame}｜関わった人物${(p.contacts||[]).length}人`;
+  const economy=document.createElement('p');economy.textContent=`最終年収${metrics.income??'—'}銀貨｜記録された生涯収入${metrics.lifetimeIncome??'—'}銀貨｜負傷後の進路選択${metrics.injuryChoiceCount}回`;
   const past = document.createElement('p');
   past.textContent = '職歴：' + ((metrics.careerHistory?.length||0)
     ? metrics.careerHistory.map(entry=>`${entry.careerName}（${entry.startedAt}〜${entry.endedAt??p.age}歳）`).join(' → ')
     : p.occupation?.careerName || 'なし');
-  panel.append(heading, result, title, stat, numbers, history, past, education, connections, subtitle);
+  panel.append(heading, result, title, stat, numbers, history, economy, past, education, connections, subtitle);
 }
 
 return {renderSummary};
