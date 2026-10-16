@@ -484,7 +484,7 @@ function maybePromote(person,rng){
  const thresholds=[0,5,21,75];
  const needed=thresholds[person.rankIndex+1];
  if(tenure<(person.rankIndex+1)*4||person.merit<needed||person.health<38||person.convalescentYears>0)return{person,rng,log:null};
- const rate=[0,.23,.064,.011][person.rankIndex+1]*(person.conviction==='honor'?1.08:1)*
+ const rate=[0,.21,.018,.009][person.rankIndex+1]*(person.conviction==='honor'?1.08:1)*
    (person.education?.honors?1.13:1);
  const res=nextRandom(rng);rng=res.rng;
  if(res.value>=rate)return{person,rng,log:null};
