@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f2eadc">
   <meta name="description" content="ファンタジー世界に生まれた戦士の一生を観察する、ブラウザ完結の戦闘人生シミュレーション。R0試作版。">
-  <title>Fantasy Life Simulator — R1 Gameplay Preview</title>
+  <title>Fantasy Life Simulator — R1 Chronicle Preview</title>
   
 <style>:root{font-family:ui-sans-serif,system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:#292b29;background:#f2eadc;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%;color-scheme:light}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh}button,select,input{font:inherit}button{min-height:44px;padding:10px 15px;border:1px solid #b5aa94;border-radius:9px;background:#fffdf8;color:#292b29;font-weight:650;cursor:pointer}button:hover:not(:disabled){background:#f2f0e8}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,.file-label:focus-visible{outline:3px solid #b17031;outline-offset:3px}button.primary{background:#415848;color:white;border-color:#415848}button.primary:hover:not(:disabled){background:#324438}button.subtle{background:transparent}.site-header{max-width:1450px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:24px 20px 17px}.brand-mark{font-size:27px;color:#8c673f}.brand-title{font-size:17px;font-weight:850;letter-spacing:.12em}.brand-sub{font-size:12px;color:#636057}.prototype-tag{margin-left:auto;padding:6px 10px;background:#e9dfcd;border:1px solid #d0c1a9;border-radius:30px;font-size:12px;white-space:nowrap}.card{background:#fffdf7;border:1px solid #d7cbb6;border-radius:16px;box-shadow:0 3px 15px #493c2810;padding:20px}main{max-width:1450px;margin:0 auto;padding:0 20px 20px}.muted{color:#5f665d}.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#806d52;font-weight:800}.welcome{max-width:640px;margin:clamp(12px,4vh,70px) auto 40px;padding:clamp(22px,5vw,46px)}.welcome h1{font-size:clamp(23px,3vw,35px);line-height:1.4;margin:7px 0 15px}.welcome>p{line-height:1.75}.start-form{display:grid;gap:11px;margin-top:26px}.start-form label{font-size:13px;font-weight:750}.start-form input,.start-form select{min-height:48px;background:#fff;border:1px solid #acaa9c;border-radius:9px;padding:10px 12px;width:100%;color:inherit}.start-form button{width:100%}.footnote{font-size:12px;color:#625e53;margin-top:22px}.game-layout{display:grid;grid-template-columns:minmax(235px,280px) minmax(0,1fr) minmax(220px,280px);align-items:start;gap:16px;padding-bottom:110px}.game-layout h1{font-size:22px;margin:5px 0}.game-layout h2{font-size:18px;margin:18px 0 11px}.profile-panel,.world-panel{position:sticky;top:12px}.profile-panel p{line-height:1.7}.status-pill{display:inline-flex;padding:7px 10px;border-radius:8px;background:#e4ecdf;font-weight:700;font-size:12px;color:#314e39}.meter-label{display:flex;justify-content:space-between;gap:15px;margin-top:24px;font-size:13px;font-weight:700}progress{width:100%;height:13px;accent-color:#628165}.stats{border-top:1px solid #e8dfd0}.stat-line{display:flex;justify-content:space-between;padding:8px 3px;border-bottom:1px solid #e8dfd0}.stat-line span{font-family:ui-monospace,monospace;font-weight:700;letter-spacing:.08em}.timeline-panel{min-height:64vh}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #e7dbca;padding-bottom:13px;margin-bottom:12px}.section-heading h2,.section-heading p{margin:0}.timeline{min-height:270px;max-height:min(72vh,780px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}.event{border-left:2px solid #bfc0aa;padding:4px 14px 10px;margin:0 0 16px 6px}.event-major{border-left:3px solid #9d7045;background:#fcf8ee;border-radius:0 10px 10px 0}.event-age{font-size:12px;color:#796448;font-weight:750}.event p{line-height:1.75;margin:7px 0 0;font-size:14px;overflow-wrap:anywhere}.decision-panel{background:#eff4eb;border:1px solid #afc4aa;border-radius:12px;padding:17px;margin:12px 0 22px}.decision-panel h3{margin:0 0 8px;font-size:18px}.decision-panel p{font-size:13px}.decision-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}.choice-button{background:#fff}.summary-panel{padding:18px;background:#f7efdc;border:1px solid #e4c897;border-radius:12px;margin-top:14px;line-height:1.75}.world-panel>button,.file-label{display:block;width:100%;margin:8px 0;text-align:center}.file-label{min-height:44px;padding:12px;border:1px solid #b5aa94;border-radius:9px;cursor:pointer;background:#fffdf8;font-weight:650}.world-panel input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}.world-panel hr{border:0;border-top:1px solid #e7dbca;margin:18px 0}.bottom-controls{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fffdf7ed;border-top:1px solid #d4cbb8;backdrop-filter:blur(10px);padding:10px max(12px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));box-shadow:0 -6px 20px #30281a10}.controls-inner{max-width:1430px;margin:auto;display:flex;align-items:center;gap:8px}.control-label{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;white-space:nowrap}.control-label select{min-height:44px;padding:0 8px;border-radius:8px;border:1px solid #b5aa94;color:#292b29;background:white}.archive{max-width:650px;margin:10px auto 25px}.archive-entry{display:flex;gap:12px;justify-content:space-between;align-items:center;border-bottom:1px solid #e5dbcc;padding:12px 0}.archive-entry p{margin:3px 0;font-size:13px}.toast{position:fixed;z-index:60;top:15px;left:50%;transform:translateX(-50%);background:#273b2c;color:#fff;padding:11px 17px;border-radius:10px;box-shadow:0 4px 14px #0002;max-width:min(92vw,600px);font-size:14px}[hidden]{display:none!important}
@@ -14,18 +14,30 @@
 
 .script-warning{border:1px solid #bb6c53;border-radius:10px;padding:12px;background:#fff0eb;color:#70341e;font-size:14px}.preview-help{font-size:12px;color:#6a5b44;line-height:1.7;margin-top:12px}
 
+/* R1.1 — chronological military biography and deterministic stat cards */
+.metrics-section{margin:18px 0 14px}.subsection-title,.trend-heading,.chronicle-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.subsection-title h3,.trend-heading h3,.chronicle-toolbar h3{margin:0;font-size:16px}.subsection-title span{font-size:10px;letter-spacing:.12em;font-weight:800;color:#8b7658}
+.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}.metric{border:1px solid #e0d4c2;border-radius:11px;background:#fbf7ed;padding:11px;min-width:0;display:flex;flex-direction:column;gap:4px}.metric-label{font-size:11px;color:#665c4d;font-weight:750}.metric-value{font-size:clamp(17px,2vw,23px);line-height:1.25;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;letter-spacing:-.02em;color:#283c30}.metric small{font-size:10px;color:#74634d;line-height:1.3}
+.trend-section{border:1px solid #e2dac9;border-radius:12px;padding:12px 14px 7px;margin:11px 0 23px;background:#fffefa}.trend-heading label{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:#565d50}.trend-heading select{border:1px solid #c8bda9;background:#fff;border-radius:8px;min-height:38px;padding:6px;color:#333}#trend-svg{width:100%;max-height:185px;display:block;overflow:visible}.trend-gridline{stroke:#e2e3da;stroke-width:1}.trend-axis{fill:#717567;font-size:13px}.trend-line{fill:none;stroke:#40735a;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.trend-dot{fill:#284f3b;stroke:white;stroke-width:2}.trend-caption{font-size:11px;margin:1px 0 7px;font-variant-numeric:tabular-nums}
+.chronicle-toolbar{border-top:1px solid #e2d7c3;padding-top:15px;margin-top:14px;margin-bottom:14px}.chronicle-filters{display:flex;flex-wrap:wrap;gap:5px}.chronicle-filters button{min-height:36px;padding:5px 11px;font-size:12px;font-weight:750;border-color:#d3c6b4;border-radius:999px}.chronicle-filters button.active{background:#425948;color:white;border-color:#425948}
+.year-chapter{margin:0 0 17px;padding:0 0 2px 0}.year-header{display:flex;gap:9px;align-items:center;margin-bottom:8px;border-bottom:1px solid #e5dccb;padding-bottom:8px}.year-age{background:#415849;color:#fff;border-radius:8px;padding:6px 10px;white-space:nowrap;font-size:13px;font-weight:800;font-variant-numeric:tabular-nums}.year-heading-main{display:flex;flex-direction:column;gap:2px}.year-phase{font-size:13px;color:#453e35}.year-calendar{font-size:11px;color:#7a705d}
+.chronicle-event{padding:11px 12px 11px 14px;margin:0 0 6px 4px;border-left:3px solid #b7b1a1;background:#faf8f2;border-radius:0 9px 9px 0}.chronicle-event.milestone{background:#fbf3e4;border-left-color:#a97639}.chronicle-event.kind-battle{background:#f3f7f2;border-left-color:#65846a}.chronicle-event.kind-death{background:#f0eae8;border-left-color:#765c5d}.chronicle-event.kind-promotion{background:#f7f1de;border-left-color:#9d782c}.chronicle-event-head{display:flex;gap:9px;align-items:center;justify-content:space-between}.event-type{font-size:11px;font-weight:800;color:#6c5940}.milestone-tag{font-size:10px;color:#825919;font-weight:700}.battle-win{font-size:11px;color:#2c6843}.battle-loss{font-size:11px;color:#943d35}.event-narrative{margin:5px 0 0!important;font-size:13px;line-height:1.65!important;overflow-wrap:anywhere}.battle-facts,.year-report{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.fact-chip,.year-number{font-size:11px;background:#fff;border:1px solid #e0ddce;color:#42483f;border-radius:5px;padding:4px 6px;font-variant-numeric:tabular-nums}.year-report{padding:4px 5px 0 10px}.year-number{background:#efefe8;border-color:#e4e4da;color:#536052}.quiet-year{color:#837b6b;font-size:11px;margin-right:5px;padding:4px 0}
+.world-subheading{font-size:14px;margin:20px 0 10px}.detail-metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.detail-metric-grid .metric{padding:8px;gap:2px}.detail-metric-grid .metric-value{font-size:16px}.detail-metric-grid .metric-label{font-size:10px}.upset-record{background:#f6ebd1;border-left:3px solid #a7802e;padding:9px;font-size:12px;line-height:1.5;border-radius:0 7px 7px 0}
+
+.quiet-years-fold{border:1px dashed #c5bba6;border-radius:10px;background:#f4f2ec;margin:7px 0 16px}.quiet-years-title{cursor:pointer;min-height:44px;padding:12px;font-size:12px;font-weight:750;color:#60584a;line-height:1.55}.quiet-years-title:focus-visible{outline:3px solid #b17031}.quiet-years-content{padding:4px 10px 10px}.quiet-years-content .year-chapter:last-child{margin-bottom:0}
+
 @media(min-width:1081px){.timeline-panel{min-height:70vh}.profile-panel,.world-panel{max-height:calc(100dvh - 150px);overflow-y:auto}.bottom-controls .controls-inner{justify-content:center}}
 
 @media(max-width:1080px){.game-layout{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}.world-panel{position:static;grid-column:1/-1}.controls-inner{overflow-x:auto;scrollbar-width:thin;justify-content:flex-start}.controls-inner>button,.controls-inner>.control-label{flex-shrink:0}}
 @media(max-width:660px){.site-header{padding:15px 14px;gap:8px}.brand-title{font-size:12px;letter-spacing:.08em}.brand-sub{font-size:10px}.brand-mark{font-size:21px}.prototype-tag{font-size:10px;padding:5px 8px}.card{padding:16px;border-radius:12px}main{padding:0 12px 14px}.welcome{margin:8px auto 25px;padding:22px}.welcome h1{font-size:24px}.game-layout{display:flex;flex-direction:column;gap:12px;padding-bottom:160px}.game-layout>.card{width:100%}.profile-panel,.world-panel{position:static}.profile-panel .stats{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}.profile-panel{order:2}.timeline-panel{order:1;min-height:440px}.world-panel{order:3}.timeline{max-height:none;min-height:180px;overflow:visible}.timeline-panel .section-heading{position:static}.bottom-controls{padding:8px max(8px,env(safe-area-inset-right)) calc(9px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}.controls-inner{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(44px,auto);gap:6px;overflow:visible}.controls-inner>button{min-width:0;width:100%;padding:7px 3px;font-size:12px}.controls-inner>.control-label{grid-column:span 2;display:flex;align-items:center;justify-content:space-between;min-width:0}.controls-inner>.control-label select{min-width:0;max-width:74%;font-size:12px}.event p{font-size:14px}.decision-options{grid-template-columns:1fr}.section-heading h2{font-size:18px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media(max-width:660px){.metric-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.metric{padding:9px 7px}.metric-label{font-size:10px}.metric-value{font-size:16px}.metric small{font-size:9px}.chronicle-toolbar{align-items:flex-start}.chronicle-filters{gap:4px}.chronicle-filters button{font-size:11px;padding:5px 8px;min-height:36px}.event-narrative{font-size:13px}.trend-section{padding:10px 8px}.trend-heading h3{font-size:14px}.year-header{margin-bottom:6px}}
 </style>
 </head>
 <body>
   <header class="site-header">
     <div class="brand-mark" aria-hidden="true">✦</div>
     <div><div class="brand-title">FANTASY LIFE SIMULATOR</div><div class="brand-sub">戦士の一生、その運命を見届ける。</div></div>
-    <span class="prototype-tag">R1 開発プレビュー</span>
+    <span class="prototype-tag">R1 年表・戦績プレビュー</span>
   </header>
   <main>
     <section id="welcome" class="welcome card" aria-labelledby="welcome-title">
@@ -62,12 +74,33 @@
       <section class="card timeline-panel" aria-label="人生年表">
         <div class="section-heading"><div><p class="eyebrow">PERSONAL CHRONICLE</p><h2>人生年表</h2><p id="brief-character" class="muted compact-identity"></p></div><span id="running-status" class="status-pill" aria-live="polite">一時停止</span></div>
         <section id="decision-panel" class="decision-panel" hidden aria-label="重要な選択"></section>
+        <section class="metrics-section" aria-label="戦士の主要記録">
+          <div class="subsection-title"><h3>戦士の記録</h3><span>LIVE STATS</span></div>
+          <div id="life-metrics" class="metric-grid" aria-live="off"></div>
+        </section>
+        <section class="trend-section" aria-label="能力と戦績の年次推移">
+          <div class="trend-heading"><h3>人生の数字を追う</h3><label for="trend-select">指標
+            <select id="trend-select"><option value="ovr">戦闘評価 OVR</option><option value="health">健康</option><option value="merit">戦功</option><option value="fame">名声</option></select>
+          </label></div>
+          <svg id="trend-svg" viewBox="0 0 680 188" role="img" aria-label="年齢別の数値推移" preserveAspectRatio="xMidYMid meet"></svg>
+          <p id="trend-caption" class="trend-caption muted"></p>
+        </section>
+        <div class="chronicle-toolbar"><h3>生涯年表</h3><div class="chronicle-filters" role="group" aria-label="年表の絞り込み">
+          <button type="button" class="active" data-chronicle-filter="all" aria-pressed="true">全て</button>
+          <button type="button" data-chronicle-filter="turning" aria-pressed="false">転機</button>
+          <button type="button" data-chronicle-filter="battle" aria-pressed="false">戦闘</button>
+          <button type="button" data-chronicle-filter="school" aria-pressed="false">学び</button>
+          <button type="button" data-chronicle-filter="people" aria-pressed="false">人間関係</button>
+        </div></div>
         <div id="timeline" class="timeline" aria-live="off"></div>
         <section id="summary-panel" class="summary-panel" hidden aria-label="一生の記録"></section>
       </section>
       <aside class="card world-panel" aria-label="世界・戦績">
         <p class="eyebrow">CURRENT WORLD</p><h2>世界と戦績</h2>
         <p id="world-status"></p><p id="combat-status"></p>
+        <h3 class="world-subheading">数字で見る戦士の人生</h3>
+        <div id="detail-metrics" class="detail-metric-grid"></div>
+        <p id="toughest-victory" class="upset-record" hidden></p>
         <p class="muted">世界の情勢は毎年変化します。現在は6国家の簡易モデルを使用しています。</p>
         <hr>
         <button id="save-button" type="button">この人生を保存</button>
@@ -143,7 +176,7 @@ __modules["src/core/state.js"] = (()=>{
 const {initRng} = __modules["src/core/rng.js"];
 
 const SAVE_VERSION = 1;
-const ENGINE_VERSION = '0.3.0-r1-depth';
+const ENGINE_VERSION = '0.4.0-r1-chronicle';
 const MODES = Object.freeze(['FULL_AUTO', 'SEMI_AUTO', 'MANUAL']);
 const SPEEDS = Object.freeze([1, 2, 4, 8]);
 const PHASES = Object.freeze(['ready', 'running', 'awaiting_choice', 'completed']);
@@ -161,6 +194,7 @@ function blankState(seed) {
     person: null,
     pendingDecision: null,
     timeline: [],
+    annualRecords: [],
     choiceHistory: [],
     eventHistory: [],
     nextLogId: 1,
@@ -498,6 +532,7 @@ return {preferredCareer,attemptCareer,maybePromote};
 __modules["src/simulation/battle.js"] = (()=>{
 const {randomInt, nextRandom} = __modules["src/core/rng.js"];
 const {CAREERS} = __modules["src/data/careers.js"];
+
 
 const clamp = (x, min, max) => Math.max(min, Math.min(max, x));
 const MISSIONS = {
@@ -864,6 +899,29 @@ function applyStoryChoice(state, type, selected) {
 
 return {progressStory,STORY_CHOICE_SETS,applyStoryChoice};
 })();
+__modules["src/core/chronicle.js"] = (()=>{
+const {combatRating} = __modules["src/simulation/battle.js"];
+
+/** A historical snapshot is a fact, not a generated narrative event. It consumes no RNG. */
+function recordAnnualSnapshot(state) {
+  if (!state.person) return state;
+  const p = state.person;
+  const snapshot = {
+    age: p.age, year: state.world.year, stage: p.stage,
+    ovr: combatRating(p), health: p.health, merit: p.merit, fame: p.fame,
+    battles: p.battles, wins: p.wins, rankIndex: p.rankIndex,
+    careerId: p.occupation?.careerId ?? null, occupation: p.occupation?.careerName ?? null,
+    school: p.education?.institutionName ?? null,
+    attributes: { ...p.attributes }
+  };
+  state.annualRecords ??= [];
+  if (state.annualRecords.at(-1)?.age === p.age) state.annualRecords[state.annualRecords.length - 1] = snapshot;
+  else state.annualRecords.push(snapshot);
+  return state;
+}
+
+return {recordAnnualSnapshot};
+})();
 __modules["src/core/auto-decision.js"] = (()=>{
 const {TRAINING_OPTIONS} = __modules["src/simulation/training.js"];
 const {INSTITUTIONS} = __modules["src/data/institutions.js"];
@@ -939,7 +997,9 @@ const {progressStory, applyStoryChoice} = __modules["src/simulation/story.js"];
 const {RACES} = __modules["src/data/races.js"];
 const {nextRandom} = __modules["src/core/rng.js"];
 const {appendEvent} = __modules["src/core/event-engine.js"];
+const {recordAnnualSnapshot} = __modules["src/core/chronicle.js"];
 const {determineDecision, autoChoose} = __modules["src/core/auto-decision.js"];
+
 
 
 
@@ -964,6 +1024,7 @@ function startLife(seed, { mode = 'SEMI_AUTO', speed = 1 } = {}) {
   s.person = born.person;
   s.phase = 'running';
   appendEvent(s, 'birth', `${s.person.nationName}の${s.person.familyName}に、${s.person.name}が生まれた。`, 'major');
+  recordAnnualSnapshot(s);
   return s;
 }
 
@@ -996,7 +1057,8 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
   next = progressRelationships(person,s.rng);
   person=next.person;s.rng=next.rng;
   s.person = person;
-  for (const news of next.news) appendEvent(s, 'story', news, 'major');  if (decision && ['pathway','fellowship','conviction'].includes(decision.type)) applyStoryChoice(s, decision.type, selectedId);
+  for (const news of next.news) appendEvent(s, 'story', news, 'major');
+  if (decision && ['pathway','fellowship','conviction'].includes(decision.type)) applyStoryChoice(s, decision.type, selectedId);
 
   const academyStart = race.adultAge - 5;
   if (person.age === academyStart && person.stage === 'childhood') {
@@ -1053,6 +1115,7 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
   if (s.person.age % 5 === 0 && s.person.stage !== 'deceased') {
     appendEvent(s, 'training', `${s.person.age}歳。${s.person.stage === 'retired' ? '穏やかな日々を過ごす。' : '訓練と経験を積み重ねた。'}`);
   }
+  recordAnnualSnapshot(s);
   return s;
 }
 
@@ -1063,6 +1126,7 @@ function complete(state, reason) {
   state.phase = 'completed';
   state.pendingDecision = null;
   appendEvent(state, 'death', `${state.person.age}歳で生涯を閉じた（${reason}）。`, 'major');
+  recordAnnualSnapshot(state);
   return state;
 }
 
@@ -1187,9 +1251,77 @@ function importJson(text) { return deserializeLife(text); }
 
 return {checksum,serializeLife,deserializeLife,saveCurrent,loadCurrent,archiveLife,listArchive,exportJson,importJson};
 })();
+__modules["src/analysis/life-stats.js"] = (()=>{
+const {combatRating} = __modules["src/simulation/battle.js"];
+const {CAREERS} = __modules["src/data/careers.js"];
+
+
+const round = value => Number.isFinite(value) ? Math.round(value) : 0;
+function readLifeMetrics(state) {
+  const p = state.person;
+  if (!p) return null;
+  const snapshots = Array.isArray(state.annualRecords) ? state.annualRecords : [];
+  const combats = state.timeline.filter(e => e.kind === 'battle' && e.detail && typeof e.detail.win === 'boolean');
+  let run = 0, bestRun = 0;
+  for (const e of combats) {
+    run = e.detail.win ? run + 1 : 0;
+    bestRun = Math.max(bestRun, run);
+  }
+  const toughestVictory = combats.filter(e => e.detail.win && Number.isFinite(e.detail.winChance))
+    .sort((a, b) => a.detail.winChance - b.detail.winChance)[0] ?? null;
+  const current = combatRating(p);
+  const peak = snapshots.length ? snapshots.reduce((acc, v) => v.ovr > acc.ovr ? v : acc, snapshots[0]) : null;
+  const starting = snapshots[0] ?? null;
+  const career = CAREERS.find(c => c.id === p.occupation?.careerId);
+  const contactList = p.contacts ?? [];
+  const uniqueMissions = new Set(combats.map(e => e.detail.mission).filter(Boolean));
+  const marks = p.education?.grades ?? [];
+  const losses = Math.max(0, p.battles - p.wins);
+  return {
+    ovr: current, peakOvr: peak?.ovr ?? null, peakAge: peak?.age ?? null,
+    ovrGrowth: starting ? current - starting.ovr : null,
+    battles: p.battles, wins: p.wins, losses, winRate: p.battles ? round(p.wins / p.battles * 100) : null,
+    bestStreak: bestRun, currentStreak: run,
+    warBattles: combats.filter(e => e.detail.war).length,
+    warVictories: combats.filter(e => e.detail.war && e.detail.win).length,
+    majorEvents: state.timeline.filter(e => e.importance === 'major').length,
+    careerYears: p.occupation ? Math.max(0, p.age - p.occupation.joinedAt) : 0,
+    merit: p.merit, fame: p.fame, rank: career?.ranks[p.rankIndex] ?? '所属なし',
+    rankIndex: p.rankIndex, promotionCount: state.timeline.filter(e => e.kind === 'promotion').length,
+    seriousInjuries: p.injuries.filter(i => i.kind !== '軽傷').length,
+    injuryCount: p.injuries.length,
+    livingContacts: contactList.filter(c => c.alive).length,
+    lostContacts: contactList.filter(c => !c.alive).length,
+    missionVariety: uniqueMissions.size,
+    toughestVictory, educationHigh: marks.length ? Math.max(...marks.map(m => m.mark)) : null,
+    educationAverage: marks.length ? round(marks.reduce((sum, m) => sum + m.mark, 0) / marks.length) : null,
+    snapshots
+  };
+}
+
+function formatSigned(value) {
+  if (value === null || value === undefined || !Number.isFinite(value)) return '—';
+  return `${value > 0 ? '+' : ''}${Math.round(value)}`;
+}
+
+/** Year-to-year changes are based only on stored snapshots; old saves show no invented growth. */
+function yearDelta(records, age) {
+  if (!Array.isArray(records)) return null;
+  const idx = records.findIndex(r => r.age === age);
+  if (idx <= 0) return null;
+  const now = records[idx], before = records[idx - 1];
+  return { ovr: now.ovr - before.ovr, merit: now.merit - before.merit,
+    fame: now.fame - before.fame, battles: now.battles - before.battles,
+    wins: now.wins - before.wins };
+}
+
+return {readLifeMetrics,formatSigned,yearDelta};
+})();
 __modules["src/ui/profile.js"] = (()=>{
 const {CAREERS} = __modules["src/data/careers.js"];
 const {STATS} = __modules["src/data/races.js"];
+const {readLifeMetrics} = __modules["src/analysis/life-stats.js"];
+
 
 
 const $ = id => document.getElementById(id);
@@ -1214,7 +1346,8 @@ function renderProfile(state) {
   $('world-status').textContent = state.world.wars[p.nationId] ? '国境は戦時下' : '国家は概ね平時';
   const friends = (p.contacts || []).filter(c => c.alive).map(c => `${c.role}：${c.name}`).slice(0, 3).join('、');
   const edu=p.education;
-  $('combat-status').textContent = `${p.battles}戦 / ${p.wins}勝 / 戦功${p.merit}` +
+  const metrics = readLifeMetrics(state);
+  $('combat-status').textContent = `${p.battles}戦 / ${p.wins}勝（勝率${metrics.winRate ?? '—'}%）/ 戦功${p.merit}` +
     (edu ? `｜学歴：${edu.institutionName}${edu.ranking ? '・'+edu.ranking : edu.grades?.length?'・'+edu.grades.length+'年次':''}${edu.scholarship?'（奨学）':''}` : '') +
     (p.convalescentYears ? `｜療養中（残${p.convalescentYears}年）` : '') +
     (friends ? `｜縁：${friends}` : '');
@@ -1223,32 +1356,207 @@ function renderProfile(state) {
 return {renderProfile};
 })();
 __modules["src/ui/timeline.js"] = (()=>{
+const {yearDelta, formatSigned} = __modules["src/analysis/life-stats.js"];
+
 const $ = id => document.getElementById(id);
+const KIND = {
+  birth:['出生','✦'],training:['訓練・学業','✎'],admission:['入学試験','⌂'],graduation:['卒業','✧'],
+  career:['配属','⚑'],battle:['戦闘','⚔'],promotion:['昇進','★'],
+  retirement:['引退','☼'],death:['終章','✝'],story:['人生の出来事','◆']
+};
+const PHASE = {childhood:'幼少期',academy:'学院生活',awaiting_career:'進路選択',career:'戦闘キャリア',retired:'引退生活',deceased:'生涯の終章'};
+const strongKinds = new Set(['birth','admission','graduation','career','promotion','retirement','death']);
+function includeEntry(entry, filter) {
+  if (filter==='all') return true;
+  if (filter==='turning') return strongKinds.has(entry.kind) || (entry.kind==='story'&&entry.importance==='major');
+  if (filter==='battle') return entry.kind==='battle' || entry.kind==='promotion';
+  if (filter==='school') return ['admission','graduation','training'].includes(entry.kind);
+  if (filter==='people') return entry.kind==='story';
+  return true;
+}
+function el(name,cls='',value) {
+  const node=document.createElement(name);if(cls)node.className=cls;if(value!==undefined)node.textContent=String(value);return node;
+}
+function eventCard(entry) {
+  const article=el('article',`chronicle-event kind-${entry.kind}${strongKinds.has(entry.kind)?' milestone':''}`);
+  const head=el('div','chronicle-event-head');
+  const label=el('span','event-type',`${KIND[entry.kind]?.[1] || '•'} ${KIND[entry.kind]?.[0] || '記録'}`);
+  head.append(label);
+  if (entry.kind==='battle' && entry.detail) {
+    head.append(el('strong',entry.detail.win?'battle-win':'battle-loss',entry.detail.win?'勝利':'敗北'));
+  } else if (strongKinds.has(entry.kind)) head.append(el('span','milestone-tag','転機'));
+  const p=el('p','event-narrative',entry.text);
+  article.append(head,p);
+  if (entry.kind==='battle' && entry.detail) {
+    const d=entry.detail, facts=el('div','battle-facts');
+    const items=[`勝算 ${Math.round(d.winChance*100)}%`,`敵戦力 ${d.opponent}`,`戦功 ${d.win?(d.war?'+3':'+1'):'+0'}`];
+    if(d.injury)items.push(`負傷 ${d.injury}`);
+    for(const item of items)facts.append(el('span','fact-chip',item));
+    article.append(facts);
+  }
+  return article;
+}
+function chapterFor(age, group, records, filter) {
+  const section=el('section','year-chapter');
+  const heading=el('div','year-header');
+  const ageBadge=el('span','year-age',`${age}歳`);
+  const period=el('div','year-heading-main');
+  period.append(el('strong','year-phase',PHASE[group.record?.stage]||'人生の記録'));
+  const year=group.record?.year??group.entries[0]?.year;
+  period.append(el('span','year-calendar',`王暦 ${year}年`));
+  heading.append(ageBadge,period);section.append(heading);
+  for(const entry of group.entries)section.append(eventCard(entry));
+  if(group.record&&filter==='all') {
+    const delta=yearDelta(records,age);
+    const bottom=el('div','year-report');
+    const ovr=delta ? `OVR ${group.record.ovr} (${formatSigned(delta.ovr)})` : `OVR ${group.record.ovr}`;
+    bottom.append(el('span','year-number',ovr));
+    if(delta&&delta.battles>0)bottom.append(el('span','year-number',`今年 ${delta.battles}戦 ${delta.wins}勝`));
+    if(delta&&delta.merit>0)bottom.append(el('span','year-number',`戦功 ${formatSigned(delta.merit)}`));
+    bottom.append(el('span','year-number',`健康 ${Math.round(group.record.health)}`));
+    if(group.entries.length===0)bottom.insertBefore(el('span','quiet-year','大きな出来事の記録なし'),bottom.firstChild);
+    section.append(bottom);
+  }
+  return section;
+}
 function renderTimeline(state) {
   const view = $('timeline');
-  // Do not destroy/recreate DOM when no new event has appeared.
-  if (view.dataset.lifeSeed !== state.seed || Number(view.dataset.lastId || '0') > (state.timeline.at(-1)?.id || 0)) {
-    view.replaceChildren(); view.dataset.lastId = '0'; view.dataset.lifeSeed = state.seed;
+  const filter=view.dataset.filter || 'all';
+  const records=Array.isArray(state.annualRecords)?state.annualRecords:[];
+  const renderKey=`${state.seed}/${state.timeline.at(-1)?.id||0}/${records.length}/${filter}`;
+  if (view.dataset.renderKey===renderKey) return;
+  const desktopScrollable=view.scrollHeight>view.clientHeight+10;
+  const stick=desktopScrollable && view.scrollHeight-view.scrollTop-view.clientHeight<110;
+  const previousY=view.scrollTop;
+  const map=new Map();
+  if(filter==='all')for(const row of records)map.set(row.age,{record:row,entries:[]});
+  for(const entry of state.timeline) {
+    if(!includeEntry(entry,filter))continue;
+    if(!map.has(entry.age))map.set(entry.age,{record:records.find(v=>v.age===entry.age)??null,entries:[]});
+    map.get(entry.age).entries.push(entry);
   }
-  const oldLastId = Number(view.dataset.lastId || '0');
-  const stick = view.scrollHeight - view.scrollTop - view.clientHeight < 90;
-  const fragment = document.createDocumentFragment();
-  for (const entry of state.timeline) {
-    if (entry.id <= oldLastId) continue;
-    const article = document.createElement('article');
-    article.className = `event ${entry.importance === 'major' ? 'event-major' : ''}`;
-    const at = document.createElement('div'); at.className = 'event-age';
-    at.textContent = `${entry.age}歳 · 王暦${entry.year}年`;
-    const content = document.createElement('p'); content.textContent = entry.text;
-    article.append(at, content);
-    fragment.append(article);
+  const fragment=document.createDocumentFragment();
+  const sorted=[...map.entries()].sort((a,b)=>a[0]-b[0]);
+  let quiet=[];
+  function flushQuiet() {
+    if(!quiet.length)return;
+    if(quiet.length===1)fragment.append(chapterFor(quiet[0][0],quiet[0][1],records,filter));
+    else {
+      const first=quiet[0],last=quiet.at(-1);
+      const fold=el('details','quiet-years-fold');
+      const summary=el('summary','quiet-years-title',`${first[0]}〜${last[0]}歳｜${quiet.length}年間の積み重ね · OVR ${first[1].record.ovr} → ${last[1].record.ovr}`);
+      fold.append(summary);
+      const content=el('div','quiet-years-content');
+      for(const [age,group] of quiet)content.append(chapterFor(age,group,records,filter));
+      fold.append(content);fragment.append(fold);
+    }
+    quiet=[];
   }
-  view.append(fragment);
-  view.dataset.lastId = String(state.timeline.at(-1)?.id || 0);
-  if (stick) view.scrollTop = view.scrollHeight;
+  for(const [age,group] of sorted) {
+    if(filter==='all' && !group.entries.length && group.record) {
+      if(quiet.length && quiet.at(-1)[0]+1!==age)flushQuiet();
+      quiet.push([age,group]);continue;
+    }
+    flushQuiet();fragment.append(chapterFor(age,group,records,filter));
+  }
+  flushQuiet();
+  if(!map.size)fragment.append(el('p','muted','該当する出来事は、まだありません。'));
+  // Keep fold expansion and scroll position stable between ticks.
+  const openRanges=new Set([...view.querySelectorAll('.quiet-years-fold[open]')].map(node=>node.querySelector('summary')?.textContent));
+  for(const node of fragment.querySelectorAll('.quiet-years-fold'))if(openRanges.has(node.querySelector('summary')?.textContent))node.open=true;
+  view.replaceChildren(fragment);
+  view.dataset.renderKey=renderKey;
+  if(stick)view.scrollTop=view.scrollHeight;
+  else if(desktopScrollable)view.scrollTop=previousY;
+  for(const btn of document.querySelectorAll('[data-chronicle-filter]')){
+    const selected=btn.dataset.chronicleFilter===filter;
+    btn.setAttribute('aria-pressed',String(selected));
+    btn.classList.toggle('active',selected);
+  }
 }
 
 return {renderTimeline};
+})();
+__modules["src/ui/analytics.js"] = (()=>{
+const {readLifeMetrics, formatSigned} = __modules["src/analysis/life-stats.js"];
+
+const $ = id => document.getElementById(id);
+const num = n => n === null || n === undefined ? '—' : n.toLocaleString('ja-JP');
+const percent = n => n === null ? '—' : `${n}%`;
+const cell = (name, value, foot = '') => {
+  const item = document.createElement('div'); item.className = 'metric';
+  const title = document.createElement('span'); title.className = 'metric-label'; title.textContent = name;
+  const amount = document.createElement('strong'); amount.className = 'metric-value'; amount.textContent = String(value);
+  item.append(title, amount);
+  if (foot) { const small = document.createElement('small'); small.textContent = foot; item.append(small); }
+  return item;
+};
+function renderAnalytics(state) {
+  const m = readLifeMetrics(state);
+  if (!m) return;
+  const main = $('life-metrics');
+  main.replaceChildren(
+    cell('戦闘評価 OVR', m.ovr, m.ovrGrowth === null ? '記録開始前' : `出生時から ${formatSigned(m.ovrGrowth)}`),
+    cell('生涯最高 OVR', num(m.peakOvr), m.peakAge === null ? '推移未記録' : `${m.peakAge}歳時点`),
+    cell('通算戦闘', num(m.battles), `${m.wins}勝 / ${m.losses}敗`),
+    cell('戦闘勝率', percent(m.winRate), `最多 ${m.bestStreak}連勝`),
+    cell('戦功', num(m.merit), `名声 ${m.fame}`),
+    cell('階級', m.rank, `${m.careerYears}年の職歴`)
+  );
+  const details = $('detail-metrics');
+  details.replaceChildren(
+    cell('戦時任務', `${m.warBattles}戦`, `${m.warVictories}勝`),
+    cell('任務の種類', `${m.missionVariety}種`),
+    cell('重傷・後遺症', `${m.seriousInjuries}件`, `全負傷 ${m.injuryCount}件`),
+    cell('階級昇進', `${m.promotionCount}回`),
+    cell('学院平均評点', m.educationAverage === null ? '—' : `${m.educationAverage}点`, m.educationHigh === null ? '記録なし' : `最高 ${m.educationHigh}点`),
+    cell('重要な出来事', `${m.majorEvents}件`),
+    cell('存命の縁', `${m.livingContacts}人`, `失った縁 ${m.lostContacts}人`),
+    cell('現在の連勝', `${m.currentStreak}連勝`)
+  );
+  const tough = $('toughest-victory');
+  if (m.toughestVictory && m.toughestVictory.detail.winChance < .5) {
+    const e = m.toughestVictory;
+    tough.hidden = false;
+    tough.textContent = `番狂わせの勝利：${e.age}歳「${e.detail.mission}」勝算${Math.round(e.detail.winChance*100)}%を覆した。`;
+  } else { tough.hidden = true; tough.textContent = ''; }
+  drawTrend(m.snapshots, $('trend-select').value);
+}
+
+const svgElement = name => document.createElementNS('http://www.w3.org/2000/svg', name);
+function drawTrend(snapshots, field) {
+  const plot = $('trend-svg'); plot.replaceChildren();
+  const help = $('trend-caption');
+  const readable = {ovr:'戦闘評価',health:'健康',merit:'累計戦功',fame:'名声'};
+  if (!snapshots.length) {
+    help.textContent = 'この記録には過去年の推移がありません。以後の進行分から記録します。'; return;
+  }
+  if (snapshots.length === 1) {
+    help.textContent = `${snapshots[0].age}歳時点の${readable[field]}：${snapshots[0][field]}。年を進めると推移が見られます。`;return;
+  }
+  const values = snapshots.map(s => Number(s[field]) || 0);
+  const low = field === 'health' || field === 'ovr' ? 0 : Math.min(0,...values);
+  const high = Math.max(field === 'health' || field === 'ovr' ? 100 : 1,...values);
+  const span = Math.max(1, high - low);
+  const minAge = snapshots[0].age, maxAge = snapshots.at(-1).age;
+  const x = age => 40 + ((age - minAge) / Math.max(1,maxAge-minAge)) * 610;
+  const y = value => 150 - ((value - low) / span) * 122;
+  for (let n = 0; n <= 2; n++) {
+    const yy = 150 - n * 61;
+    const line = svgElement('line'); line.setAttribute('x1','40');line.setAttribute('y1',String(yy));line.setAttribute('x2','650');line.setAttribute('y2',String(yy));line.setAttribute('class','trend-gridline');plot.append(line);
+    const label = svgElement('text');label.setAttribute('x','32');label.setAttribute('y',String(yy+4));label.setAttribute('text-anchor','end');label.setAttribute('class','trend-axis');label.textContent=String(Math.round(low+n*span/2));plot.append(label);
+  }
+  const polyline=svgElement('polyline');polyline.setAttribute('points',snapshots.map((s,i)=>`${x(s.age).toFixed(1)},${y(values[i]).toFixed(1)}`).join(' '));polyline.setAttribute('class','trend-line');plot.append(polyline);
+  const last=snapshots.at(-1);const dot=svgElement('circle');dot.setAttribute('cx',String(x(last.age)));dot.setAttribute('cy',String(y(values.at(-1))));dot.setAttribute('r','4');dot.setAttribute('class','trend-dot');plot.append(dot);
+  const labels=[snapshots[0],last];
+  for (const s of labels) {
+    const text=svgElement('text');text.setAttribute('x',String(x(s.age)));text.setAttribute('y','176');text.setAttribute('text-anchor',s===labels[0]?'start':'end');text.setAttribute('class','trend-axis');text.textContent=`${s.age}歳`;plot.append(text);
+  }
+  const start=values[0],end=values.at(-1);
+  help.textContent = `${readable[field]}：${start} → ${end}（${formatSigned(end-start)}）｜${snapshots.length}年分の記録`;
+}
+
+return {renderAnalytics};
 })();
 __modules["src/ui/decisions.js"] = (()=>{
 function renderDecision(state, choose) {
@@ -1290,6 +1598,8 @@ return {$,renderControls};
 })();
 __modules["src/ui/summary.js"] = (()=>{
 const {CAREERS} = __modules["src/data/careers.js"];
+const {readLifeMetrics} = __modules["src/analysis/life-stats.js"];
+
 
 function renderSummary(state) {
   const panel = document.getElementById('summary-panel');
@@ -1297,6 +1607,7 @@ function renderSummary(state) {
   if (panel.hidden) return;
   const p = state.person;
   const career = CAREERS.find(c => c.id === p.occupation?.careerId);
+  const metrics = readLifeMetrics(state);
   const heading = document.createElement('h2'); heading.textContent = '一生の記録';
   const result = document.createElement('p'); result.textContent = `${p.name}｜享年${p.deathAge}｜${state.endReason}`;
   const stat = document.createElement('p');
@@ -1312,7 +1623,11 @@ function renderSummary(state) {
   education.textContent = `学歴：${p.education?.institutionName || 'なし'}${p.education?.ranking ? ' / '+p.education.ranking : ''}｜人生イベント：${state.timeline.filter(e=>e.kind==='story').length}件｜重大負傷：${p.injuries.filter(i=>i.kind!=='軽傷').length}件`;
   const subtitle = document.createElement('p'); subtitle.className = 'muted';
   subtitle.textContent = '称号は実際の経歴から判定。出生・育成・戦場の出来事は保存済み年表から振り返れます。';
-  panel.append(heading, result, title, stat, education, connections, subtitle);
+  const numbers = document.createElement('p');
+  numbers.textContent = `最終OVR ${metrics.ovr}｜最高OVR ${metrics.peakOvr ?? '—'}｜勝率 ${metrics.winRate === null ? '—' : metrics.winRate+'%'}｜最大${metrics.bestStreak}連勝｜戦時任務${metrics.warBattles}戦｜${metrics.missionVariety}種の任務`;
+  const history = document.createElement('p');
+  history.textContent = `人生の転機${metrics.majorEvents}件｜昇進${metrics.promotionCount}回｜学院平均${metrics.educationAverage ?? '—'}点｜名声${metrics.fame}｜関わった人物${(p.contacts||[]).length}人`;
+  panel.append(heading, result, title, stat, numbers, history, education, connections, subtitle);
 }
 
 return {renderSummary};
@@ -1331,10 +1646,12 @@ const {startLife, stepLife, resolveChoice, configureLife} = __modules["src/core/
 const {saveCurrent, loadCurrent, archiveLife, listArchive, exportJson, importJson} = __modules["src/core/save-manager.js"];
 const {renderProfile} = __modules["src/ui/profile.js"];
 const {renderTimeline} = __modules["src/ui/timeline.js"];
+const {renderAnalytics} = __modules["src/ui/analytics.js"];
 const {renderDecision} = __modules["src/ui/decisions.js"];
 const {renderControls, $} = __modules["src/ui/controls.js"];
 const {renderSummary} = __modules["src/ui/summary.js"];
 const {showScreen} = __modules["src/ui/home.js"];
+
 
 
 
@@ -1375,6 +1692,7 @@ const render = () => {
   showScreen(!!state);
   if (!state) return;
   renderProfile(state);
+  renderAnalytics(state);
   renderTimeline(state);
   renderDecision(state, pickChoice);
   renderSummary(state);
@@ -1430,12 +1748,14 @@ function newLife() {
   const seed = specified || `life-${Date.now().toString(36)}`;
   try {
     state = startLife(seed, { mode: $('initial-mode').value });
+    delete $('timeline').dataset.renderKey;
     archived = false; const saved = persist(); $('resume-button').disabled = !saved; $('archive-panel').hidden = true; render(); flash(persistentStorage ? '新しい人生が始まりました' : '試用モード：保存はこの画面内のみ。JSON書き出しをおすすめします');
   } catch (e) { flash(e.message); }
 }
 function resumeLife() {
   try {
     state = loadCurrent(storage);
+    delete $('timeline').dataset.renderKey;
     if (!state) return flash('保存された人生がありません');
     archived = state.phase === 'completed';
     pause(); render();
@@ -1461,11 +1781,18 @@ function showArchive() {
     info.append(name, meta);
     const button = document.createElement('button'); button.textContent = '閲覧する'; button.type = 'button';
     button.addEventListener('click', () => {
-      try { state = importJson(entry.snapshot); archived = true; pause(); render(); panel.hidden = true; }
+      try { state = importJson(entry.snapshot); delete $('timeline').dataset.renderKey; archived = true; pause(); render(); panel.hidden = true; }
       catch (e) { flash(`アーカイブ読み込み失敗：${e.message}`); }
     });
     row.append(info, button); list.append(row);
   }
+}
+$('trend-select').addEventListener('change', () => { if (state) renderAnalytics(state); });
+for (const button of document.querySelectorAll('[data-chronicle-filter]')) {
+  button.addEventListener('click', () => {
+    $('timeline').dataset.filter = button.dataset.chronicleFilter;
+    if (state) renderTimeline(state);
+  });
 }
 $('start-button').addEventListener('click', newLife);
 $('resume-button').addEventListener('click', resumeLife);
@@ -1483,7 +1810,7 @@ $('home-button').addEventListener('click', () => { pause(); state = null; showSc
 $('import-file').addEventListener('change', async event => {
   const file = event.target.files?.[0]; if (!file) return;
   if (file.size > 4_000_000) { flash('4 MBより大きなファイルは読み込めません'); return; }
-  try { const imported = importJson(await file.text()); pause(); state = imported; archived = state.phase === 'completed'; persist(); $('resume-button').disabled = false; render(); flash('読み込みました'); }
+  try { const imported = importJson(await file.text()); pause(); state = imported; delete $('timeline').dataset.renderKey; archived = state.phase === 'completed'; persist(); $('resume-button').disabled = false; render(); flash('読み込みました'); }
   catch (e) { flash(`読み込み失敗：${e.message}`); }
   finally { event.target.value = ''; }
 });

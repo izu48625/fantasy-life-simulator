@@ -1,7 +1,6 @@
 import { initRng } from './rng.js';
-
 export const SAVE_VERSION = 1;
-export const ENGINE_VERSION = '0.3.0-r1-depth';
+export const ENGINE_VERSION = '0.4.0-r1-chronicle';
 export const MODES = Object.freeze(['FULL_AUTO', 'SEMI_AUTO', 'MANUAL']);
 export const SPEEDS = Object.freeze([1, 2, 4, 8]);
 export const PHASES = Object.freeze(['ready', 'running', 'awaiting_choice', 'completed']);
@@ -19,6 +18,7 @@ export function blankState(seed) {
     person: null,
     pendingDecision: null,
     timeline: [],
+    annualRecords: [],
     choiceHistory: [],
     eventHistory: [],
     nextLogId: 1,
@@ -56,4 +56,3 @@ export function assertState(state) {
 }
 
 export function cloneState(state) { return structuredClone(state); }
-

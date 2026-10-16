@@ -1,7 +1,6 @@
 import { CAREERS } from '../data/careers.js';
 import { STATS } from '../data/races.js';
-
-
+import { readLifeMetrics } from '../analysis/life-stats.js';
 const $ = id => document.getElementById(id);
 export function renderProfile(state) {
   const p = state.person;
@@ -24,9 +23,9 @@ export function renderProfile(state) {
   $('world-status').textContent = state.world.wars[p.nationId] ? '国境は戦時下' : '国家は概ね平時';
   const friends = (p.contacts || []).filter(c => c.alive).map(c => `${c.role}：${c.name}`).slice(0, 3).join('、');
   const edu=p.education;
-  $('combat-status').textContent = `${p.battles}戦 / ${p.wins}勝 / 戦功${p.merit}` +
+  const metrics = readLifeMetrics(state);
+  $('combat-status').textContent = `${p.battles}戦 / ${p.wins}勝（勝率${metrics.winRate ?? '—'}%）/ 戦功${p.merit}` +
     (edu ? `｜学歴：${edu.institutionName}${edu.ranking ? '・'+edu.ranking : edu.grades?.length?'・'+edu.grades.length+'年次':''}${edu.scholarship?'（奨学）':''}` : '') +
     (p.convalescentYears ? `｜療養中（残${p.convalescentYears}年）` : '') +
     (friends ? `｜縁：${friends}` : '');
 }
-
