@@ -30,9 +30,12 @@ export function readLifeMetrics(state) {
     warBattles: combats.filter(e => e.detail.war).length,
     warVictories: combats.filter(e => e.detail.war && e.detail.win).length,
     majorEvents: state.timeline.filter(e => e.importance === 'major').length,
-    careerYears: p.occupation ? Math.max(0, p.age - p.occupation.joinedAt) : 0,
+    careerYears: p.occupation ? Math.max(0, p.age - (p.occupation.history?.[0]?.startedAt ?? state.timeline.find(e=>e.kind==='career')?.age ?? p.occupation.joinedAt)) : 0,
     merit: p.merit, fame: p.fame, rank: career?.ranks[p.rankIndex] ?? '所属なし',
     rankIndex: p.rankIndex, promotionCount: state.timeline.filter(e => e.kind === 'promotion').length,
+    transferCount: state.timeline.filter(e => e.kind === 'transfer').length,
+    assignmentCount: state.timeline.filter(e => e.kind === 'assignment').length,
+    careerHistory: p.occupation?.history??[],
     seriousInjuries: p.injuries.filter(i => i.kind !== '軽傷').length,
     injuryCount: p.injuries.length,
     livingContacts: contactList.filter(c => c.alive).length,
@@ -59,3 +62,4 @@ export function yearDelta(records, age) {
     fame: now.fame - before.fame, battles: now.battles - before.battles,
     wins: now.wins - before.wins };
 }
+

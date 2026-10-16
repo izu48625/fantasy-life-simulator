@@ -29,6 +29,7 @@ export function renderAnalytics(state) {
     cell('任務の種類', `${m.missionVariety}種`),
     cell('重傷・後遺症', `${m.seriousInjuries}件`, `全負傷 ${m.injuryCount}件`),
     cell('階級昇進', `${m.promotionCount}回`),
+    cell('転職回数', `${m.transferCount}回`, `隊内転属 ${m.assignmentCount}回`),
     cell('学院平均評点', m.educationAverage === null ? '—' : `${m.educationAverage}点`, m.educationHigh === null ? '記録なし' : `最高 ${m.educationHigh}点`),
     cell('重要な出来事', `${m.majorEvents}件`),
     cell('存命の縁', `${m.livingContacts}人`, `失った縁 ${m.lostContacts}人`),
@@ -75,3 +76,4 @@ function drawTrend(snapshots, field) {
   const start=values[0],end=values.at(-1);
   help.textContent = `${readable[field]}：${start} → ${end}（${formatSigned(end-start)}）｜${snapshots.length}年分の記録`;
 }
+

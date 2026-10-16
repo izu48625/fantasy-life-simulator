@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#f2eadc">
   <meta name="description" content="ファンタジー世界に生まれた戦士の一生を観察する、ブラウザ完結の戦闘人生シミュレーション。R0試作版。">
   <title>Fantasy Life Simulator — R1 Chronicle Preview</title>
-  <link rel="stylesheet" href="./src/styles/base.css">
-  <link rel="stylesheet" href="./src/styles/desktop.css">
-  <link rel="stylesheet" href="./src/styles/mobile.css">
-  <script type="module" src="./src/app.js"></script>
+  
+<link rel="stylesheet" href="./src/styles/base.css">
+<link rel="stylesheet" href="./src/styles/desktop.css">
+<link rel="stylesheet" href="./src/styles/mobile.css">
 </head>
 <body>
   <header class="site-header">
@@ -66,6 +66,7 @@
         <div class="chronicle-toolbar"><h3>生涯年表</h3><div class="chronicle-filters" role="group" aria-label="年表の絞り込み">
           <button type="button" class="active" data-chronicle-filter="all" aria-pressed="true">全て</button>
           <button type="button" data-chronicle-filter="turning" aria-pressed="false">転機</button>
+          <button type="button" data-chronicle-filter="career" aria-pressed="false">昇進・転職</button>
           <button type="button" data-chronicle-filter="battle" aria-pressed="false">戦闘</button>
           <button type="button" data-chronicle-filter="school" aria-pressed="false">学び</button>
           <button type="button" data-chronicle-filter="people" aria-pressed="false">人間関係</button>
@@ -100,5 +101,6 @@
     </div>
   </nav>
   <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+<script type="module" src="./src/app.js"></script>
 </body>
 </html>

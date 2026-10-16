@@ -39,7 +39,25 @@ export const STORY_ARCS = Object.freeze([
   { id:'comrade_wounded', period:'career', minBattles:5, needsContactRole:'戦友', weight:2, text:'戦友{name}が任務で負傷した。回復まで仕事を分担し、仲間のありがたさを実感した。', effect:{teamwork:2,health:-4,bond:1}},
   { id:'staff_strategy', period:'career', minRank:1, weight:2, text:'幕僚に戦場の見解を求められ、自分の判断を言葉にして伝えた。', effect:{CMD:2,INT:1,merit:2}},
   { id:'failed_command', period:'career', minRank:1, weight:2, text:'訓練中の指揮に失敗し、部下に謝って策を練り直した。', effect:{merit:-1,CMD:1,teamwork:1}},
-  { id:'promotion_denied', period:'career', minBattles:9, minRank:0, weight:2, text:'昇進候補に挙がったものの空席がなく、現階級に留まった。次の任務へ備える。', effect:{ambition:3,INT:1}},
-  { id:'veteran_correspondence', period:'career', requires:['mentor_reunion'], weight:1, text:'旧師から手紙が届き、戦場に立つ自分の姿を改めて省みた。', effect:{CMD:1,caution:1}}
+  { id:'promotion_denied', period:'career', minBattles:9, minMerit:6, minRank:0, weight:2, text:'昇進候補に挙がったものの空席がなく、現階級に留まった。次の任務へ備える。', effect:{ambition:3,INT:1}},
+  { id:'veteran_correspondence', period:'career', requires:['mentor_reunion'], weight:1, text:'旧師から手紙が届き、戦場に立つ自分の姿を改めて省みた。', effect:{CMD:1,caution:1}},
+
+  // R1.2 career chapters: feedback, placements and long-term consequences.
+  {id:'early_praise',period:'career',minBattles:2,weight:3,text:'初期任務の講評で冷静な判断を評価された。指揮補佐の訓練を勧められた。',effect:{CMD:1,merit:1}},
+  {id:'first_defeat_review',period:'career',minBattles:3,minLosses:1,weight:2,text:'敗北の報告書を読み直し、次の任務で同じ誤りを繰り返さぬよう戦術を磨いた。',effect:{INT:2}},
+  {id:'contract_renewal',period:'career',careerIds:['mercenary','adventurer'],minBattles:5,weight:3,text:'これまでの実績を評価され、以前より条件の良い契約を提示された。',effect:{fame:2,merit:1}},
+  {id:'soldier_recommendation',period:'career',careerIds:['army','knight'],minBattles:7,weight:2,text:'上官から将来の昇進候補として推薦を受けた。期待に応えるため規律と判断力を磨く。',effect:{CMD:2,merit:2}},
+  {id:'field_medic',period:'career',minBattles:5,weight:2,text:'救護班の搬送を支援し、負傷者を安全な場所へ退避させた。',effect:{teamwork:2,fame:1}},
+  {id:'night_watch',period:'career',minBattles:2,weight:3,text:'夜営の見張り役を続け、わずかな物音から危険を察知できるようになった。',effect:{AGI:1,INT:1}},
+  {id:'senior_advice',period:'career',minBattles:9,weight:2,text:'経験豊かな先輩から部隊運用の助言を受け、戦い方を見直した。',effect:{CMD:2,INT:1}},
+  {id:'prolonged_patrol',period:'career',minBattles:6,weight:2,text:'長期警備任務で疲労が蓄積したが、体調管理の重要性を学んだ。',effect:{health:-3,VIT:1}},
+  {id:'campaign_award',period:'career',minBattles:12,weight:2,text:'多数の任務で積み重ねた実績を認められ、戦功章を授与された。',effect:{fame:3,merit:2}},
+  {id:'squad_command',period:'career',minRank:1,minBattles:10,weight:3,text:'隊の指揮を補佐し、配置の判断を任された。統率の難しさを改めて知った。',effect:{CMD:2,merit:2}},
+  {id:'junior_mentor',period:'career',minRank:1,minBattles:15,weight:2,text:'後輩兵士の訓練を担当した。教えることが自らの技術を磨き直す機会になった。',effect:{DEX:1,CMD:2}},
+  {id:'officer_study',period:'career',minRank:1,minBattles:14,weight:2,text:'将校向けの短期戦術講義に参加し、作戦計画の基礎を学んだ。',effect:{INT:2,CMD:1}},
+  {id:'rank_responsibility',period:'career',minRank:2,weight:2,text:'上級階級として複数の部隊の調整に関わり、責任の重さを実感した。',effect:{CMD:2,fame:1}},
+  {id:'veteran_retrospect',period:'career',minBattles:23,weight:2,text:'古い作戦記録を読み返し、かつての失敗も現在の判断を支えていると気づいた。',effect:{INT:2,caution:1}},
+  {id:'border_truce',period:'career',minBattles:8,weight:2,text:'前線に出ない日の警備任務で、戦わずに守る仕事の難しさを知った。',effect:{CMD:1,teamwork:1}},
+  {id:'veteran_recognition',period:'career',minBattles:30,weight:1,text:'数多くの任務を生き抜いた経験を買われ、新兵から相談を受けるようになった。',effect:{CMD:2,fame:2}}
 ]);
 

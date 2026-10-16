@@ -7,6 +7,15 @@ import { renderDecision } from './ui/decisions.js';
 import { renderControls, $ } from './ui/controls.js';
 import { renderSummary } from './ui/summary.js';
 import { showScreen } from './ui/home.js';
+
+
+
+
+
+
+
+
+
 let state = null;
 let playing = false;
 let timer = null;
@@ -164,3 +173,4 @@ $('import-file').addEventListener('change', async event => {
 document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
 window.addEventListener('pagehide', () => { pause(); if (state) persist(); });
 try { $('resume-button').disabled = !loadCurrent(storage); } catch { $('resume-button').disabled = true; }
+

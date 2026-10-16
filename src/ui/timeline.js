@@ -4,14 +4,16 @@ const $ = id => document.getElementById(id);
 const KIND = {
   birth:['出生','✦'],training:['訓練・学業','✎'],admission:['入学試験','⌂'],graduation:['卒業','✧'],
   career:['配属','⚑'],battle:['戦闘','⚔'],promotion:['昇進','★'],
+  transfer:['転職・転属','⇄'],review:['昇進・採用審査','◇'],assignment:['新任務','♜'],
   retirement:['引退','☼'],death:['終章','✝'],story:['人生の出来事','◆']
 };
 const PHASE = {childhood:'幼少期',academy:'学院生活',awaiting_career:'進路選択',career:'戦闘キャリア',retired:'引退生活',deceased:'生涯の終章'};
-const strongKinds = new Set(['birth','admission','graduation','career','promotion','retirement','death']);
+const strongKinds = new Set(['birth','admission','graduation','career','promotion','transfer','assignment','retirement','death']);
 function includeEntry(entry, filter) {
   if (filter==='all') return true;
   if (filter==='turning') return strongKinds.has(entry.kind) || (entry.kind==='story'&&entry.importance==='major');
-  if (filter==='battle') return entry.kind==='battle' || entry.kind==='promotion';
+  if (filter==='career') return ['career','promotion','review','assignment','transfer'].includes(entry.kind);
+  if (filter==='battle') return ['battle','promotion','review','assignment','transfer'].includes(entry.kind);
   if (filter==='school') return ['admission','graduation','training'].includes(entry.kind);
   if (filter==='people') return entry.kind==='story';
   return true;
@@ -21,6 +23,7 @@ function el(name,cls='',value) {
 }
 function eventCard(entry) {
   const article=el('article',`chronicle-event kind-${entry.kind}${strongKinds.has(entry.kind)?' milestone':''}`);
+  article.dataset.eventId=String(entry.id);
   const head=el('div','chronicle-event-head');
   const label=el('span','event-type',`${KIND[entry.kind]?.[1] || '•'} ${KIND[entry.kind]?.[0] || '記録'}`);
   head.append(label);
@@ -47,7 +50,9 @@ function chapterFor(age, group, records, filter) {
   const year=group.record?.year??group.entries[0]?.year;
   period.append(el('span','year-calendar',`王暦 ${year}年`));
   heading.append(ageBadge,period);section.append(heading);
-  for(const entry of group.entries)section.append(eventCard(entry));
+  section.dataset.age=String(age);
+  // Multiple events in a year also show the newest entry first.
+  for(const entry of [...group.entries].reverse())section.append(eventCard(entry));
   if(group.record&&filter==='all') {
     const delta=yearDelta(records,age);
     const bottom=el('div','year-report');
@@ -67,9 +72,19 @@ export function renderTimeline(state) {
   const records=Array.isArray(state.annualRecords)?state.annualRecords:[];
   const renderKey=`${state.seed}/${state.timeline.at(-1)?.id||0}/${records.length}/${filter}`;
   if (view.dataset.renderKey===renderKey) return;
-  const desktopScrollable=view.scrollHeight>view.clientHeight+10;
-  const stick=desktopScrollable && view.scrollHeight-view.scrollTop-view.clientHeight<110;
+  const filterChanged=view.dataset.lastFilter!==filter;
+  const nearTop=view.scrollTop<70;
+  // Remember the first visible old card. Restoring it avoids moving the page
+  // when the player is reading history while new chapters appear above it.
+  const visible=[...view.querySelectorAll('.chronicle-event, .quiet-years-title, .year-header')]
+    .find(node=>node.getBoundingClientRect().bottom>view.getBoundingClientRect().top+2);
+  const anchor=visible && (visible.closest('[data-event-id]')?.dataset.eventId
+    ? {kind:'event',id:visible.closest('[data-event-id]').dataset.eventId,top:visible.getBoundingClientRect().top}
+    : visible.closest('[data-age]')?.dataset.age
+      ? {kind:'age',id:visible.closest('[data-age]').dataset.age,top:visible.getBoundingClientRect().top}
+      : null);
   const previousY=view.scrollTop;
+  const previousHeight=view.scrollHeight;
   const map=new Map();
   if(filter==='all')for(const row of records)map.set(row.age,{record:row,entries:[]});
   for(const entry of state.timeline) {
@@ -78,7 +93,7 @@ export function renderTimeline(state) {
     map.get(entry.age).entries.push(entry);
   }
   const fragment=document.createDocumentFragment();
-  const sorted=[...map.entries()].sort((a,b)=>a[0]-b[0]);
+  const sorted=[...map.entries()].sort((a,b)=>b[0]-a[0]);
   let quiet=[];
   function flushQuiet() {
     if(!quiet.length)return;
@@ -86,7 +101,7 @@ export function renderTimeline(state) {
     else {
       const first=quiet[0],last=quiet.at(-1);
       const fold=el('details','quiet-years-fold');
-      const summary=el('summary','quiet-years-title',`${first[0]}〜${last[0]}歳｜${quiet.length}年間の積み重ね · OVR ${first[1].record.ovr} → ${last[1].record.ovr}`);
+      const summary=el('summary','quiet-years-title',`${last[0]}〜${first[0]}歳｜${quiet.length}年間の積み重ね · OVR ${last[1].record.ovr} → ${first[1].record.ovr}`);
       fold.append(summary);
       const content=el('div','quiet-years-content');
       for(const [age,group] of quiet)content.append(chapterFor(age,group,records,filter));
@@ -96,7 +111,7 @@ export function renderTimeline(state) {
   }
   for(const [age,group] of sorted) {
     if(filter==='all' && !group.entries.length && group.record) {
-      if(quiet.length && quiet.at(-1)[0]+1!==age)flushQuiet();
+      if(quiet.length && quiet.at(-1)[0]-1!==age)flushQuiet();
       quiet.push([age,group]);continue;
     }
     flushQuiet();fragment.append(chapterFor(age,group,records,filter));
@@ -108,11 +123,18 @@ export function renderTimeline(state) {
   for(const node of fragment.querySelectorAll('.quiet-years-fold'))if(openRanges.has(node.querySelector('summary')?.textContent))node.open=true;
   view.replaceChildren(fragment);
   view.dataset.renderKey=renderKey;
-  if(stick)view.scrollTop=view.scrollHeight;
-  else if(desktopScrollable)view.scrollTop=previousY;
+  view.dataset.lastFilter=filter;
+  if(filterChanged || nearTop) view.scrollTop=0;
+  else if(anchor){
+    const selector=anchor.kind==='event' ? `.chronicle-event[data-event-id="${anchor.id}"]` : `.year-chapter[data-age="${anchor.id}"] .year-header`;
+    const replacement=view.querySelector(selector);
+    if(replacement) view.scrollTop=previousY+replacement.getBoundingClientRect().top-anchor.top;
+    else view.scrollTop=previousY+view.scrollHeight-previousHeight;
+  } else view.scrollTop=previousY+view.scrollHeight-previousHeight;
   for(const btn of document.querySelectorAll('[data-chronicle-filter]')){
     const selected=btn.dataset.chronicleFilter===filter;
     btn.setAttribute('aria-pressed',String(selected));
     btn.classList.toggle('active',selected);
   }
 }
+

@@ -17,3 +17,4 @@ export function recordAnnualSnapshot(state) {
   else state.annualRecords.push(snapshot);
   return state;
 }
+

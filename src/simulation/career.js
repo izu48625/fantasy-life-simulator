@@ -35,7 +35,8 @@ export function attemptCareer(person,rng,careerId) {
   }
   const p=structuredClone(person);
   p.occupation={careerId:career.id,careerName:career.name,joinedAt:p.age,application:requested.id,accepted,
-    admissionChance:Number(probability.toFixed(3)),transfers:0};
+    admissionChance:Number(probability.toFixed(3)),transfers:0,
+    history:[{careerId:career.id,careerName:career.name,startedAt:p.age,endedAt:null,rankIndex:0}]};
   p.stage='career';p.rankIndex=0;
   return {person:p,rng,log: accepted ? `${career.name}に採用された（選考見込${Math.round(probability*100)}%）。${career.ranks[0]}として任務を始めた。` :
     `${requested.name}への志願は不採用となった（選考見込${Math.round(probability*100)}%）。新たに${career.name}で道を歩み始めた。`};
@@ -47,12 +48,14 @@ export function maybePromote(person,rng){
  const thresholds=[0,5,21,75];
  const needed=thresholds[person.rankIndex+1];
  if(tenure<(person.rankIndex+1)*4||person.merit<needed||person.health<38||person.convalescentYears>0)return{person,rng,log:null};
+ if(tenure%4!==0)return{person,rng,log:null};
  const rate=[0,.21,.018,.009][person.rankIndex+1]*(person.conviction==='honor'?1.08:1)*
    (person.education?.honors?1.13:1);
  const res=nextRandom(rng);rng=res.rng;
- if(res.value>=rate)return{person,rng,log:null};
+ if(res.value>=rate)return{person,rng,log:null,reviewLog:`${career.ranks[person.rankIndex+1]}の昇進審査を受けたが、今回は選外となった。戦功${person.merit}を積んで次の機会を待つ。`};
  const p=structuredClone(person);p.rankIndex++;
  p.achievements.push(`${p.age}歳で${career.ranks[p.rankIndex]}に昇進`);
+ if(p.occupation.history?.length) p.occupation.history.at(-1).rankIndex=p.rankIndex;
  return{person:p,rng,log:`戦功${p.merit}と勤務実績が認められ、空席を得て${career.ranks[p.rankIndex]}へ昇進した。`};
 }
 
