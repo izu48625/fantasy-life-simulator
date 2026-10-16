@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f2eadc">
   <meta name="description" content="ファンタジー世界に生まれた戦士の一生を観察する、ブラウザ完結の戦闘人生シミュレーション。R0試作版。">
-  <title>Fantasy Life Simulator — R1.3 Careers & Recovery Preview</title>
+  <title>Fantasy Life Simulator — R1.4 Recovery & Second Careers Preview</title>
   
 <style>:root{font-family:ui-sans-serif,system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:#292b29;background:#f2eadc;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%;color-scheme:light}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh}button,select,input{font:inherit}button{min-height:44px;padding:10px 15px;border:1px solid #b5aa94;border-radius:9px;background:#fffdf8;color:#292b29;font-weight:650;cursor:pointer}button:hover:not(:disabled){background:#f2f0e8}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,.file-label:focus-visible{outline:3px solid #b17031;outline-offset:3px}button.primary{background:#415848;color:white;border-color:#415848}button.primary:hover:not(:disabled){background:#324438}button.subtle{background:transparent}.site-header{max-width:1450px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:24px 20px 17px}.brand-mark{font-size:27px;color:#8c673f}.brand-title{font-size:17px;font-weight:850;letter-spacing:.12em}.brand-sub{font-size:12px;color:#636057}.prototype-tag{margin-left:auto;padding:6px 10px;background:#e9dfcd;border:1px solid #d0c1a9;border-radius:30px;font-size:12px;white-space:nowrap}.card{background:#fffdf7;border:1px solid #d7cbb6;border-radius:16px;box-shadow:0 3px 15px #493c2810;padding:20px}main{max-width:1450px;margin:0 auto;padding:0 20px 20px}.muted{color:#5f665d}.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#806d52;font-weight:800}.welcome{max-width:640px;margin:clamp(12px,4vh,70px) auto 40px;padding:clamp(22px,5vw,46px)}.welcome h1{font-size:clamp(23px,3vw,35px);line-height:1.4;margin:7px 0 15px}.welcome>p{line-height:1.75}.start-form{display:grid;gap:11px;margin-top:26px}.start-form label{font-size:13px;font-weight:750}.start-form input,.start-form select{min-height:48px;background:#fff;border:1px solid #acaa9c;border-radius:9px;padding:10px 12px;width:100%;color:inherit}.start-form button{width:100%}.footnote{font-size:12px;color:#625e53;margin-top:22px}.game-layout{display:grid;grid-template-columns:minmax(235px,280px) minmax(0,1fr) minmax(220px,280px);align-items:start;gap:16px;padding-bottom:110px}.game-layout h1{font-size:22px;margin:5px 0}.game-layout h2{font-size:18px;margin:18px 0 11px}.profile-panel,.world-panel{position:sticky;top:12px}.profile-panel p{line-height:1.7}.status-pill{display:inline-flex;padding:7px 10px;border-radius:8px;background:#e4ecdf;font-weight:700;font-size:12px;color:#314e39}.meter-label{display:flex;justify-content:space-between;gap:15px;margin-top:24px;font-size:13px;font-weight:700}progress{width:100%;height:13px;accent-color:#628165}.stats{border-top:1px solid #e8dfd0}.stat-line{display:flex;justify-content:space-between;padding:8px 3px;border-bottom:1px solid #e8dfd0}.stat-line span{font-family:ui-monospace,monospace;font-weight:700;letter-spacing:.08em}.timeline-panel{min-height:64vh}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #e7dbca;padding-bottom:13px;margin-bottom:12px}.section-heading h2,.section-heading p{margin:0}.timeline{min-height:270px;max-height:min(72vh,780px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}.event{border-left:2px solid #bfc0aa;padding:4px 14px 10px;margin:0 0 16px 6px}.event-major{border-left:3px solid #9d7045;background:#fcf8ee;border-radius:0 10px 10px 0}.event-age{font-size:12px;color:#796448;font-weight:750}.event p{line-height:1.75;margin:7px 0 0;font-size:14px;overflow-wrap:anywhere}.decision-panel{background:#eff4eb;border:1px solid #afc4aa;border-radius:12px;padding:17px;margin:12px 0 22px}.decision-panel h3{margin:0 0 8px;font-size:18px}.decision-panel p{font-size:13px}.decision-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}.choice-button{background:#fff}.summary-panel{padding:18px;background:#f7efdc;border:1px solid #e4c897;border-radius:12px;margin-top:14px;line-height:1.75}.world-panel>button,.file-label{display:block;width:100%;margin:8px 0;text-align:center}.file-label{min-height:44px;padding:12px;border:1px solid #b5aa94;border-radius:9px;cursor:pointer;background:#fffdf8;font-weight:650}.world-panel input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}.world-panel hr{border:0;border-top:1px solid #e7dbca;margin:18px 0}.bottom-controls{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fffdf7ed;border-top:1px solid #d4cbb8;backdrop-filter:blur(10px);padding:10px max(12px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));box-shadow:0 -6px 20px #30281a10}.controls-inner{max-width:1430px;margin:auto;display:flex;align-items:center;gap:8px}.control-label{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;white-space:nowrap}.control-label select{min-height:44px;padding:0 8px;border-radius:8px;border:1px solid #b5aa94;color:#292b29;background:white}.archive{max-width:650px;margin:10px auto 25px}.archive-entry{display:flex;gap:12px;justify-content:space-between;align-items:center;border-bottom:1px solid #e5dbcc;padding:12px 0}.archive-entry p{margin:3px 0;font-size:13px}.toast{position:fixed;z-index:60;top:15px;left:50%;transform:translateX(-50%);background:#273b2c;color:#fff;padding:11px 17px;border-radius:10px;box-shadow:0 4px 14px #0002;max-width:min(92vw,600px);font-size:14px}[hidden]{display:none!important}
@@ -43,7 +43,7 @@
   <header class="site-header">
     <div class="brand-mark" aria-hidden="true">✦</div>
     <div><div class="brand-title">FANTASY LIFE SIMULATOR</div><div class="brand-sub">戦士の一生、その運命を見届ける。</div></div>
-    <span class="prototype-tag">R1.3 転職・負傷の選択</span>
+    <span class="prototype-tag">R1.4 負傷・復帰・第二の人生</span>
   </header>
   <main>
     <section id="welcome" class="welcome card" aria-labelledby="welcome-title">
@@ -183,7 +183,7 @@ __modules["src/core/state.js"] = (()=>{
 const {initRng} = __modules["src/core/rng.js"];
 
 const SAVE_VERSION = 1;
-const ENGINE_VERSION = '0.6.0-r1-risk-economy';
+const ENGINE_VERSION = '0.7.0-r14-recovery-journeys';
 const MODES = Object.freeze(['FULL_AUTO', 'SEMI_AUTO', 'MANUAL']);
 const SPEEDS = Object.freeze([1, 2, 4, 8]);
 const PHASES = Object.freeze(['ready', 'running', 'awaiting_choice', 'completed']);
@@ -488,6 +488,7 @@ function riskMultiplier(person,careerId=person.occupation?.careerId) {
   if(person.occupation?.careerId===careerId){
     if(person.occupation.medicalAssignment==='rear')scale*=.37;
     if(person.occupation.medicalAssignment==='front')scale*=1.24;
+    if(['instructor','rehab'].includes(person.occupation.medicalAssignment))scale*=.04;
   }
   return scale;
 }
@@ -502,6 +503,8 @@ function annualSalary(person,{careerId=person.occupation?.careerId,rankIndex=per
   if(person.occupation?.careerId===careerId){
     if(person.occupation.medicalAssignment==='rear')multiplier=.78;
     if(person.occupation.medicalAssignment==='front')multiplier=1.12;
+    if(person.occupation.medicalAssignment==='instructor')multiplier=.86;
+    if(person.occupation.medicalAssignment==='rehab')multiplier=.62;
   }
   return Math.round(BASE_PAY[careerId]*(RANK_MULT[clamp(rankIndex??0,0,3)]||1)*seniority*multiplier*(war?1.14:1));
 }
@@ -547,7 +550,8 @@ function preferredCareer(p) {
   if (p.caution<48 || p.ambition>74) return 'mercenary';
   return 'army';
 }
-function attemptCareer(person,rng,careerId) {  const requested=CAREERS.find(c=>c.id===careerId)??CAREERS[1];
+function attemptCareer(person,rng,careerId) {
+  const requested=CAREERS.find(c=>c.id===careerId)??CAREERS[1];
   const ability=requested.attr.reduce((sum,key)=>sum+person.attributes[key],0)/requested.attr.length;
   const school=person.education?.institutionId;
   const fit=requested.id==='mage'?(school==='magic' ? .13 : 0):
@@ -574,7 +578,7 @@ function attemptCareer(person,rng,careerId) {  const requested=CAREERS.find(c=>c
     `${requested.name}への志願は不採用となった（選考見込${Math.round(probability*100)}%）。新たに${career.name}で道を歩み始めた。年収${pay}銀貨、危険度${risk}。`};
 }
 function maybePromote(person,rng){
- if(!person.occupation||person.rankIndex>=3)return{person,rng,log:null};
+ if(!person.occupation||person.rankIndex>=3||person.occupation.medicalAssignment==='rehab')return{person,rng,log:null};
  const career=CAREERS.find(c=>c.id===person.occupation.careerId);
  const tenure=person.age-person.occupation.joinedAt;
  const thresholds=[0,5,21,75];
@@ -593,8 +597,7 @@ function maybePromote(person,rng){
 }
 
 return {preferredCareer,attemptCareer,maybePromote};
-})();
-__modules["src/simulation/career-paths.js"] = (()=>{
+})();__modules["src/simulation/career-paths.js"] = (()=>{
 const {CAREERS} = __modules["src/data/careers.js"];
 const {nextRandom} = __modules["src/core/rng.js"];
 const {annualSalary, expectedTransfer, riskLabel, riskMultiplier} = __modules["src/simulation/economy.js"];
@@ -621,7 +624,7 @@ function transferOptions(person) {
 }
 
 function eligibleForTransfer(person,targetAge) {
-  if(person.stage!=='career'||!person.occupation||person.convalescentYears>0||person.health<48)return false;
+  if(person.stage!=='career'||!person.occupation||person.convalescentYears>0||person.health<48||['rehab','instructor'].includes(person.occupation?.medicalAssignment))return false;
   const o=person.occupation;
   const lastMove=o.lastTransferAt??o.joinedAt;
   return targetAge%8===0 && targetAge-lastMove>=6 && (o.transfers??0)<3;
@@ -670,7 +673,7 @@ const ASSIGNMENTS=[
 /** Rare and stateful assignment changes (not independent narration). */
 function maybeReassign(person,rng){
   const o=person.occupation;
-  if(!o||o.medicalAssignment==='rear'||person.convalescentYears||person.health<38||person.age-o.joinedAt<3||person.age%5!==0)return{person,rng,log:null};
+  if(!o||['rear','instructor','rehab'].includes(o.medicalAssignment)||person.convalescentYears||person.health<38||person.age-o.joinedAt<3||person.age%5!==0)return{person,rng,log:null};
   let roll=nextRandom(rng);rng=roll.rng;
   if(roll.value>.62)return{person,rng,log:null};
   const eligible=ASSIGNMENTS.filter(x=>x.can(person)&&x.id!==o.assignmentId);
@@ -690,6 +693,117 @@ function maybeReassign(person,rng){
 
 return {transferOptions,eligibleForTransfer,attemptTransfer,maybeReassign};
 })();
+__modules["src/simulation/recovery-career.js"] = (()=>{
+const {nextRandom} = __modules["src/core/rng.js"];
+const {annualSalary} = __modules["src/simulation/economy.js"];
+
+
+const clamp=(n,lo,hi)=>Math.max(lo,Math.min(hi,n));
+
+/** Wounds have an aftermath. These are genuine choices evaluated before the next year advances. */
+function recoveryDecision(person,targetAge) {
+  const j=person.recoveryJourney;
+  if(!j||person.injuryDecisionPending)return null;
+  if(person.stage==='career'&&j.path==='rehab'&&j.reviewAt<=targetAge&&!person.convalescentYears){
+    return {type:'return_exam',title:'治療後の復帰審査──元の戦場に戻れるか',options:[
+      {id:'exam',label:'前線復帰試験を受ける',note:`現在の健康 ${Math.round(person.health)}/100。体調・体力・後遺症により合否が変わる。合格すれば通常給与へ`},
+      {id:'instructor',label:'後方の教官・訓練係を希望',note:`年収 ${Math.round(annualSalary(person,{rankIndex:person.rankIndex})/.62*.86)}銀貨程度へ。前線には出ず教え子を育成`},
+      {id:'continue',label:'もう2年の療養・再訓練',note:'治療費12銀貨、復帰が遅れる代わりに健康回復を優先'}
+    ]};
+  }
+  if(person.stage==='career'&&j.path==='rear'&&j.offerAt<=targetAge&&!j.offerResolved&&person.battles>=8){
+    return {type:'mentor_offer',title:'後方勤務で教官の道を選ぶか',options:[
+      {id:'teach',label:'正式な教官となり後進を育てる',note:'直接戦闘なし・給与は元階級の約86%。教え子と指導実績が増える'},
+      {id:'support',label:'後方支援のまま任務を続ける',note:'年収は現状維持。低頻度で護衛や警備の任務が残る'}
+    ]};
+  }
+  if(person.stage==='retired'&&j.path==='retire'&&j.offerAt<=targetAge&&!j.offerResolved&&person.battles>=5){
+    return {type:'retirement_offer',title:'引退後の第二の人生',options:[
+      {id:'teach',label:'地域の訓練場で若者を指導する',note:'戦闘には復帰せず、経験を次の世代へ伝える'},
+      {id:'quiet',label:'戦場を離れて穏やかに暮らす',note:'年金を受け取り、体を労わる'}
+    ]};
+  }
+  return null;
+}
+
+/** Returns a person's new condition and any factual milestone records. */
+function resolveRecoveryDecision(person,rng,type,selected){
+  const valid=recoveryDecision(person,person.age);
+  if(!valid||valid.type!==type||!valid.options.some(o=>o.id===selected))throw new Error('復帰・転身の選択は無効です');
+  const p=structuredClone(person),j=p.recoveryJourney,events=[];
+  const emit=(kind,text)=>events.push({kind,text});
+  if(type==='return_exam') {
+    if(selected==='continue') {
+      j.reviewAt=p.age+2;p.convalescentYears=Math.max(1,p.convalescentYears||0);
+      p.health=clamp(p.health+16,0,100);
+      p.finances??={lifetimeEarned:0,cash:0,payYears:0,lastPay:0};p.finances.cash-=12;
+      emit('recovery','復帰を急がず2年間の再訓練を選んだ。治療費12銀貨を支払い、健康を整える。');
+    } else if(selected==='instructor'){
+      const oldPay=annualSalary(p);p.occupation.medicalAssignment='instructor';
+      p.occupation.assignmentName='傷痍教官';p.occupation.assignmentId='medical_instructor';
+      j.path='instructor';j.outcome='指導職へ転身';j.offerResolved=true;
+      p.mentoring??={years:0,students:0};
+      emit('career',`前線復帰を断念し、傷痍教官への転身が認められた。年収 ${oldPay}→${annualSalary(p)}銀貨。生き延びた経験を次の世代へ伝える。`);
+    }else{
+      const quality=p.health*.64+(p.attributes.VIT||0)*.19+(p.attributes.AGI||0)*.17-
+        (j.kind==='後遺症'?13:j.kind==='重傷'?7:0);
+      const probability=clamp(.12+quality/110,.12,.91);
+      const roll=nextRandom(rng);rng=roll.rng;
+      j.attemptCount=(j.attemptCount||0)+1;
+      if(roll.value<probability){
+        const oldPay=annualSalary(p);p.occupation.medicalAssignment=null;
+        j.path='returned';j.outcome='前線へ復帰';j.returnedAt=p.age;
+        p.comebacks=(p.comebacks||0)+1;
+        p.achievements??=[];p.achievements.push(`${p.age}歳で${j.kind}を乗り越え前線に復帰`);
+        emit('recovery',`${j.kind}からの復帰試験に合格（合格見込${Math.round(probability*100)}%）。前線復帰を果たした。年収 ${oldPay}→${annualSalary(p)}銀貨。`);
+      }else{
+        j.reviewAt=p.age+2;j.failedExams=(j.failedExams||0)+1;
+        p.convalescentYears=Math.max(1,p.convalescentYears||0);
+        p.occupation.medicalAssignment='rehab';
+        emit('review',`復帰試験に不合格（合格見込${Math.round(probability*100)}%）。前線復帰は見送られ、さらに療養して再挑戦する道が残された。`);
+      }
+    }
+  }else if(type==='mentor_offer'){
+    j.offerResolved=true;
+    if(selected==='teach'){
+      const oldPay=annualSalary(p);p.occupation.medicalAssignment='instructor';
+      p.occupation.assignmentName='正式教官';p.occupation.assignmentId='formal_instructor';
+      p.mentoring??={years:0,students:0};j.path='instructor';j.outcome='正式教官に転身';
+      emit('career',`後方任務の経験を認められ、正式教官に就任。年収 ${oldPay}→${annualSalary(p)}銀貨。訓練生を育てる第二の軍歴が始まる。`);
+    }else emit('assignment','正式教官への推薦を辞退し、後方支援を続ける道を選んだ。');
+  }else if(type==='retirement_offer'){
+    j.offerResolved=true;
+    p.mentoring??={years:0,students:0};
+    if(selected==='teach'){
+      j.path='retired_mentor';j.outcome='引退後の指導者';
+      emit('career','軍を退いた後、地域の訓練場で教官として活動を始めた。新兵時代の失敗も経験として伝えていく。');
+    }else {j.outcome='静かな余生';emit('story','戦場から距離を置き、静かな余生を送ることを選んだ。');}
+  }
+  return{person:p,rng,events};
+}
+
+/** Yearly downstream effects, never an invented instant recovery. */
+function progressRecoveryCareer(person){
+ const p=structuredClone(person),events=[];
+ const j=p.recoveryJourney;if(!j)return{person:p,events};
+ const teaching=p.occupation?.medicalAssignment==='instructor'||j.path==='retired_mentor';
+ if(teaching&&(p.stage==='career'||p.stage==='retired')){
+  p.mentoring??={years:0,students:0};p.mentoring.years++;
+  const taught=p.stage==='retired'?1:2;
+  p.mentoring.students+=taught;
+  p.attributes.CMD=clamp(p.attributes.CMD+.4,0,100);
+  if(p.stage==='career'&&p.mentoring.years%3===0)p.merit+=1;
+  if(p.mentoring.years===1||p.mentoring.years%5===0)events.push({kind:'story',text:`教官として${p.mentoring.years}年。これまで${p.mentoring.students}人を指導した。かつての負傷が、次の世代を育てる経験に変わった。`});
+ }
+ if(j.path==='front'&&!j.outcome&&p.age>=j.startedAt+3&&p.stage==='career'){
+  j.outcome='危険な前線勤務を継続';
+  events.push({kind:'recovery',text:`${j.kind}を抱えながら前線勤務を3年続けた。後遺症と危険手当は残るが、部隊の古参として認められた。`});
+ }
+ return{person:p,events};
+}
+
+return {recoveryDecision,resolveRecoveryDecision,progressRecoveryCareer};
+})();
 __modules["src/simulation/injury-choices.js"] = (()=>{
 const {annualSalary} = __modules["src/simulation/economy.js"];
 
@@ -706,15 +820,16 @@ function resolveInjuryPath(person,path){
  const p=structuredClone(person);const oldPay=annualSalary(p);
  const reason=p.injuryDecisionPending.kind;
  p.injuryDecisionPending=null;p.recoveryPath=path;
+ p.recoveryJourney={startedAt:p.age,kind:reason,path,reviewAt:p.age+2,offerAt:p.age+3,offerResolved:false,attemptCount:0,outcome:null};
  p.injuryChoices??=[];
  p.injuryChoices.push({age:p.age,choice:path,kind:reason});
  let log;
  if(path==='rehab'){
   p.health=clamp(p.health+18,0,100);
-  p.convalescentYears=Math.max(1,p.convalescentYears||0);
+  p.convalescentYears=Math.max(2,p.convalescentYears||0);
   p.finances??={lifetimeEarned:0,cash:0,payYears:0,lastPay:0};
   p.finances.cash-=18;
-  p.occupation.medicalAssignment=null;
+  p.occupation.medicalAssignment='rehab';
   log=`${reason}の治療と再訓練を選択。治療費18銀貨を支払い健康が回復。療養を終えてから前線復帰する。`;
  }else if(path==='rear'){
   p.occupation.medicalAssignment='rear';p.occupation.assignmentName='後方支援・新人教導';
@@ -1081,8 +1196,7 @@ function applyArc(entry, state) {
     else if (key === 'bond' && friend) friend.bond = clamp(friend.bond + n, -10, 10);
     else if (key === 'health') p.health = clamp(p.health + n, 0, 100);
     else if (key === 'familyAccess') p.familyAccess = clamp(p.familyAccess + n, .5, 2);
-    else p[key] = clamp((p[key] || 0) + n, 0, 1000);
-  }
+    else p[key] = clamp((p[key] || 0) + n, 0, 1000);  }
   return entry.text.replaceAll('{name}', friend?.name ?? '');
 }
 const ALL_STORIES = [...STORIES, ...STORY_ARCS.map(entry => ({
@@ -1096,7 +1210,8 @@ function progressStory(state) {
   const roll = nextRandom(state.rng); state.rng = roll.rng;
   const candidates = ALL_STORIES.filter(e => e.period === p.stage && e.can(p, state));
   if (!candidates.length || roll.value > (p.stage === 'academy' ? .73 : p.stage === 'career' ? .62 : .49)) return state;
-  const weighted = candidates.reduce((n, e) => n + e.weight, 0);  let cursor = roll.value / (p.stage === 'academy' ? .73 : p.stage === 'career' ? .62 : .49) * weighted;
+  const weighted = candidates.reduce((n, e) => n + e.weight, 0);
+  let cursor = roll.value / (p.stage === 'academy' ? .73 : p.stage === 'career' ? .62 : .49) * weighted;
   const entry = candidates.find(e => (cursor -= e.weight) < 0) ?? candidates.at(-1);
   const text = entry.apply(state);
   if (text) appendEvent(state, 'story', text, 'major', { storyId: entry.id });
@@ -1166,9 +1281,11 @@ const {chooseAcademy} = __modules["src/simulation/academy.js"];
 const {preferredCareer} = __modules["src/simulation/career.js"];
 const {eligibleForTransfer, transferOptions} = __modules["src/simulation/career-paths.js"];
 const {annualSalary, riskLabel, riskMultiplier} = __modules["src/simulation/economy.js"];
+const {recoveryDecision} = __modules["src/simulation/recovery-career.js"];
 const {INJURY_PATHS} = __modules["src/simulation/injury-choices.js"];
 const {RACES} = __modules["src/data/races.js"];
 const {STORY_CHOICE_SETS} = __modules["src/simulation/story.js"];
+
 
 
 
@@ -1190,6 +1307,8 @@ function determineDecision(state) {
   let type = null, title = null, options = null, important = false;
   if (p.stage==='career' && p.injuryDecisionPending) {
     type='injury_path';title=`${p.injuryDecisionPending.kind}のあと、これからどう生きるか`;options=INJURY_PATHS;important=true;
+  } else if ((p.stage==='career'||p.stage==='retired') && recoveryDecision(p,targetAge)) {
+    const next=recoveryDecision(p,targetAge);type=next.type;title=next.title;options=next.options;important=true;
   } else if (targetAge === academyStart && p.stage === 'childhood') {
     type = 'academy'; title = '進学先を希望する';
     options = INSTITUTIONS.map(a => ({ id: a.id, label: a.name })); important = true;
@@ -1218,6 +1337,14 @@ function determineDecision(state) {
 
 function autoChoose(state, decision) {
   const p = state.person;
+  if(decision.type==='return_exam'){
+    const tries=p.recoveryJourney?.attemptCount||0;
+    if(tries>=2)return 'instructor';
+    if(p.health>=58 || tries>=1)return 'exam';
+    return p.battles>=8&&p.caution>65?'instructor':'continue';
+  }
+  if(decision.type==='mentor_offer')return p.battles>=12||p.caution>=58?'teach':'support';
+  if(decision.type==='retirement_offer')return p.caution>=70?'quiet':'teach';
   if (decision.type === 'injury_path') {
     if(p.health<39 || p.caution>78)return 'rear';
     if(p.age>45 && p.health<60)return 'retire';
@@ -1252,6 +1379,7 @@ const {trainYear} = __modules["src/simulation/training.js"];
 const {attemptAdmission, chooseAcademy, graduate, evaluateAcademyYear} = __modules["src/simulation/academy.js"];
 const {attemptCareer, preferredCareer, maybePromote} = __modules["src/simulation/career.js"];
 const {attemptTransfer, maybeReassign} = __modules["src/simulation/career-paths.js"];
+const {recoveryDecision, resolveRecoveryDecision, progressRecoveryCareer} = __modules["src/simulation/recovery-career.js"];
 const {resolveInjuryPath} = __modules["src/simulation/injury-choices.js"];
 const {payYear} = __modules["src/simulation/economy.js"];
 const {resolveBattle} = __modules["src/simulation/battle.js"];
@@ -1264,6 +1392,7 @@ const {nextRandom} = __modules["src/core/rng.js"];
 const {appendEvent} = __modules["src/core/event-engine.js"];
 const {recordAnnualSnapshot} = __modules["src/core/chronicle.js"];
 const {determineDecision, autoChoose} = __modules["src/core/auto-decision.js"];
+
 
 
 
@@ -1355,6 +1484,11 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
     next=resolveInjuryPath(s.person,selectedId);s.person=next.person;
     appendEvent(s,next.kind,next.log,'major');
   }
+  if (decision && ['return_exam','mentor_offer','retirement_offer'].includes(decision.type)) {
+    next=resolveRecoveryDecision(s.person,s.rng,decision.type,selectedId);
+    s.person=next.person;s.rng=next.rng;
+    for(const e of next.events)appendEvent(s,e.kind,e.text,'major');
+  }
   if (s.person.stage === 'career' && decision?.type === 'transfer') {
     next=attemptTransfer(s.person,s.rng,selectedId);
     s.person=next.person;s.rng=next.rng;
@@ -1363,8 +1497,10 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
   if (s.person.stage === 'career') {
     const atWar = !!s.world.wars[s.person.nationId];
     const missionRoll = nextRandom(s.rng); s.rng = missionRoll.rng;
-    const rear=s.person.occupation?.medicalAssignment==='rear';
-    const doBattle = (atWar ? (!rear || missionRoll.value < .30) : missionRoll.value < (rear?.17:.65)) && s.person.health >= 35 && !s.person.convalescentYears;
+    const medical=s.person.occupation?.medicalAssignment;
+    const rear=medical==='rear';
+    const active=['instructor','rehab'].includes(medical)?false:(atWar ? (!rear || missionRoll.value < .30) : missionRoll.value < (rear?.17:.65));
+    const doBattle = active && s.person.health >= 35 && !s.person.convalescentYears;
     if (!doBattle && s.person.convalescentYears > 0 && s.person.age % 2 === 0)
       appendEvent(s,'training','負傷による療養と再訓練のため、前線任務を離れた。');
     if (doBattle) {
@@ -1393,6 +1529,8 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
     const risk = Math.min(.58, .001 + onset * onset * .00045);
     if (death.value < risk || s.person.age >= race.maxAge) return complete(s, '老衰・病死');
   }
+  next=progressRecoveryCareer(s.person);s.person=next.person;
+  for(const e of next.events)appendEvent(s,e.kind,e.text,'major');
   if(s.person.occupation)s.person=payYear(s.person,!!s.world.wars[s.person.nationId]);
   progressStory(s);
   if (s.person.age % 5 === 0 && s.person.stage !== 'deceased') {
@@ -1572,6 +1710,9 @@ function readLifeMetrics(state) {
     income:p.finances?.lastPay??null, lifetimeIncome:p.finances?.lifetimeEarned??null,
     cash:p.finances?.cash??null, dangerousDuty:p.occupation?.medicalAssignment??null,
     injuryChoiceCount:p.injuryChoices?.length??0,
+    comebacks:p.comebacks??0, returnAttempts:p.recoveryJourney?.attemptCount??0,
+    mentoringYears:p.mentoring?.years??0, studentsTaught:p.mentoring?.students??0,
+    recoveryOutcome:p.recoveryJourney?.outcome??null,
     merit: p.merit, fame: p.fame, rank: career?.ranks[p.rankIndex] ?? '所属なし',
     rankIndex: p.rankIndex, promotionCount: state.timeline.filter(e => e.kind === 'promotion').length,
     transferCount: state.timeline.filter(e => e.kind === 'transfer').length,
@@ -1645,7 +1786,8 @@ function renderProfile(state) {
 }
 
 return {renderProfile};
-})();__modules["src/ui/timeline.js"] = (()=>{
+})();
+__modules["src/ui/timeline.js"] = (()=>{
 const {yearDelta, formatSigned} = __modules["src/analysis/life-stats.js"];
 
 const $ = id => document.getElementById(id);
@@ -1653,8 +1795,7 @@ const KIND = {
   birth:['出生','✦'],training:['訓練・学業','✎'],admission:['入学試験','⌂'],graduation:['卒業','✧'],
   career:['配属','⚑'],battle:['戦闘','⚔'],promotion:['昇進','★'],
   transfer:['転職・転属','⇄'],recovery:['負傷後の決断','✚'],review:['昇進・採用審査','◇'],assignment:['新任務','♜'],
-  retirement:['引退','☼'],death:['終章','✝'],story:['人生の出来事','◆']
-};
+  retirement:['引退','☼'],death:['終章','✝'],story:['人生の出来事','◆']};
 const PHASE = {childhood:'幼少期',academy:'学院生活',awaiting_career:'進路選択',career:'戦闘キャリア',retired:'引退生活',deceased:'生涯の終章'};
 const strongKinds = new Set(['birth','admission','graduation','career','promotion','transfer','assignment','recovery','retirement','death']);
 function includeEntry(entry, filter) {
@@ -1821,7 +1962,9 @@ function renderAnalytics(state) {
     cell('重傷・後遺症', `${m.seriousInjuries}件`, `全負傷 ${m.injuryCount}件`),
     cell('階級昇進', `${m.promotionCount}回`),
     cell('年収',m.income===null?'—':`${m.income}銀貨`,m.lifetimeIncome===null?'過去データなし':`累計${m.lifetimeIncome}銀貨`),
-    cell('負傷後の選択',`${m.injuryChoiceCount}回`,m.dangerousDuty==='rear'?'後方配置':m.dangerousDuty==='front'?'前線復帰':'通常勤務'),
+    cell('負傷後の選択',`${m.injuryChoiceCount}回`,m.dangerousDuty==='rear'?'後方配置':m.dangerousDuty==='front'?'前線復帰':m.dangerousDuty==='rehab'?'復帰訓練中':m.dangerousDuty==='instructor'?'教官勤務':'通常勤務'),
+    cell('復帰した回数',`${m.comebacks}回`,m.recoveryOutcome||'復帰の記録なし'),
+    cell('教え子',`${m.studentsTaught}人`,`${m.mentoringYears}年間の指導`),
     cell('転職回数', `${m.transferCount}回`, `隊内転属 ${m.assignmentCount}回`),
     cell('学院平均評点', m.educationAverage === null ? '—' : `${m.educationAverage}点`, m.educationHigh === null ? '記録なし' : `最高 ${m.educationHigh}点`),
     cell('重要な出来事', `${m.majorEvents}件`),
@@ -1944,11 +2087,13 @@ function renderSummary(state) {
   const history = document.createElement('p');
   history.textContent = `人生の転機${metrics.majorEvents}件｜昇進${metrics.promotionCount}回｜転職${metrics.transferCount}回｜学院平均${metrics.educationAverage ?? '—'}点｜名声${metrics.fame}｜関わった人物${(p.contacts||[]).length}人`;
   const economy=document.createElement('p');economy.textContent=`最終年収${metrics.income??'—'}銀貨｜記録された生涯収入${metrics.lifetimeIncome??'—'}銀貨｜負傷後の進路選択${metrics.injuryChoiceCount}回`;
+  const mentoring = document.createElement('p');
+  mentoring.textContent = `前線復帰${metrics.comebacks}回｜教官歴${metrics.mentoringYears}年｜指導した若者${metrics.studentsTaught}人${metrics.recoveryOutcome?'｜最後の再起：'+metrics.recoveryOutcome:''}`;
   const past = document.createElement('p');
   past.textContent = '職歴：' + ((metrics.careerHistory?.length||0)
     ? metrics.careerHistory.map(entry=>`${entry.careerName}（${entry.startedAt}〜${entry.endedAt??p.age}歳）`).join(' → ')
     : p.occupation?.careerName || 'なし');
-  panel.append(heading, result, title, stat, numbers, history, economy, past, education, connections, subtitle);
+  panel.append(heading, result, title, stat, numbers, history, economy, mentoring, past, education, connections, subtitle);
 }
 
 return {renderSummary};

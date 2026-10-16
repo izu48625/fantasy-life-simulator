@@ -113,8 +113,7 @@ function applyArc(entry, state) {
     else if (key === 'bond' && friend) friend.bond = clamp(friend.bond + n, -10, 10);
     else if (key === 'health') p.health = clamp(p.health + n, 0, 100);
     else if (key === 'familyAccess') p.familyAccess = clamp(p.familyAccess + n, .5, 2);
-    else p[key] = clamp((p[key] || 0) + n, 0, 1000);
-  }
+    else p[key] = clamp((p[key] || 0) + n, 0, 1000);  }
   return entry.text.replaceAll('{name}', friend?.name ?? '');
 }
 const ALL_STORIES = [...STORIES, ...STORY_ARCS.map(entry => ({
@@ -128,7 +127,8 @@ export function progressStory(state) {
   const roll = nextRandom(state.rng); state.rng = roll.rng;
   const candidates = ALL_STORIES.filter(e => e.period === p.stage && e.can(p, state));
   if (!candidates.length || roll.value > (p.stage === 'academy' ? .73 : p.stage === 'career' ? .62 : .49)) return state;
-  const weighted = candidates.reduce((n, e) => n + e.weight, 0);  let cursor = roll.value / (p.stage === 'academy' ? .73 : p.stage === 'career' ? .62 : .49) * weighted;
+  const weighted = candidates.reduce((n, e) => n + e.weight, 0);
+  let cursor = roll.value / (p.stage === 'academy' ? .73 : p.stage === 'career' ? .62 : .49) * weighted;
   const entry = candidates.find(e => (cursor -= e.weight) < 0) ?? candidates.at(-1);
   const text = entry.apply(state);
   if (text) appendEvent(state, 'story', text, 'major', { storyId: entry.id });

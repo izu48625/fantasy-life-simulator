@@ -5,8 +5,7 @@ const KIND = {
   birth:['出生','✦'],training:['訓練・学業','✎'],admission:['入学試験','⌂'],graduation:['卒業','✧'],
   career:['配属','⚑'],battle:['戦闘','⚔'],promotion:['昇進','★'],
   transfer:['転職・転属','⇄'],recovery:['負傷後の決断','✚'],review:['昇進・採用審査','◇'],assignment:['新任務','♜'],
-  retirement:['引退','☼'],death:['終章','✝'],story:['人生の出来事','◆']
-};
+  retirement:['引退','☼'],death:['終章','✝'],story:['人生の出来事','◆']};
 const PHASE = {childhood:'幼少期',academy:'学院生活',awaiting_career:'進路選択',career:'戦闘キャリア',retired:'引退生活',deceased:'生涯の終章'};
 const strongKinds = new Set(['birth','admission','graduation','career','promotion','transfer','assignment','recovery','retirement','death']);
 function includeEntry(entry, filter) {

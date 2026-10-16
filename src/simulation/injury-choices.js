@@ -13,15 +13,16 @@ export function resolveInjuryPath(person,path){
  const p=structuredClone(person);const oldPay=annualSalary(p);
  const reason=p.injuryDecisionPending.kind;
  p.injuryDecisionPending=null;p.recoveryPath=path;
+ p.recoveryJourney={startedAt:p.age,kind:reason,path,reviewAt:p.age+2,offerAt:p.age+3,offerResolved:false,attemptCount:0,outcome:null};
  p.injuryChoices??=[];
  p.injuryChoices.push({age:p.age,choice:path,kind:reason});
  let log;
  if(path==='rehab'){
   p.health=clamp(p.health+18,0,100);
-  p.convalescentYears=Math.max(1,p.convalescentYears||0);
+  p.convalescentYears=Math.max(2,p.convalescentYears||0);
   p.finances??={lifetimeEarned:0,cash:0,payYears:0,lastPay:0};
   p.finances.cash-=18;
-  p.occupation.medicalAssignment=null;
+  p.occupation.medicalAssignment='rehab';
   log=`${reason}の治療と再訓練を選択。治療費18銀貨を支払い健康が回復。療養を終えてから前線復帰する。`;
  }else if(path==='rear'){
   p.occupation.medicalAssignment='rear';p.occupation.assignmentName='後方支援・新人教導';

@@ -1,7 +1,7 @@
 import { initRng } from './rng.js';
 
 export const SAVE_VERSION = 1;
-export const ENGINE_VERSION = '0.6.0-r1-risk-economy';
+export const ENGINE_VERSION = '0.7.0-r14-recovery-journeys';
 export const MODES = Object.freeze(['FULL_AUTO', 'SEMI_AUTO', 'MANUAL']);
 export const SPEEDS = Object.freeze([1, 2, 4, 8]);
 export const PHASES = Object.freeze(['ready', 'running', 'awaiting_choice', 'completed']);
