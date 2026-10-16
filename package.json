@@ -1,0 +1,13 @@
+{
+  "name": "fantasy-life-simulator",
+  "private": true,
+  "version": "0.3.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "build:standalone": "node tools/build-standalone.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

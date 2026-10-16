@@ -1,0 +1,45 @@
+/** R1: consequence-bearing one-time episodes. Conditions and effects are data, not UI code. */
+export const STORY_ARCS = Object.freeze([
+  // Childhood: 12 moments in addition to bespoke mentor/aptitude events.
+  { id:'village_guard', period:'childhood', minAge:6, weight:3, text:'夜警を手伝い、見張りの重要さを学んだ。警戒心と戦術理解が育った。', effect:{CMD:2,caution:2}},
+  { id:'family_arms', period:'childhood', minAge:7, familyIds:['royalty','noble','military'], weight:2, text:'家伝の武具を使わせてもらい、熟練者の構えを学んだ。', effect:{DEX:2,STR:1}},
+  { id:'lost_spellbook', period:'childhood', minAge:8, weight:2, text:'古い魔導書を読み解いた。魔力だけでなく理論の重要性を知った。', effect:{MAG:2,INT:2}},
+  { id:'rainy_harvest', period:'childhood', minAge:6, familyIds:['poor','common'], weight:3, text:'荒天で収穫が減り、訓練と家業を両立した。忍耐を覚えた反面、学習環境は少し悪化した。', effect:{VIT:2,familyAccess:-0.03}},
+  { id:'festival_melee', period:'childhood', minAge:9, weight:3, text:'村の競技会で初めて同年代と腕を競った。敗れても足運びを学んだ。', effect:{AGI:2,DEX:1}},
+  { id:'forest_trail', period:'childhood', minAge:8, weight:2, text:'森で道に迷い、目印と地形を読む技術を身につけた。', effect:{AGI:1,INT:2}},
+  { id:'mentor_letter', period:'childhood', minAge:11, requires:['mentor'], weight:2, text:'師匠の推薦状を受け取った。入学選抜で努力を示す材料が増えた。', effect:{recommendation:1}},
+  { id:'river_rescue', period:'childhood', minAge:10, weight:1, text:'川で流された子を救い、勇気と仲間との連携の大切さを知った。', effect:{CMD:2,teamwork:1}},
+  { id:'siblings_competition', period:'childhood', minAge:6, weight:2, text:'兄弟姉妹と技を競い、負けず嫌いな一面が鍛えられた。', effect:{ambition:3,STR:1}},
+  { id:'traveling_merchant', period:'childhood', minAge:9, weight:2, text:'旅商人から隣国の戦乱を聞き、学問と世情に興味を持った。', effect:{INT:2,CMD:1}},
+  { id:'scholarship_notice', period:'childhood', minAge:12, familyIds:['poor','common'], weight:2, text:'王立の奨学試験の募集を知った。家柄に頼らず進学する道が見えてきた。', effect:{scholarshipLead:1,INT:1}},
+  { id:'self_doubt', period:'childhood', minAge:8, weight:2, text:'訓練で伸び悩んだが、焦らず基礎を繰り返すことを選んだ。', effect:{VIT:1,caution:1}},
+  // School: rivalry, marks, recommendations, financial pressures.
+  { id:'dorm_friend', period:'academy', weight:3, text:'寮で夜遅くまで同期と課題を解いた。連携の基礎が身についた。', effect:{INT:1,teamwork:2,education:2}},
+  { id:'exam_misstep', period:'academy', weight:2, text:'中間試験で判断を誤った。失点を記録し、苦手を補う訓練を始めた。', effect:{education:-2,INT:1}},
+  { id:'field_excursion', period:'academy', weight:3, text:'野外演習で部隊を誘導した。迷いながらも指揮の難しさを学んだ。', effect:{CMD:2,education:2}},
+  { id:'healing_lecture', period:'academy', weight:2, text:'救護講義で応急魔法と負傷者搬送を学んだ。', effect:{MAG:1,VIT:1,teamwork:1}},
+  { id:'mentor_visit', period:'academy', requires:['mentor'], needsContactRole:'師匠', weight:2, text:'師匠{name}が学院を訪れ、以前の訓練が今の基礎になっていると励ました。', effect:{education:2,ambition:2}},
+  { id:'training_tournament', period:'academy', minEduYears:2, weight:2, text:'学院対抗競技で強い先輩に挑んだ。実戦に近い技術を吸収した。', effect:{DEX:2,education:2}},
+  { id:'school_oath', period:'academy', minEduYears:2, weight:2, text:'班員全員で任務の誓いを立てた。実戦で助け合う約束は心に残った。', effect:{teamwork:2,CMD:1}},
+  { id:'teacher_review', period:'academy', minEduYears:3, weight:3, text:'教官から訓練日誌を評価された。改善点が明確になった。', effect:{education:3,INT:1}},
+  { id:'scholarship_renewal', period:'academy', requires:['scholarship_notice'], weight:2, text:'奨学支援を継続できた。学費への不安が少し和らぎ、実技に専念できる。', effect:{education:1,ambition:2}},
+  { id:'rival_reconciliation', period:'academy', requires:['rival'], needsContactRole:'好敵手', weight:2, text:'模擬戦後、好敵手{name}と戦術について率直に話し合った。競争が互いの敬意へ変わった。', effect:{teamwork:1,education:1,bond:1}},
+  // Career: real paths requiring existing history, ranks and occupations.
+  { id:'border_scout', period:'career', weight:3, text:'国境偵察を任され、地図と足跡から敵の動きを推測した。', effect:{INT:1,CMD:1,merit:1}},
+  { id:'academy_recommendation', period:'career', requires:['teacher_review'], weight:2, text:'学院時代の教官による評価が配属先に届き、難しい任務を任された。', effect:{merit:2,fame:1}},
+  { id:'vacant_position', period:'career', minBattles:4, weight:2, text:'部隊で欠員が生じ、小隊の取りまとめ役を一時的に引き受けた。', effect:{CMD:2,merit:2}},
+  { id:'supply_shortage', period:'career', weight:3, text:'補給が遅れ、装備を修理しながら任務を続けた。物資の大切さを知った。', effect:{health:-5,DEX:1}},
+  { id:'village_defense', period:'career', minBattles:2, weight:2, text:'集落を守る任務で住民の避難を成功させた。名声よりも命を守った記憶が残った。', effect:{fame:2,teamwork:1,merit:1}},
+  { id:'loss_of_confidence', period:'career', minBattles:3, weight:2, text:'連敗のあと作戦日誌を読み直した。勝つことより負けから学ぶことを選んだ。', effect:{INT:2,caution:2}},
+  { id:'guild_contract', period:'career', careerIds:['adventurer','mercenary'], weight:3, text:'ギルドから難度の高い依頼を受け、報酬より準備を重視した。', effect:{merit:2,DEX:1}},
+  { id:'monster_tracking', period:'career', careerIds:['adventurer','special'], weight:2, text:'魔物の足跡を追い、獲物の行動を予測する技術を磨いた。', effect:{AGI:2,INT:1}},
+  { id:'spell_unit_drill', period:'career', careerIds:['mage'], weight:3, text:'魔導隊の連携詠唱を成功させ、魔法戦闘での役割を確立した。', effect:{MAG:2,teamwork:2}},
+  { id:'knight_watch', period:'career', careerIds:['knight'], weight:3, text:'騎士として市民の警護を務め、技だけでなく責任の重さを学んだ。', effect:{CMD:1,merit:2}},
+  { id:'unit_encouragement', period:'career', needsContactRole:'戦友', weight:3, text:'疲弊した戦友{name}を励まし、共に装備の手入れをした。', effect:{teamwork:2,bond:2}},
+  { id:'comrade_wounded', period:'career', minBattles:5, needsContactRole:'戦友', weight:2, text:'戦友{name}が任務で負傷した。回復まで仕事を分担し、仲間のありがたさを実感した。', effect:{teamwork:2,health:-4,bond:1}},
+  { id:'staff_strategy', period:'career', minRank:1, weight:2, text:'幕僚に戦場の見解を求められ、自分の判断を言葉にして伝えた。', effect:{CMD:2,INT:1,merit:2}},
+  { id:'failed_command', period:'career', minRank:1, weight:2, text:'訓練中の指揮に失敗し、部下に謝って策を練り直した。', effect:{merit:-1,CMD:1,teamwork:1}},
+  { id:'promotion_denied', period:'career', minBattles:9, minRank:0, weight:2, text:'昇進候補に挙がったものの空席がなく、現階級に留まった。次の任務へ備える。', effect:{ambition:3,INT:1}},
+  { id:'veteran_correspondence', period:'career', requires:['mentor_reunion'], weight:1, text:'旧師から手紙が届き、戦場に立つ自分の姿を改めて省みた。', effect:{CMD:1,caution:1}}
+]);
+

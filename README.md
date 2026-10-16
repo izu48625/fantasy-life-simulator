@@ -1,10 +1,12 @@
 # FANTASY LIFE SIMULATOR
 
-ファンタジー戦闘人生シミュレーションの独立開発リポジトリです。
+ファンタジー戦闘人生シミュレーション（R1開発版）。
 
-- R0：機構検証用試作版。正式リリースではありません。
-- HTML/CSS/JavaScript、無料、ログイン不要、ブラウザ内保存。
-- `index.html` は単独で動くビルドです。
-- GitHub Pages公開は `Settings > Pages` から `Deploy from a branch` / `main` / `/(root)` を選択してください。
+- `index.html`: スマホ/PC用単体HTML（このブランチのプレイ用ビルド）。
+- `src/`: 役割分担のためのES Modules。
+- `dev/index.template.html`: 開発用ページ。
+- `npm test`: Nodeスモークテスト。
+- `npm run build:standalone`: 単一HTMLを`dist/index.html`に生成。
+- `docs/R1_HANDOFF.md`: 役割と検証状況。
 
-STATS MAKER / FANTASY ARENA とは別プロジェクトです。
+GitHub Pagesの公開中の`main`には変更を加えていません。外部APIや課金は不要です。

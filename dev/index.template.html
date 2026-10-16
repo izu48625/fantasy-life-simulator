@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f2eadc">
+  <meta name="description" content="ファンタジー世界に生まれた戦士の一生を観察する、ブラウザ完結の戦闘人生シミュレーション。R0試作版。">
+  <title>Fantasy Life Simulator — R1 Gameplay Preview</title>
+  
+<link rel="stylesheet" href="./src/styles/base.css">
+<link rel="stylesheet" href="./src/styles/desktop.css">
+<link rel="stylesheet" href="./src/styles/mobile.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-mark" aria-hidden="true">✦</div>
+    <div><div class="brand-title">FANTASY LIFE SIMULATOR</div><div class="brand-sub">戦士の一生、その運命を見届ける。</div></div>
+    <span class="prototype-tag">R1 開発プレビュー</span>
+  </header>
+  <main>
+    <section id="welcome" class="welcome card" aria-labelledby="welcome-title">
+      <p class="eyebrow">CHRONICLE OF A WARRIOR</p>
+      <h1 id="welcome-title">あなたは、どんな戦士として生きるのか。</h1>
+      <p>種族、家柄、才能は選べない。訓練と選択が、その先の道をつくる。</p>
+      <div class="start-form">
+        <label for="seed-input">世界のシード <span class="muted">（空欄なら自動生成）</span></label>
+        <input id="seed-input" maxlength="100" type="text" placeholder="例：hero-12345" autocomplete="off">
+        <label for="initial-mode">人生の進め方</label>
+        <select id="initial-mode"><option value="SEMI_AUTO">SEMI AUTO｜重要な場面だけ選択</option><option value="FULL_AUTO">FULL AUTO｜人生を観察</option><option value="MANUAL">MANUAL｜毎年の方針も選択</option></select>
+        <button id="start-button" class="primary" type="button">新しい人生を始める</button>
+        <button id="resume-button" type="button">前回の人生を続ける</button>
+        <button id="archive-button" class="subtle" type="button">過去の人生を見る</button>
+      </div>
+      <p class="footnote">ログイン不要・無料・端末内保存。R1は育成・進学・戦友・戦闘がつながる開発プレビューです。正式版ではありません。</p>
+      <noscript><p class="script-warning">JavaScriptが無効なため、ゲームを開始できません。JavaScriptに対応するブラウザで開いてください。</p></noscript>
+      <p class="preview-help">※ ChatGPTなどのファイルプレビュー内では、ボタンが動作しない場合があります。Web上に配置してSafariで開くと操作できます。</p>
+      <p id="storage-warning" class="script-warning" hidden>この閲覧環境では端末への永続保存ができません。JSON書き出しを利用してください。</p>
+    </section>
+    <section id="archive-panel" class="card archive" hidden aria-label="人生アーカイブ">
+      <div class="section-heading"><h2>過去の人生</h2><button id="close-archive" type="button">閉じる</button></div>
+      <div id="archive-list"></div>
+    </section>
+    <section id="game" class="game-layout" hidden aria-label="人生シミュレーション">
+      <aside class="card profile-panel" aria-label="人物プロフィール">
+        <p class="eyebrow">LIFE RECORD</p><h1 id="hero-name"></h1>
+        <p id="hero-summary" class="muted"></p><p id="hero-origin"></p>
+        <div class="status-pill" id="hero-career"></div>
+        <label class="meter-label" for="health-bar">健康 <span id="health-value"></span></label>
+        <progress id="health-bar" max="100" value="100"></progress>
+        <h2>能力</h2><div id="hero-stats" class="stats"></div>
+      </aside>
+      <section class="card timeline-panel" aria-label="人生年表">
+        <div class="section-heading"><div><p class="eyebrow">PERSONAL CHRONICLE</p><h2>人生年表</h2><p id="brief-character" class="muted compact-identity"></p></div><span id="running-status" class="status-pill" aria-live="polite">一時停止</span></div>
+        <section id="decision-panel" class="decision-panel" hidden aria-label="重要な選択"></section>
+        <div id="timeline" class="timeline" aria-live="off"></div>
+        <section id="summary-panel" class="summary-panel" hidden aria-label="一生の記録"></section>
+      </section>
+      <aside class="card world-panel" aria-label="世界・戦績">
+        <p class="eyebrow">CURRENT WORLD</p><h2>世界と戦績</h2>
+        <p id="world-status"></p><p id="combat-status"></p>
+        <p class="muted">世界の情勢は毎年変化します。現在は6国家の簡易モデルを使用しています。</p>
+        <hr>
+        <button id="save-button" type="button">この人生を保存</button>
+        <button id="export-button" type="button">JSONを書き出す</button>
+        <label class="file-label" for="import-file">JSONを読み込む</label>
+        <input type="file" id="import-file" accept="application/json,.json">
+        <button id="home-button" class="subtle" type="button">開始画面へ戻る</button>
+      </aside>
+    </section>
+  </main>
+  <nav id="controls" class="bottom-controls" aria-label="人生の進行操作" hidden>
+    <div class="controls-inner">
+      <button id="toggle-play" class="primary" type="button">再生</button>
+      <button id="one-year" type="button">+1年</button>
+      <button id="next-event" type="button">次の出来事</button>
+      <button id="next-choice" type="button">次の選択</button>
+      <label class="control-label" for="speed-select">速度<select id="speed-select"><option value="1">×1</option><option value="2">×2</option><option value="4">×4</option><option value="8">×8</option></select></label>
+      <label class="control-label" for="mode-select">操作<select id="mode-select"><option value="FULL_AUTO">FULL AUTO</option><option value="SEMI_AUTO">SEMI AUTO</option><option value="MANUAL">MANUAL</option></select></label>
+    </div>
+  </nav>
+  <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+<script type="module" src="./src/app.js"></script>
+</body>
+</html>
