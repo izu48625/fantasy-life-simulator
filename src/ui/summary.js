@@ -1,5 +1,7 @@
 import { CAREERS } from '../data/careers.js';
 import { readLifeMetrics } from '../analysis/life-stats.js';
+
+
 export function renderSummary(state) {
   const panel = document.getElementById('summary-panel');
   panel.replaceChildren(); panel.hidden = state.phase !== 'completed';
@@ -25,6 +27,11 @@ export function renderSummary(state) {
   const numbers = document.createElement('p');
   numbers.textContent = `最終OVR ${metrics.ovr}｜最高OVR ${metrics.peakOvr ?? '—'}｜勝率 ${metrics.winRate === null ? '—' : metrics.winRate+'%'}｜最大${metrics.bestStreak}連勝｜戦時任務${metrics.warBattles}戦｜${metrics.missionVariety}種の任務`;
   const history = document.createElement('p');
-  history.textContent = `人生の転機${metrics.majorEvents}件｜昇進${metrics.promotionCount}回｜学院平均${metrics.educationAverage ?? '—'}点｜名声${metrics.fame}｜関わった人物${(p.contacts||[]).length}人`;
-  panel.append(heading, result, title, stat, numbers, history, education, connections, subtitle);
+  history.textContent = `人生の転機${metrics.majorEvents}件｜昇進${metrics.promotionCount}回｜転職${metrics.transferCount}回｜学院平均${metrics.educationAverage ?? '—'}点｜名声${metrics.fame}｜関わった人物${(p.contacts||[]).length}人`;
+  const past = document.createElement('p');
+  past.textContent = '職歴：' + ((metrics.careerHistory?.length||0)
+    ? metrics.careerHistory.map(entry=>`${entry.careerName}（${entry.startedAt}〜${entry.endedAt??p.age}歳）`).join(' → ')
+    : p.occupation?.careerName || 'なし');
+  panel.append(heading, result, title, stat, numbers, history, past, education, connections, subtitle);
 }
+

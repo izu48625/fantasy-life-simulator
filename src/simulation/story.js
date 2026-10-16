@@ -95,6 +95,8 @@ function arcEligible(entry, state) {
     (!entry.minAge || p.age >= entry.minAge) &&
     (!entry.minEduYears || years >= entry.minEduYears) &&
     (!entry.minBattles || p.battles >= entry.minBattles) &&
+    (!entry.minLosses || p.battles-p.wins >= entry.minLosses) &&
+    (!entry.minMerit || p.merit >= entry.minMerit) &&
     (entry.minRank === undefined || p.rankIndex >= entry.minRank) &&
     (!entry.familyIds || entry.familyIds.includes(p.familyId)) &&
     (!entry.careerIds || entry.careerIds.includes(p.occupation?.careerId)) &&

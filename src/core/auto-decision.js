@@ -3,8 +3,10 @@ import { INSTITUTIONS } from '../data/institutions.js';
 import { CAREERS } from '../data/careers.js';
 import { chooseAcademy } from '../simulation/academy.js';
 import { preferredCareer } from '../simulation/career.js';
+import { eligibleForTransfer, transferOptions } from '../simulation/career-paths.js';
 import { RACES } from '../data/races.js';
 import { STORY_CHOICE_SETS } from '../simulation/story.js';
+
 
 
 
@@ -33,6 +35,12 @@ export function determineDecision(state) {
   } else if (p.stage === 'awaiting_career') {
     type = 'career'; title = '卒業後の進路を希望する';
     options = CAREERS.map(c => ({ id: c.id, label: c.name })); important = true;
+  } else if (eligibleForTransfer(p,targetAge)) {
+    const candidates=transferOptions(p);
+    if(candidates.length){
+      type='transfer';title='今後の所属と転職を考える';
+      options=[{id:'stay',label:`${p.occupation.careerName}で勤務を続ける`},...candidates];important=true;
+    }
   } else if (p.stage === 'career' && targetAge % 5 === 0 && state.world.wars[p.nationId]) {
     type = 'battle'; title = '危険な出撃への方針'; options = TACTICS; important = true;
   } else if (state.mode === 'MANUAL' && targetAge >= 5 && p.stage !== 'retired' && p.stage !== 'deceased') {
@@ -46,6 +54,12 @@ export function autoChoose(state, decision) {
   if (decision.type === 'pathway') return p.attributes.MAG > p.attributes.STR + 4 ? 'magic' : p.ambition > 65 ? 'sword' : 'tactics';
   if (decision.type === 'fellowship') return p.ambition > 66 ? 'competition' : p.caution > 65 ? 'discipline' : 'cooperation';
   if (decision.type === 'conviction') return p.ambition > 70 ? 'honor' : p.caution > 60 ? 'safety' : 'comrades';
+  if (decision.type === 'transfer') {
+    const options=decision.options.filter(x=>x.id!=='stay');
+    if (p.ambition>68 && p.health>65 && p.merit>=10 && (p.occupation.transfers||0)<2)
+      return options[0]?.id||'stay';
+    return 'stay';
+  }
   if (decision.type === 'academy') return chooseAcademy(p);
   if (decision.type === 'career') return preferredCareer(p);
   if (decision.type === 'battle') return p.caution > 68 ? 'cautious' : p.ambition > 72 ? 'bold' : 'balanced';

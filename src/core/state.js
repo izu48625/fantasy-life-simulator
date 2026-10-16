@@ -1,6 +1,7 @@
 import { initRng } from './rng.js';
+
 export const SAVE_VERSION = 1;
-export const ENGINE_VERSION = '0.4.0-r1-chronicle';
+export const ENGINE_VERSION = '0.5.0-r1-careers';
 export const MODES = Object.freeze(['FULL_AUTO', 'SEMI_AUTO', 'MANUAL']);
 export const SPEEDS = Object.freeze([1, 2, 4, 8]);
 export const PHASES = Object.freeze(['ready', 'running', 'awaiting_choice', 'completed']);
@@ -56,3 +57,4 @@ export function assertState(state) {
 }
 
 export function cloneState(state) { return structuredClone(state); }
+

@@ -1,6 +1,7 @@
 import { randomInt, nextRandom } from '../core/rng.js';
 import { CAREERS } from '../data/careers.js';
 
+
 const clamp = (x, min, max) => Math.max(min, Math.min(max, x));
 const MISSIONS = {
  knight: ['王都の街道警護','騎士団の救援行軍'],army:['国境の歩哨任務','野戦部隊の巡回'],

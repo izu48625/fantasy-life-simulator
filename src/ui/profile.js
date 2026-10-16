@@ -1,6 +1,9 @@
 import { CAREERS } from '../data/careers.js';
 import { STATS } from '../data/races.js';
 import { readLifeMetrics } from '../analysis/life-stats.js';
+
+
+
 const $ = id => document.getElementById(id);
 export function renderProfile(state) {
   const p = state.person;
@@ -27,5 +30,8 @@ export function renderProfile(state) {
   $('combat-status').textContent = `${p.battles}戦 / ${p.wins}勝（勝率${metrics.winRate ?? '—'}%）/ 戦功${p.merit}` +
     (edu ? `｜学歴：${edu.institutionName}${edu.ranking ? '・'+edu.ranking : edu.grades?.length?'・'+edu.grades.length+'年次':''}${edu.scholarship?'（奨学）':''}` : '') +
     (p.convalescentYears ? `｜療養中（残${p.convalescentYears}年）` : '') +
-    (friends ? `｜縁：${friends}` : '');
+    (friends ? `｜縁：${friends}` : '') +
+    (p.occupation?.assignmentName ? `｜任務：${p.occupation.assignmentName}` : '') +
+    (metrics.transferCount ? `｜転職${metrics.transferCount}回` : '');
 }
+

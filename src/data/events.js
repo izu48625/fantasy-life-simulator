@@ -7,6 +7,9 @@ export const EVENT_CATALOG = Object.freeze([
   { id: 'career', stage: 'career', importance: 'major' },
   { id: 'battle', stage: 'career', importance: 'major' },
   { id: 'promotion', stage: 'career', importance: 'major' },
+  { id: 'transfer', stage: 'career', importance: 'major' },
+  { id: 'review', stage: 'career', importance: 'minor' },
+  { id: 'assignment', stage: 'career', importance: 'major' },
   { id: 'retirement', stage: 'retired', importance: 'major' },
   { id: 'death', stage: 'deceased', importance: 'major' },
   { id: 'story', stage: 'any', importance: 'major' }

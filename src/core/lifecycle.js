@@ -3,6 +3,7 @@ import { rollBirth } from '../simulation/birth.js';
 import { trainYear } from '../simulation/training.js';
 import { attemptAdmission, chooseAcademy, graduate, evaluateAcademyYear } from '../simulation/academy.js';
 import { attemptCareer, preferredCareer, maybePromote } from '../simulation/career.js';
+import { attemptTransfer, maybeReassign } from '../simulation/career-paths.js';
 import { resolveBattle } from '../simulation/battle.js';
 import { progressWorld } from '../simulation/world.js';
 import { recover } from '../simulation/injury.js';
@@ -13,6 +14,21 @@ import { nextRandom } from './rng.js';
 import { appendEvent } from './event-engine.js';
 import { recordAnnualSnapshot } from './chronicle.js';
 import { determineDecision, autoChoose } from './auto-decision.js';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export function startLife(seed, { mode = 'SEMI_AUTO', speed = 1 } = {}) {
   if (!MODES.includes(mode)) throw new Error('Invalid mode');
@@ -83,6 +99,11 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
       appendEvent(s, 'career', next.log, 'major');
     }
   }
+  if (s.person.stage === 'career' && decision?.type === 'transfer') {
+    next=attemptTransfer(s.person,s.rng,selectedId);
+    s.person=next.person;s.rng=next.rng;
+    appendEvent(s,next.kind,next.log,next.importance);
+  }
   if (s.person.stage === 'career') {
     const atWar = !!s.world.wars[s.person.nationId];
     const missionRoll = nextRandom(s.rng); s.rng = missionRoll.rng;
@@ -99,6 +120,10 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
     next = maybePromote(s.person, s.rng);
     s.person = next.person; s.rng = next.rng;
     if (next.log) appendEvent(s, 'promotion', next.log, 'major');
+    if (next.reviewLog) appendEvent(s, 'review', next.reviewLog);
+    next=maybeReassign(s.person,s.rng);
+    s.person=next.person;s.rng=next.rng;
+    if(next.log)appendEvent(s,'assignment',next.log,'major');
   }
   if (s.person.stage === 'career' && s.person.age >= race.retireAge) {
     s.person.stage = 'retired'; s.person.retired = true;
@@ -174,3 +199,4 @@ export function runToCompletion(initial, maxSteps = 1000) {
   if (state.phase !== 'completed') throw new Error('Simulation failed to finish');
   return state;
 }
+
