@@ -10,7 +10,9 @@ export function renderDecision(state, choose) {
   const options = document.createElement('div'); options.className = 'decision-options';
   for (const option of decision.options) {
     const button = document.createElement('button'); button.type = 'button';
-    button.className = 'choice-button'; button.textContent = option.label;
+    button.className = 'choice-button';
+    const strong=document.createElement('strong');strong.textContent=option.label;button.append(strong);
+    if(option.note){const small=document.createElement('small');small.className='decision-note';small.textContent=option.note;button.append(small);}
     button.addEventListener('click', () => choose(decision.id, option.id), { once: true });
     options.append(button);
   }

@@ -4,6 +4,8 @@ import { trainYear } from '../simulation/training.js';
 import { attemptAdmission, chooseAcademy, graduate, evaluateAcademyYear } from '../simulation/academy.js';
 import { attemptCareer, preferredCareer, maybePromote } from '../simulation/career.js';
 import { attemptTransfer, maybeReassign } from '../simulation/career-paths.js';
+import { resolveInjuryPath } from '../simulation/injury-choices.js';
+import { payYear } from '../simulation/economy.js';
 import { resolveBattle } from '../simulation/battle.js';
 import { progressWorld } from '../simulation/world.js';
 import { recover } from '../simulation/injury.js';
@@ -14,6 +16,8 @@ import { nextRandom } from './rng.js';
 import { appendEvent } from './event-engine.js';
 import { recordAnnualSnapshot } from './chronicle.js';
 import { determineDecision, autoChoose } from './auto-decision.js';
+
+
 
 
 
@@ -99,6 +103,10 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
       appendEvent(s, 'career', next.log, 'major');
     }
   }
+  if (s.person.stage === 'career' && decision?.type === 'injury_path') {
+    next=resolveInjuryPath(s.person,selectedId);s.person=next.person;
+    appendEvent(s,next.kind,next.log,'major');
+  }
   if (s.person.stage === 'career' && decision?.type === 'transfer') {
     next=attemptTransfer(s.person,s.rng,selectedId);
     s.person=next.person;s.rng=next.rng;
@@ -107,7 +115,8 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
   if (s.person.stage === 'career') {
     const atWar = !!s.world.wars[s.person.nationId];
     const missionRoll = nextRandom(s.rng); s.rng = missionRoll.rng;
-    const doBattle = (atWar || missionRoll.value < .65) && s.person.health >= 35 && !s.person.convalescentYears;
+    const rear=s.person.occupation?.medicalAssignment==='rear';
+    const doBattle = (atWar ? (!rear || missionRoll.value < .30) : missionRoll.value < (rear?.17:.65)) && s.person.health >= 35 && !s.person.convalescentYears;
     if (!doBattle && s.person.convalescentYears > 0 && s.person.age % 2 === 0)
       appendEvent(s,'training','負傷による療養と再訓練のため、前線任務を離れた。');
     if (doBattle) {
@@ -115,7 +124,7 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
       next = resolveBattle(s.person, s.rng, { war: atWar, tactic });
       s.person = next.person; s.rng = next.rng;
       appendEvent(s, 'battle', next.log, 'major', next.result);
-      if (next.result.dead) return complete(s, '戦死');
+      if (next.result.dead) {s.person=payYear(s.person,atWar);return complete(s, '戦死');}
     }
     next = maybePromote(s.person, s.rng);
     s.person = next.person; s.rng = next.rng;
@@ -136,6 +145,7 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
     const risk = Math.min(.58, .001 + onset * onset * .00045);
     if (death.value < risk || s.person.age >= race.maxAge) return complete(s, '老衰・病死');
   }
+  if(s.person.occupation)s.person=payYear(s.person,!!s.world.wars[s.person.nationId]);
   progressStory(s);
   if (s.person.age % 5 === 0 && s.person.stage !== 'deceased') {
     appendEvent(s, 'training', `${s.person.age}歳。${s.person.stage === 'retired' ? '穏やかな日々を過ごす。' : '訓練と経験を積み重ねた。'}`);

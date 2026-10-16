@@ -29,6 +29,8 @@ export function renderAnalytics(state) {
     cell('任務の種類', `${m.missionVariety}種`),
     cell('重傷・後遺症', `${m.seriousInjuries}件`, `全負傷 ${m.injuryCount}件`),
     cell('階級昇進', `${m.promotionCount}回`),
+    cell('年収',m.income===null?'—':`${m.income}銀貨`,m.lifetimeIncome===null?'過去データなし':`累計${m.lifetimeIncome}銀貨`),
+    cell('負傷後の選択',`${m.injuryChoiceCount}回`,m.dangerousDuty==='rear'?'後方配置':m.dangerousDuty==='front'?'前線復帰':'通常勤務'),
     cell('転職回数', `${m.transferCount}回`, `隊内転属 ${m.assignmentCount}回`),
     cell('学院平均評点', m.educationAverage === null ? '—' : `${m.educationAverage}点`, m.educationHigh === null ? '記録なし' : `最高 ${m.educationHigh}点`),
     cell('重要な出来事', `${m.majorEvents}件`),

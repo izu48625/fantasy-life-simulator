@@ -1,5 +1,7 @@
 import { randomInt, nextRandom } from '../core/rng.js';
 import { CAREERS } from '../data/careers.js';
+import { riskMultiplier } from './economy.js';
+
 
 
 const clamp = (x, min, max) => Math.max(min, Math.min(max, x));
@@ -28,30 +30,31 @@ export function resolveBattle(person, rng, { war = false, tactic = 'balanced' } 
   ({ value: injuryRoll, rng } = nextRandom(rng));
   p.battles += 1;
   if (win) { p.wins += 1; p.merit += war ? 3 : 1; p.fame += war ? 2 : 1; }
-  const injuryRisk = clamp((war ? .19 : .10) - (p.conviction === 'safety' ? .035 : 0) + (tactic === 'bold' ? .11 : tactic === 'cautious' ? -.055 : 0) +
-      (win ? -.025 : .055), .01, .5);
+  const jobRisk=riskMultiplier(p);
+  const injuryRisk = clamp(((war ? .29 : .17) - (p.conviction === 'safety' ? .035 : 0) + (tactic === 'bold' ? .11 : tactic === 'cautious' ? -.055 : 0) +
+      (win ? -.030 : .064))*jobRisk, .018, .65);
   let injury = null;
   if (injuryRoll < injuryRisk) {
     let severity;
     ({ value: severity, rng } = nextRandom(rng));
-    const serious=severity < (war ? .24 : .13);
-    const lasting=serious && severity < (war ? .055 : .025);
-    injury=lasting?'後遺症':serious?'重傷':'軽傷';
-    p.health=Math.max(0,p.health-(lasting?40:serious?33:12));
-    if(serious)p.convalescentYears=Math.max(p.convalescentYears||0,lasting?3:2);
+    const serious=severity < (war ? .33 : .21);
+    const lasting=serious && severity < (war ? .070 : .039);
+    injury=lasting?'後遺症':serious?'重傷':severity < (war ? .50 : .38)?'中等度負傷':'軽傷';
+    p.health=Math.max(0,p.health-(lasting?42:serious?32:injury==='中等度負傷'?21:10));
+    if(injury!=='軽傷'){p.convalescentYears=Math.max(p.convalescentYears||0,lasting?3:serious?2:1);p.injuryDecisionPending={age:p.age,kind:injury};}
     if(lasting){p.attributes.VIT=Math.max(0,p.attributes.VIT-3);p.attributes.AGI=Math.max(0,p.attributes.AGI-4);}
     p.injuries.push({age:p.age,kind:injury,mission});
   }
   // Independent fatality roll, even the strongest is not invulnerable.
   let fatalRoll;
   ({ value: fatalRoll, rng } = nextRandom(rng));
-  const fatalityRisk = clamp((war ? .012 : .0025) * (win ? .45 : 2.4) *
+  const fatalityRisk = clamp((war ? .019 : .0045) * (win ? .45 : 2.4) *
      (tactic === 'bold' ? 1.6 : tactic === 'cautious' ? .48 : 1) *
-     (injury === '重傷' ? 1.8 : 1), .0001, .1);
+     (injury === '重傷'||injury === '後遺症' ? 1.75 : 1)*jobRisk, .0001, .13);
   const dead = fatalRoll < fatalityRisk;
   const result = {
     age: p.age, win, opponent, winChance: Math.round(winChance * 1000) / 1000,
-    tactic, war, mission, injury, dead, fatalityRisk: Math.round(fatalityRisk * 1e6) / 1e6
+    tactic, war, mission, injury, injuryRisk:Math.round(injuryRisk*1e4)/1e4, dead, fatalityRisk: Math.round(fatalityRisk * 1e6) / 1e6
   };
   return { person: p, rng, result,
     log: `${mission}：${win ? '目標を達成' : '目標達成ならず'}（勝算${Math.round(winChance*100)}%）。` +

@@ -1,6 +1,7 @@
 import { combatRating } from '../simulation/battle.js';
 import { CAREERS } from '../data/careers.js';
 
+
 const round = value => Number.isFinite(value) ? Math.round(value) : 0;
 export function readLifeMetrics(state) {
   const p = state.person;
@@ -31,6 +32,9 @@ export function readLifeMetrics(state) {
     warVictories: combats.filter(e => e.detail.war && e.detail.win).length,
     majorEvents: state.timeline.filter(e => e.importance === 'major').length,
     careerYears: p.occupation ? Math.max(0, p.age - (p.occupation.history?.[0]?.startedAt ?? state.timeline.find(e=>e.kind==='career')?.age ?? p.occupation.joinedAt)) : 0,
+    income:p.finances?.lastPay??null, lifetimeIncome:p.finances?.lifetimeEarned??null,
+    cash:p.finances?.cash??null, dangerousDuty:p.occupation?.medicalAssignment??null,
+    injuryChoiceCount:p.injuryChoices?.length??0,
     merit: p.merit, fame: p.fame, rank: career?.ranks[p.rankIndex] ?? '所属なし',
     rankIndex: p.rankIndex, promotionCount: state.timeline.filter(e => e.kind === 'promotion').length,
     transferCount: state.timeline.filter(e => e.kind === 'transfer').length,

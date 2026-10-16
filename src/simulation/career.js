@@ -1,5 +1,7 @@
 import { CAREERS } from '../data/careers.js';
 import { nextRandom, weightedPick } from '../core/rng.js';
+import { annualSalary, riskLabel, riskMultiplier } from './economy.js';
+
 
 
 const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
@@ -15,8 +17,7 @@ export function preferredCareer(p) {
   if (p.caution<48 || p.ambition>74) return 'mercenary';
   return 'army';
 }
-export function attemptCareer(person,rng,careerId) {
-  const requested=CAREERS.find(c=>c.id===careerId)??CAREERS[1];
+export function attemptCareer(person,rng,careerId) {  const requested=CAREERS.find(c=>c.id===careerId)??CAREERS[1];
   const ability=requested.attr.reduce((sum,key)=>sum+person.attributes[key],0)/requested.attr.length;
   const school=person.education?.institutionId;
   const fit=requested.id==='mage'?(school==='magic' ? .13 : 0):
@@ -38,8 +39,9 @@ export function attemptCareer(person,rng,careerId) {
     admissionChance:Number(probability.toFixed(3)),transfers:0,
     history:[{careerId:career.id,careerName:career.name,startedAt:p.age,endedAt:null,rankIndex:0}]};
   p.stage='career';p.rankIndex=0;
-  return {person:p,rng,log: accepted ? `${career.name}に採用された（選考見込${Math.round(probability*100)}%）。${career.ranks[0]}として任務を始めた。` :
-    `${requested.name}への志願は不採用となった（選考見込${Math.round(probability*100)}%）。新たに${career.name}で道を歩み始めた。`};
+  const pay=annualSalary(p);const risk=riskLabel(riskMultiplier(p));
+  return {person:p,rng,log: accepted ? `${career.name}に採用された（選考見込${Math.round(probability*100)}%）。${career.ranks[0]}として任務を始めた。年収${pay}銀貨、危険度${risk}。` :
+    `${requested.name}への志願は不採用となった（選考見込${Math.round(probability*100)}%）。新たに${career.name}で道を歩み始めた。年収${pay}銀貨、危険度${risk}。`};
 }
 export function maybePromote(person,rng){
  if(!person.occupation||person.rankIndex>=3)return{person,rng,log:null};
@@ -53,9 +55,10 @@ export function maybePromote(person,rng){
    (person.education?.honors?1.13:1);
  const res=nextRandom(rng);rng=res.rng;
  if(res.value>=rate)return{person,rng,log:null,reviewLog:`${career.ranks[person.rankIndex+1]}の昇進審査を受けたが、今回は選外となった。戦功${person.merit}を積んで次の機会を待つ。`};
+ const oldPay=annualSalary(person);
  const p=structuredClone(person);p.rankIndex++;
  p.achievements.push(`${p.age}歳で${career.ranks[p.rankIndex]}に昇進`);
  if(p.occupation.history?.length) p.occupation.history.at(-1).rankIndex=p.rankIndex;
- return{person:p,rng,log:`戦功${p.merit}と勤務実績が認められ、空席を得て${career.ranks[p.rankIndex]}へ昇進した。`};
+ return{person:p,rng,log:`戦功${p.merit}と勤務実績が認められ、空席を得て${career.ranks[p.rankIndex]}へ昇進した。年収は${oldPay}→${annualSalary(p)}銀貨に上昇。`};
 }
 
