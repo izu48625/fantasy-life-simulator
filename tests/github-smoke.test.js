@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {startLife,runToCompletion,stepLife,resolveChoice} from '../src/core/lifecycle.js';
 import {serializeLife,deserializeLife} from '../src/core/save-manager.js';
 import {STORY_ARCS} from '../src/data/story-arcs.js';
-test('50 conditional narrative templates available',()=>assert.equal(STORY_ARCS.length+12,50));
+test('50 conditional narrative templates available',()=>assert.ok(STORY_ARCS.length+12>=66));
 test('seeded full life is reproducible',()=>{
  const a=runToCompletion(startLife('ci-smoke',{mode:'FULL_AUTO'}));
  const b=runToCompletion(startLife('ci-smoke',{mode:'FULL_AUTO'}));
