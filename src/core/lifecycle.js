@@ -11,20 +11,8 @@ import { progressStory, applyStoryChoice } from '../simulation/story.js';
 import { RACES } from '../data/races.js';
 import { nextRandom } from './rng.js';
 import { appendEvent } from './event-engine.js';
+import { recordAnnualSnapshot } from './chronicle.js';
 import { determineDecision, autoChoose } from './auto-decision.js';
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export function startLife(seed, { mode = 'SEMI_AUTO', speed = 1 } = {}) {
   if (!MODES.includes(mode)) throw new Error('Invalid mode');
@@ -36,6 +24,7 @@ export function startLife(seed, { mode = 'SEMI_AUTO', speed = 1 } = {}) {
   s.person = born.person;
   s.phase = 'running';
   appendEvent(s, 'birth', `${s.person.nationName}の${s.person.familyName}に、${s.person.name}が生まれた。`, 'major');
+  recordAnnualSnapshot(s);
   return s;
 }
 
@@ -68,7 +57,8 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
   next = progressRelationships(person,s.rng);
   person=next.person;s.rng=next.rng;
   s.person = person;
-  for (const news of next.news) appendEvent(s, 'story', news, 'major');  if (decision && ['pathway','fellowship','conviction'].includes(decision.type)) applyStoryChoice(s, decision.type, selectedId);
+  for (const news of next.news) appendEvent(s, 'story', news, 'major');
+  if (decision && ['pathway','fellowship','conviction'].includes(decision.type)) applyStoryChoice(s, decision.type, selectedId);
 
   const academyStart = race.adultAge - 5;
   if (person.age === academyStart && person.stage === 'childhood') {
@@ -125,6 +115,7 @@ function advanceCommittedYear(state, decision = null, selectedId = null) {
   if (s.person.age % 5 === 0 && s.person.stage !== 'deceased') {
     appendEvent(s, 'training', `${s.person.age}歳。${s.person.stage === 'retired' ? '穏やかな日々を過ごす。' : '訓練と経験を積み重ねた。'}`);
   }
+  recordAnnualSnapshot(s);
   return s;
 }
 
@@ -135,6 +126,7 @@ function complete(state, reason) {
   state.phase = 'completed';
   state.pendingDecision = null;
   appendEvent(state, 'death', `${state.person.age}歳で生涯を閉じた（${reason}）。`, 'major');
+  recordAnnualSnapshot(state);
   return state;
 }
 
@@ -182,4 +174,3 @@ export function runToCompletion(initial, maxSteps = 1000) {
   if (state.phase !== 'completed') throw new Error('Simulation failed to finish');
   return state;
 }
-

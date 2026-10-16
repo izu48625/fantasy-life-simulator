@@ -1,25 +1,118 @@
+import { yearDelta, formatSigned } from '../analysis/life-stats.js';
+
 const $ = id => document.getElementById(id);
+const KIND = {
+  birth:['出生','✦'],training:['訓練・学業','✎'],admission:['入学試験','⌂'],graduation:['卒業','✧'],
+  career:['配属','⚑'],battle:['戦闘','⚔'],promotion:['昇進','★'],
+  retirement:['引退','☼'],death:['終章','✝'],story:['人生の出来事','◆']
+};
+const PHASE = {childhood:'幼少期',academy:'学院生活',awaiting_career:'進路選択',career:'戦闘キャリア',retired:'引退生活',deceased:'生涯の終章'};
+const strongKinds = new Set(['birth','admission','graduation','career','promotion','retirement','death']);
+function includeEntry(entry, filter) {
+  if (filter==='all') return true;
+  if (filter==='turning') return strongKinds.has(entry.kind) || (entry.kind==='story'&&entry.importance==='major');
+  if (filter==='battle') return entry.kind==='battle' || entry.kind==='promotion';
+  if (filter==='school') return ['admission','graduation','training'].includes(entry.kind);
+  if (filter==='people') return entry.kind==='story';
+  return true;
+}
+function el(name,cls='',value) {
+  const node=document.createElement(name);if(cls)node.className=cls;if(value!==undefined)node.textContent=String(value);return node;
+}
+function eventCard(entry) {
+  const article=el('article',`chronicle-event kind-${entry.kind}${strongKinds.has(entry.kind)?' milestone':''}`);
+  const head=el('div','chronicle-event-head');
+  const label=el('span','event-type',`${KIND[entry.kind]?.[1] || '•'} ${KIND[entry.kind]?.[0] || '記録'}`);
+  head.append(label);
+  if (entry.kind==='battle' && entry.detail) {
+    head.append(el('strong',entry.detail.win?'battle-win':'battle-loss',entry.detail.win?'勝利':'敗北'));
+  } else if (strongKinds.has(entry.kind)) head.append(el('span','milestone-tag','転機'));
+  const p=el('p','event-narrative',entry.text);
+  article.append(head,p);
+  if (entry.kind==='battle' && entry.detail) {
+    const d=entry.detail, facts=el('div','battle-facts');
+    const items=[`勝算 ${Math.round(d.winChance*100)}%`,`敵戦力 ${d.opponent}`,`戦功 ${d.win?(d.war?'+3':'+1'):'+0'}`];
+    if(d.injury)items.push(`負傷 ${d.injury}`);
+    for(const item of items)facts.append(el('span','fact-chip',item));
+    article.append(facts);
+  }
+  return article;
+}
+function chapterFor(age, group, records, filter) {
+  const section=el('section','year-chapter');
+  const heading=el('div','year-header');
+  const ageBadge=el('span','year-age',`${age}歳`);
+  const period=el('div','year-heading-main');
+  period.append(el('strong','year-phase',PHASE[group.record?.stage]||'人生の記録'));
+  const year=group.record?.year??group.entries[0]?.year;
+  period.append(el('span','year-calendar',`王暦 ${year}年`));
+  heading.append(ageBadge,period);section.append(heading);
+  for(const entry of group.entries)section.append(eventCard(entry));
+  if(group.record&&filter==='all') {
+    const delta=yearDelta(records,age);
+    const bottom=el('div','year-report');
+    const ovr=delta ? `OVR ${group.record.ovr} (${formatSigned(delta.ovr)})` : `OVR ${group.record.ovr}`;
+    bottom.append(el('span','year-number',ovr));
+    if(delta&&delta.battles>0)bottom.append(el('span','year-number',`今年 ${delta.battles}戦 ${delta.wins}勝`));
+    if(delta&&delta.merit>0)bottom.append(el('span','year-number',`戦功 ${formatSigned(delta.merit)}`));
+    bottom.append(el('span','year-number',`健康 ${Math.round(group.record.health)}`));
+    if(group.entries.length===0)bottom.insertBefore(el('span','quiet-year','大きな出来事の記録なし'),bottom.firstChild);
+    section.append(bottom);
+  }
+  return section;
+}
 export function renderTimeline(state) {
   const view = $('timeline');
-  // Do not destroy/recreate DOM when no new event has appeared.
-  if (view.dataset.lifeSeed !== state.seed || Number(view.dataset.lastId || '0') > (state.timeline.at(-1)?.id || 0)) {
-    view.replaceChildren(); view.dataset.lastId = '0'; view.dataset.lifeSeed = state.seed;
+  const filter=view.dataset.filter || 'all';
+  const records=Array.isArray(state.annualRecords)?state.annualRecords:[];
+  const renderKey=`${state.seed}/${state.timeline.at(-1)?.id||0}/${records.length}/${filter}`;
+  if (view.dataset.renderKey===renderKey) return;
+  const desktopScrollable=view.scrollHeight>view.clientHeight+10;
+  const stick=desktopScrollable && view.scrollHeight-view.scrollTop-view.clientHeight<110;
+  const previousY=view.scrollTop;
+  const map=new Map();
+  if(filter==='all')for(const row of records)map.set(row.age,{record:row,entries:[]});
+  for(const entry of state.timeline) {
+    if(!includeEntry(entry,filter))continue;
+    if(!map.has(entry.age))map.set(entry.age,{record:records.find(v=>v.age===entry.age)??null,entries:[]});
+    map.get(entry.age).entries.push(entry);
   }
-  const oldLastId = Number(view.dataset.lastId || '0');
-  const stick = view.scrollHeight - view.scrollTop - view.clientHeight < 90;
-  const fragment = document.createDocumentFragment();
-  for (const entry of state.timeline) {
-    if (entry.id <= oldLastId) continue;
-    const article = document.createElement('article');
-    article.className = `event ${entry.importance === 'major' ? 'event-major' : ''}`;
-    const at = document.createElement('div'); at.className = 'event-age';
-    at.textContent = `${entry.age}歳 · 王暦${entry.year}年`;
-    const content = document.createElement('p'); content.textContent = entry.text;
-    article.append(at, content);
-    fragment.append(article);
+  const fragment=document.createDocumentFragment();
+  const sorted=[...map.entries()].sort((a,b)=>a[0]-b[0]);
+  let quiet=[];
+  function flushQuiet() {
+    if(!quiet.length)return;
+    if(quiet.length===1)fragment.append(chapterFor(quiet[0][0],quiet[0][1],records,filter));
+    else {
+      const first=quiet[0],last=quiet.at(-1);
+      const fold=el('details','quiet-years-fold');
+      const summary=el('summary','quiet-years-title',`${first[0]}〜${last[0]}歳｜${quiet.length}年間の積み重ね · OVR ${first[1].record.ovr} → ${last[1].record.ovr}`);
+      fold.append(summary);
+      const content=el('div','quiet-years-content');
+      for(const [age,group] of quiet)content.append(chapterFor(age,group,records,filter));
+      fold.append(content);fragment.append(fold);
+    }
+    quiet=[];
   }
-  view.append(fragment);
-  view.dataset.lastId = String(state.timeline.at(-1)?.id || 0);
-  if (stick) view.scrollTop = view.scrollHeight;
+  for(const [age,group] of sorted) {
+    if(filter==='all' && !group.entries.length && group.record) {
+      if(quiet.length && quiet.at(-1)[0]+1!==age)flushQuiet();
+      quiet.push([age,group]);continue;
+    }
+    flushQuiet();fragment.append(chapterFor(age,group,records,filter));
+  }
+  flushQuiet();
+  if(!map.size)fragment.append(el('p','muted','該当する出来事は、まだありません。'));
+  // Keep fold expansion and scroll position stable between ticks.
+  const openRanges=new Set([...view.querySelectorAll('.quiet-years-fold[open]')].map(node=>node.querySelector('summary')?.textContent));
+  for(const node of fragment.querySelectorAll('.quiet-years-fold'))if(openRanges.has(node.querySelector('summary')?.textContent))node.open=true;
+  view.replaceChildren(fragment);
+  view.dataset.renderKey=renderKey;
+  if(stick)view.scrollTop=view.scrollHeight;
+  else if(desktopScrollable)view.scrollTop=previousY;
+  for(const btn of document.querySelectorAll('[data-chronicle-filter]')){
+    const selected=btn.dataset.chronicleFilter===filter;
+    btn.setAttribute('aria-pressed',String(selected));
+    btn.classList.toggle('active',selected);
+  }
 }
-

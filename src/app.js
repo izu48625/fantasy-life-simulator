@@ -2,18 +2,11 @@ import { startLife, stepLife, resolveChoice, configureLife } from './core/lifecy
 import { saveCurrent, loadCurrent, archiveLife, listArchive, exportJson, importJson } from './core/save-manager.js';
 import { renderProfile } from './ui/profile.js';
 import { renderTimeline } from './ui/timeline.js';
+import { renderAnalytics } from './ui/analytics.js';
 import { renderDecision } from './ui/decisions.js';
 import { renderControls, $ } from './ui/controls.js';
 import { renderSummary } from './ui/summary.js';
 import { showScreen } from './ui/home.js';
-
-
-
-
-
-
-
-
 let state = null;
 let playing = false;
 let timer = null;
@@ -46,6 +39,7 @@ const render = () => {
   showScreen(!!state);
   if (!state) return;
   renderProfile(state);
+  renderAnalytics(state);
   renderTimeline(state);
   renderDecision(state, pickChoice);
   renderSummary(state);
@@ -101,12 +95,14 @@ function newLife() {
   const seed = specified || `life-${Date.now().toString(36)}`;
   try {
     state = startLife(seed, { mode: $('initial-mode').value });
+    delete $('timeline').dataset.renderKey;
     archived = false; const saved = persist(); $('resume-button').disabled = !saved; $('archive-panel').hidden = true; render(); flash(persistentStorage ? '新しい人生が始まりました' : '試用モード：保存はこの画面内のみ。JSON書き出しをおすすめします');
   } catch (e) { flash(e.message); }
 }
 function resumeLife() {
   try {
     state = loadCurrent(storage);
+    delete $('timeline').dataset.renderKey;
     if (!state) return flash('保存された人生がありません');
     archived = state.phase === 'completed';
     pause(); render();
@@ -132,11 +128,18 @@ function showArchive() {
     info.append(name, meta);
     const button = document.createElement('button'); button.textContent = '閲覧する'; button.type = 'button';
     button.addEventListener('click', () => {
-      try { state = importJson(entry.snapshot); archived = true; pause(); render(); panel.hidden = true; }
+      try { state = importJson(entry.snapshot); delete $('timeline').dataset.renderKey; archived = true; pause(); render(); panel.hidden = true; }
       catch (e) { flash(`アーカイブ読み込み失敗：${e.message}`); }
     });
     row.append(info, button); list.append(row);
   }
+}
+$('trend-select').addEventListener('change', () => { if (state) renderAnalytics(state); });
+for (const button of document.querySelectorAll('[data-chronicle-filter]')) {
+  button.addEventListener('click', () => {
+    $('timeline').dataset.filter = button.dataset.chronicleFilter;
+    if (state) renderTimeline(state);
+  });
 }
 $('start-button').addEventListener('click', newLife);
 $('resume-button').addEventListener('click', resumeLife);
@@ -154,11 +157,10 @@ $('home-button').addEventListener('click', () => { pause(); state = null; showSc
 $('import-file').addEventListener('change', async event => {
   const file = event.target.files?.[0]; if (!file) return;
   if (file.size > 4_000_000) { flash('4 MBより大きなファイルは読み込めません'); return; }
-  try { const imported = importJson(await file.text()); pause(); state = imported; archived = state.phase === 'completed'; persist(); $('resume-button').disabled = false; render(); flash('読み込みました'); }
+  try { const imported = importJson(await file.text()); pause(); state = imported; delete $('timeline').dataset.renderKey; archived = state.phase === 'completed'; persist(); $('resume-button').disabled = false; render(); flash('読み込みました'); }
   catch (e) { flash(`読み込み失敗：${e.message}`); }
   finally { event.target.value = ''; }
 });
 document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
 window.addEventListener('pagehide', () => { pause(); if (state) persist(); });
 try { $('resume-button').disabled = !loadCurrent(storage); } catch { $('resume-button').disabled = true; }
-

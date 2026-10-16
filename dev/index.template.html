@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f2eadc">
   <meta name="description" content="ファンタジー世界に生まれた戦士の一生を観察する、ブラウザ完結の戦闘人生シミュレーション。R0試作版。">
-  <title>Fantasy Life Simulator — R1 Gameplay Preview</title>
-  
-<link rel="stylesheet" href="./src/styles/base.css">
-<link rel="stylesheet" href="./src/styles/desktop.css">
-<link rel="stylesheet" href="./src/styles/mobile.css">
+  <title>Fantasy Life Simulator — R1 Chronicle Preview</title>
+  <link rel="stylesheet" href="./src/styles/base.css">
+  <link rel="stylesheet" href="./src/styles/desktop.css">
+  <link rel="stylesheet" href="./src/styles/mobile.css">
+  <script type="module" src="./src/app.js"></script>
 </head>
 <body>
   <header class="site-header">
     <div class="brand-mark" aria-hidden="true">✦</div>
     <div><div class="brand-title">FANTASY LIFE SIMULATOR</div><div class="brand-sub">戦士の一生、その運命を見届ける。</div></div>
-    <span class="prototype-tag">R1 開発プレビュー</span>
+    <span class="prototype-tag">R1 年表・戦績プレビュー</span>
   </header>
   <main>
     <section id="welcome" class="welcome card" aria-labelledby="welcome-title">
@@ -52,12 +52,33 @@
       <section class="card timeline-panel" aria-label="人生年表">
         <div class="section-heading"><div><p class="eyebrow">PERSONAL CHRONICLE</p><h2>人生年表</h2><p id="brief-character" class="muted compact-identity"></p></div><span id="running-status" class="status-pill" aria-live="polite">一時停止</span></div>
         <section id="decision-panel" class="decision-panel" hidden aria-label="重要な選択"></section>
+        <section class="metrics-section" aria-label="戦士の主要記録">
+          <div class="subsection-title"><h3>戦士の記録</h3><span>LIVE STATS</span></div>
+          <div id="life-metrics" class="metric-grid" aria-live="off"></div>
+        </section>
+        <section class="trend-section" aria-label="能力と戦績の年次推移">
+          <div class="trend-heading"><h3>人生の数字を追う</h3><label for="trend-select">指標
+            <select id="trend-select"><option value="ovr">戦闘評価 OVR</option><option value="health">健康</option><option value="merit">戦功</option><option value="fame">名声</option></select>
+          </label></div>
+          <svg id="trend-svg" viewBox="0 0 680 188" role="img" aria-label="年齢別の数値推移" preserveAspectRatio="xMidYMid meet"></svg>
+          <p id="trend-caption" class="trend-caption muted"></p>
+        </section>
+        <div class="chronicle-toolbar"><h3>生涯年表</h3><div class="chronicle-filters" role="group" aria-label="年表の絞り込み">
+          <button type="button" class="active" data-chronicle-filter="all" aria-pressed="true">全て</button>
+          <button type="button" data-chronicle-filter="turning" aria-pressed="false">転機</button>
+          <button type="button" data-chronicle-filter="battle" aria-pressed="false">戦闘</button>
+          <button type="button" data-chronicle-filter="school" aria-pressed="false">学び</button>
+          <button type="button" data-chronicle-filter="people" aria-pressed="false">人間関係</button>
+        </div></div>
         <div id="timeline" class="timeline" aria-live="off"></div>
         <section id="summary-panel" class="summary-panel" hidden aria-label="一生の記録"></section>
       </section>
       <aside class="card world-panel" aria-label="世界・戦績">
         <p class="eyebrow">CURRENT WORLD</p><h2>世界と戦績</h2>
         <p id="world-status"></p><p id="combat-status"></p>
+        <h3 class="world-subheading">数字で見る戦士の人生</h3>
+        <div id="detail-metrics" class="detail-metric-grid"></div>
+        <p id="toughest-victory" class="upset-record" hidden></p>
         <p class="muted">世界の情勢は毎年変化します。現在は6国家の簡易モデルを使用しています。</p>
         <hr>
         <button id="save-button" type="button">この人生を保存</button>
@@ -79,6 +100,5 @@
     </div>
   </nav>
   <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
-<script type="module" src="./src/app.js"></script>
 </body>
 </html>
