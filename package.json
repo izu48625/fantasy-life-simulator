@@ -1,9 +1,9 @@
 {
   "name": "fantasy-life-simulator",
   "private": true,
-  "version": "0.6.0",
+  "version": "0.7.0",
   "type": "module",
-  "description": "R1.3 occupation salary trade-offs, injuries, career recovery choices",
+  "description": "R1.4 rehabilitation, mentorship, recovery exams and second careers",
   "scripts": {
     "test": "node --test tests/*.test.js",
     "test:simulation": "node tests/simulation-runner.js",

@@ -10,6 +10,7 @@ export function riskMultiplier(person,careerId=person.occupation?.careerId) {
   if(person.occupation?.careerId===careerId){
     if(person.occupation.medicalAssignment==='rear')scale*=.37;
     if(person.occupation.medicalAssignment==='front')scale*=1.24;
+    if(['instructor','rehab'].includes(person.occupation.medicalAssignment))scale*=.04;
   }
   return scale;
 }
@@ -24,6 +25,8 @@ export function annualSalary(person,{careerId=person.occupation?.careerId,rankIn
   if(person.occupation?.careerId===careerId){
     if(person.occupation.medicalAssignment==='rear')multiplier=.78;
     if(person.occupation.medicalAssignment==='front')multiplier=1.12;
+    if(person.occupation.medicalAssignment==='instructor')multiplier=.86;
+    if(person.occupation.medicalAssignment==='rehab')multiplier=.62;
   }
   return Math.round(BASE_PAY[careerId]*(RANK_MULT[clamp(rankIndex??0,0,3)]||1)*seniority*multiplier*(war?1.14:1));
 }

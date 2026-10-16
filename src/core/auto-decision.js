@@ -5,9 +5,11 @@ import { chooseAcademy } from '../simulation/academy.js';
 import { preferredCareer } from '../simulation/career.js';
 import { eligibleForTransfer, transferOptions } from '../simulation/career-paths.js';
 import { annualSalary, riskLabel, riskMultiplier } from '../simulation/economy.js';
+import { recoveryDecision } from '../simulation/recovery-career.js';
 import { INJURY_PATHS } from '../simulation/injury-choices.js';
 import { RACES } from '../data/races.js';
 import { STORY_CHOICE_SETS } from '../simulation/story.js';
+
 
 
 
@@ -29,6 +31,8 @@ export function determineDecision(state) {
   let type = null, title = null, options = null, important = false;
   if (p.stage==='career' && p.injuryDecisionPending) {
     type='injury_path';title=`${p.injuryDecisionPending.kind}のあと、これからどう生きるか`;options=INJURY_PATHS;important=true;
+  } else if ((p.stage==='career'||p.stage==='retired') && recoveryDecision(p,targetAge)) {
+    const next=recoveryDecision(p,targetAge);type=next.type;title=next.title;options=next.options;important=true;
   } else if (targetAge === academyStart && p.stage === 'childhood') {
     type = 'academy'; title = '進学先を希望する';
     options = INSTITUTIONS.map(a => ({ id: a.id, label: a.name })); important = true;
@@ -57,6 +61,14 @@ export function determineDecision(state) {
 
 export function autoChoose(state, decision) {
   const p = state.person;
+  if(decision.type==='return_exam'){
+    const tries=p.recoveryJourney?.attemptCount||0;
+    if(tries>=2)return 'instructor';
+    if(p.health>=58 || tries>=1)return 'exam';
+    return p.battles>=8&&p.caution>65?'instructor':'continue';
+  }
+  if(decision.type==='mentor_offer')return p.battles>=12||p.caution>=58?'teach':'support';
+  if(decision.type==='retirement_offer')return p.caution>=70?'quiet':'teach';
   if (decision.type === 'injury_path') {
     if(p.health<39 || p.caution>78)return 'rear';
     if(p.age>45 && p.health<60)return 'retire';

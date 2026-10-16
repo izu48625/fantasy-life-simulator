@@ -24,7 +24,7 @@ export function transferOptions(person) {
 }
 
 export function eligibleForTransfer(person,targetAge) {
-  if(person.stage!=='career'||!person.occupation||person.convalescentYears>0||person.health<48)return false;
+  if(person.stage!=='career'||!person.occupation||person.convalescentYears>0||person.health<48||['rehab','instructor'].includes(person.occupation?.medicalAssignment))return false;
   const o=person.occupation;
   const lastMove=o.lastTransferAt??o.joinedAt;
   return targetAge%8===0 && targetAge-lastMove>=6 && (o.transfers??0)<3;
@@ -73,7 +73,7 @@ const ASSIGNMENTS=[
 /** Rare and stateful assignment changes (not independent narration). */
 export function maybeReassign(person,rng){
   const o=person.occupation;
-  if(!o||o.medicalAssignment==='rear'||person.convalescentYears||person.health<38||person.age-o.joinedAt<3||person.age%5!==0)return{person,rng,log:null};
+  if(!o||['rear','instructor','rehab'].includes(o.medicalAssignment)||person.convalescentYears||person.health<38||person.age-o.joinedAt<3||person.age%5!==0)return{person,rng,log:null};
   let roll=nextRandom(rng);rng=roll.rng;
   if(roll.value>.62)return{person,rng,log:null};
   const eligible=ASSIGNMENTS.filter(x=>x.can(person)&&x.id!==o.assignmentId);

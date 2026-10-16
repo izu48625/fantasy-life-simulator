@@ -17,7 +17,8 @@ export function preferredCareer(p) {
   if (p.caution<48 || p.ambition>74) return 'mercenary';
   return 'army';
 }
-export function attemptCareer(person,rng,careerId) {  const requested=CAREERS.find(c=>c.id===careerId)??CAREERS[1];
+export function attemptCareer(person,rng,careerId) {
+  const requested=CAREERS.find(c=>c.id===careerId)??CAREERS[1];
   const ability=requested.attr.reduce((sum,key)=>sum+person.attributes[key],0)/requested.attr.length;
   const school=person.education?.institutionId;
   const fit=requested.id==='mage'?(school==='magic' ? .13 : 0):
@@ -44,7 +45,7 @@ export function attemptCareer(person,rng,careerId) {  const requested=CAREERS.fi
     `${requested.name}への志願は不採用となった（選考見込${Math.round(probability*100)}%）。新たに${career.name}で道を歩み始めた。年収${pay}銀貨、危険度${risk}。`};
 }
 export function maybePromote(person,rng){
- if(!person.occupation||person.rankIndex>=3)return{person,rng,log:null};
+ if(!person.occupation||person.rankIndex>=3||person.occupation.medicalAssignment==='rehab')return{person,rng,log:null};
  const career=CAREERS.find(c=>c.id===person.occupation.careerId);
  const tenure=person.age-person.occupation.joinedAt;
  const thresholds=[0,5,21,75];
